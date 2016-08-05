@@ -3,10 +3,36 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "^4.14.0"
+    "axios": "^0.13.1",
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "moment": "^2.14.1",
+    "passport": "^0.3.2",
+    "passport-yahoo": "^0.3.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.1",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
+    "sequelize": "^3.23.6"
   },
   "scripts": {
     "upload": "zip -r -X Archive.zip *",
     "start": "node server/app.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.1",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.10.0",
+    "webpack": "^1.13.1"
   }
 }
