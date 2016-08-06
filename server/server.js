@@ -1,5 +1,6 @@
 const db = require('./db/db_config');
-const User = require('./db/user/userModel');
+
+
 
 let port = process.env.PORT || 3000,
     http = require('http'),
