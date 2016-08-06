@@ -1,3 +1,5 @@
+const db = require('./db/db_config');
+
 let port = process.env.PORT || 3000,
     http = require('http'),
     fs = require('fs'),
@@ -7,7 +9,7 @@ const log = function(entry) {
     fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
 };
 
-const server = http.createServer(function (req, res) {
+const server = http.createServer((req, res) => {
     if (req.method === 'POST') {
         const body = '';
 
