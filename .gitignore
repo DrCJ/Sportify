@@ -3,6 +3,7 @@ logs
 *.log
 npm-debug.log*
 server/config/*
+sampleRequests/*
 
 # Runtime data
 pids

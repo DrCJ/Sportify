@@ -8,6 +8,15 @@ const db = new Sequelize('nflsportify', userName, password, {
   port,
 });
 
+const User = require('./user/userModel');
+const Player = require('./models/player');
+const Team = require('./models/team');
+
+Player.belongsTo(Team);
+Team.hasMany(Player);
+
+// const connect = require('./modelConnect');
+
 db.sync()
     .then(() => console.log('we are connected'))
     .catch(err => console.log(`unable to connect ${err}`));
