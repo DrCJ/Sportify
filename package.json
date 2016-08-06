@@ -25,6 +25,10 @@
     "sequelize": "^3.23.6"
   },
   "scripts": {
+    "test": "mocha spec/*",
+    "test:client": "mocha spec/client",
+    "test:server": "mocha spec/server",
+    "test:e2e": "mocha spec/e2e",
     "upload": "zip -r -X Archive.zip *",
     "start": "node server/server.js",
     "start:dev": "nodemon server/server.js && webpack --watch"

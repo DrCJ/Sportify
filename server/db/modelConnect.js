@@ -5,4 +5,4 @@ const Team = require('./models/team');
 Player.belongsTo(Team);
 Team.hasMany(Player);
 
-module.exports = {}
+// module.exports = {}
