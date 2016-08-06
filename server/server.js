@@ -1,15 +1,15 @@
-var port = process.env.PORT || 3000,
+let port = process.env.PORT || 3000,
     http = require('http'),
     fs = require('fs'),
-    html = fs.readFileSync(__dirname + '/../index.html');
+    html = fs.readFileSync(__dirname + '/../public/index.html');
 
-var log = function(entry) {
+const log = function(entry) {
     fs.appendFileSync('/tmp/sample-app.log', new Date().toISOString() + ' - ' + entry + '\n');
 };
 
-var server = http.createServer(function (req, res) {
+const server = http.createServer(function (req, res) {
     if (req.method === 'POST') {
-        var body = '';
+        const body = '';
 
         req.on('data', function(chunk) {
             body += chunk;
