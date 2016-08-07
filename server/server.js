@@ -1,6 +1,12 @@
 const db = require('./db/db_config');
+const express = require('express');
+const app = express();
 
+app.use('/', express.static(`${__dirname}/../public`));
 
+app.listen(3000, () => {
+  console.log('currently listening to port 3000');
+});
 
 // let port = process.env.PORT || 3000,
 //     http = require('http'),
