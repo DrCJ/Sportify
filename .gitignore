@@ -5,6 +5,7 @@ npm-debug.log*
 server/config/*
 sampleRequests/*
 public/dist/bundle.js
+mockindex.html
 
 # Runtime data
 pids
