@@ -18,7 +18,6 @@ export default (
     <Route path="LeagueOverview" component={LeagueOverview} />
     <Route path="TeamView" component={TeamView} />
     <Route path="player" component={PlayerView} />
-    <Route path="yahooAuth" component={}
 	</Route>
 );
 

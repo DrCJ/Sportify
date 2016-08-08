@@ -14,6 +14,7 @@ export default class App extends Component {
     return (
       <div> Hello World
         <YahooProfileImage />
+        {this.props.children}
       </div>
     );
   }
