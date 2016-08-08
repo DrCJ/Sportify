@@ -1,5 +1,5 @@
 {
-  "name": "Elastic-Beanstalk-Sample-App",
+  "name": "Sportify",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -7,9 +7,11 @@
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.7.1",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
+    "https-passport-yahoo-oauth": "^0.1.2",
     "moment": "^2.14.1",
     "passport": "^0.3.2",
     "passport-yahoo": "^0.3.0",
@@ -22,7 +24,8 @@
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
-    "sequelize": "^3.23.6"
+    "sequelize": "^3.23.6",
+    "yahoo-fantasy": "^0.5.2"
   },
   "scripts": {
     "test": "mocha spec/*",
@@ -30,8 +33,8 @@
     "test:server": "mocha spec/server",
     "test:e2e": "mocha spec/e2e",
     "upload": "zip -r -X Archive.zip *",
-    "start": "node server/server.js",
-    "start:dev": "nodemon server/server.js && webpack --watch"
+    "start": "sudo node server/server.js",
+    "start:dev": "sudo nodemon server/server.js && webpack --watch"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
