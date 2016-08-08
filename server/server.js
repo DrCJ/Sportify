@@ -53,6 +53,21 @@ app.use(passport.session());
 app.yf = new YahooFantasy(consumerKey, consumerSecret);
 
 app.use('/', express.static(`${__dirname}/../public`));
+app.get('/test', (req, res) => {
+  const yf = req.app.yf;
+  let teamKey, roster;
+
+  yf['user']['game_teams']('359', (err,data) => {
+    teamKey = data.teams[0].teams[0].team_key.toString();
+    yf.team.roster(teamKey, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(data.roster);
+      }
+    });
+  });
+});
 
 app.get('/auth/yahoo',
   passport.authenticate('yahoo', { failureRedirect: '/login' }),
@@ -63,7 +78,8 @@ app.get('/auth/yahoo',
 app.get('/auth/yahoo/callback',
   passport.authenticate('yahoo', { failureRedirect: '/login' }),
   (req, res) => {
-    res.redirect(req.session.redirect || '/');
+    // res.redirect('req.session.redirect || '/')';
+    res.redirect('/test');
   }
 );
 
