@@ -10,7 +10,7 @@ export default class YahooProfileImage extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     fetch('/roster')
       .then((data) => { return data.json() })
       .then((tempTableData) => { this.setState({ tempTableData }); console.log(tempTableData) });
@@ -19,8 +19,8 @@ export default class YahooProfileImage extends Component {
   render() {
     return (
       <div>
-        <a href="/auth/yahoo"> Login
-        </a>
+        <a href="/auth/yahoo">Login</a>
+        <a href="/logout">Logout</a>
         <ul>
           {
             this.state.tempTableData.map((player, index) => {
