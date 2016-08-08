@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import YahooProfileImage from './../containers/YahooProfileImage';
 
-export default class App extends Component {
+export default class YahooProfileImage extends Component {
   constructor(props) {
     super(props);
 
@@ -12,8 +11,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div> Hello World
-        <YahooProfileImage />
+      <div> Login
       </div>
     );
   }
