@@ -10,8 +10,7 @@ module.exports = (app, express, passport) => {
   app.get('/auth/yahoo/callback',
   passport.authenticate('yahoo', { failureRedirect: '/login' }),
     (req, res) => {
-      res.redirect(req.session.redirect || '/');
-      // res.redirect('/');
+      res.redirect('/');
     }
   );
 
@@ -25,5 +24,10 @@ module.exports = (app, express, passport) => {
         });
       }
     });
+  });
+
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect(req.session.redirect || '/');
   });
 };
