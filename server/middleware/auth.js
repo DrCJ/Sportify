@@ -1,9 +1,8 @@
-const app = require('./../server');
 const passport = require('passport');
 const YahooStrategy = require('https-passport-yahoo-oauth').Strategy;
 const YahooFantasy = require('yahoo-fantasy');
-
 const { consumerKey, consumerSecret, callbackURL } = require('./../config/credentials');
+
 const yf = new YahooFantasy(consumerKey, consumerSecret);
 
 passport.serializeUser((user, done) => {

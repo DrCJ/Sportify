@@ -1,4 +1,4 @@
-const db = require('./db/db_config');
+// const db = require('./db/db_config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
