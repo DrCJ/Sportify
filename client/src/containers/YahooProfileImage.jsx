@@ -11,7 +11,7 @@ export default class YahooProfileImage extends Component {
   }
 
   componentDidMount() {
-    fetch('/test')
+    fetch('/roster')
       .then((data) => { return data.json() })
       .then((tempTableData) => { this.setState({ tempTableData }); console.log(tempTableData) });
   }

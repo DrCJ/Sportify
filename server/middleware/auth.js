@@ -1,7 +1,10 @@
 const app = require('./../server');
 const passport = require('passport');
 const YahooStrategy = require('https-passport-yahoo-oauth').Strategy;
+const YahooFantasy = require('yahoo-fantasy');
+
 const { consumerKey, consumerSecret, callbackURL } = require('./../config/credentials');
+const yf = new YahooFantasy(consumerKey, consumerSecret);
 
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -27,10 +30,10 @@ passport.use(new YahooStrategy({ consumerKey, consumerSecret, callbackURL },
       sessionHandle: profile.oauth_session_handle,
     };
 
-    app.yf.setUserToken(userObj.accessToken, userObj.tokenSecret, userObj.sessionHandle);
+    yf.setUserToken(userObj.accessToken, userObj.tokenSecret, userObj.sessionHandle);
 
     return done(null, userObj);
   })
 );
 
-module.exports = passport;
+module.exports = { passport, yf };
