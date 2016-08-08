@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import YahooProfileImage from './../containers/YahooProfileImage';
+import YahooProfileImage from './../containers/YahooProfileImage.jsx';
 
 export default class App extends Component {
   constructor(props) {

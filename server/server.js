@@ -1,7 +1,11 @@
 const db = require('./db/db_config');
 const express = require('express');
 const passport = require('passport');
-const YahooStrategy = require('https-passport-yahoo-oauth').Strategy
+const YahooStrategy = require('https-passport-yahoo-oauth').Strategy;
+const YahooFantasy = require('yahoo-fantasy');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const { consumerKey, consumerSecret, callbackURL } = require('./config/credentials');
 
 const app = express();
@@ -41,8 +45,28 @@ passport.use(
   })
 );
 
+app.use(bodyParser());
+app.use(cookieParser());
+app.use(session({ secret: 'djrc' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.yf = new YahooFantasy(consumerKey, consumerSecret);
+
 app.use('/', express.static(`${__dirname}/../public`));
 
+app.get('/auth/yahoo',
+  passport.authenticate('yahoo', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/');
+  });
+
+app.get('/auth/yahoo/callback',
+  passport.authenticate('yahoo', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect(req.session.redirect || '/');
+  }
+);
+
 app.listen(80, () => {
-  console.log('currently listening to port 3000');
+  console.log('currently listening to port 80');
 });
