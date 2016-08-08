@@ -6,7 +6,7 @@ export default class YahooProfileImage extends Component {
 
     this.state = {
       value: '',
-      tempTableData: [{name: { first: 'jay', last: 'arella' } }],
+      tempTableData: [{ name: { first: 'jay', last: 'arella' } }],
     };
   }
 
@@ -23,8 +23,8 @@ export default class YahooProfileImage extends Component {
         </a>
         <ul>
           {
-            this.state.tempTableData.map((player) => {
-              return <li>{player.name.first} {player.name.last}</li>
+            this.state.tempTableData.map((player, index) => {
+              return <li key={index}>{player.name.first} {player.name.last}</li>
             })
           }
         </ul>
