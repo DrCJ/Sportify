@@ -1,17 +1,16 @@
 const Sequelize = require('sequelize');
 
-const createSequelizeShape = (object) =>
-  object.filter(value => typeof value !== 'object')
-  .map(value => {
-    if (typeof value === 'number') {
-      return Sequelize.INTEGER;
+const createSequelizeShape = (object) => {
+  const newObject = {};
+  for (const k in object) {
+    if (typeof newObject[k] === 'number') {
+      newObject[k] = Sequelize.INTEGER;
     }
     // should be a string
-    return Sequelize.STRING;
-
-    //do DateTime, check w/ regex
-  });
-
+    newObject[k] = Sequelize.STRING;
+  }
+  return newObject;
+};
 module.exports = {
   createSequelizeShape,
 };

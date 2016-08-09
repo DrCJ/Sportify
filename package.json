@@ -29,6 +29,7 @@
     "yahoo-fantasy": "^0.5.2"
   },
   "scripts": {
+    "psql": "psql --host=nflsportify.c3mi87ty0bem.us-west-2.rds.amazonaws.com --port=5432 --username=nflguru --dbname=nflsportify",
     "test": "mocha spec/*",
     "test:client": "mocha spec/client",
     "test:server": "mocha spec/server",
