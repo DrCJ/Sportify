@@ -1,4 +1,4 @@
-// const db = require('./db/db_config');
+const db = require('./db/modelConnect');
 const express = require('express');
 const middleware = require('./middleware/middleware');
 const auth = require('./middleware/auth');

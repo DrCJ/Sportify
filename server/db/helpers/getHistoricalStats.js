@@ -1,5 +1,5 @@
 const yahooPlayerIDs = require('../sampleData/yahooPlayerIDs');
-
+const request = require('request');
 //make one api call at a time
 
 const yahooPlayerFetch = (yahooID, cb) => {
