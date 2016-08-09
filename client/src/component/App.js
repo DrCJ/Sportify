@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import YahooProfileImage from './../containers/YahooProfileImage.jsx';
+import { Link } from 'react-router';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+import Foundation from 'react-foundation';
+import { Footer } from './Footer';
+import { Header } from './Header';
+import { NavigationCanvas } from '../containers/NavigationCanvas';
 
-    this.state = {
-      value: '',
-    };
-  }
-
+class App extends Component {
   render() {
     return (
-      <div> Hello World
-        <YahooProfileImage />
+      <div>
+        <Header />
         {this.props.children}
+        <h3> Footer </h3>
+        <Footer />
+        <NavigationCanvas />
       </div>
     );
   }
 }
+
+export default App;
