@@ -1,0 +1,108 @@
+body {
+	overflow: hidden;
+}
+
+ul {
+	margin-left: 0;
+}
+
+header {
+   border: 1px solid red;
+   margin-bottom: 20px;
+}
+header:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+table {
+  border: 1px solid black;
+  border-collapse: collapse !important;
+}
+td {
+  border: 1px solid black;
+}
+
+/*Header Content */
+
+.header {
+	border: 1px solid red;
+	background-color: maroon;
+	margin-left: -30px;
+	overflow: hidden;
+}
+.center-content {
+  width: 960px;
+  margin: 0 auto;
+}
+.search-container {
+  margin-bottom: 30px;
+}
+.menu-btn {
+  margin-left: 15px;
+  padding-top: 18px;
+}
+.menu-btn span {
+  border: 1px solid blue;
+  display: block;
+  margin-bottom: 5px;
+  width: 30px;
+}
+.login-btn {
+  float: right;
+  margin-right: 30px;
+}
+
+
+/*Nav bar containers*/
+.app-container {
+	height: 100%;
+}
+
+.app-container-clicked {
+
+}
+
+.nav-canvas {
+	position: absolute;
+	left: 0px;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .7);
+	z-index: 2;
+	padding-right: 2px;
+	box-shadow: inset 0 5px .25em black;
+	border: 1px black solid;
+}
+
+.nav-canvas-clicked {
+	position: relative;
+	left: 0px;
+}
+
+.main-content {
+	position: relative;
+	left: 200px;
+	height: 100%;
+}
+
+.main-content-clicked {
+	left: 200px;
+}
+
+.nav-link {
+	list-style: none;
+	border: 2px solid black;
+	padding: 10px;
+	margin-top: .5px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	width: 100%;
+}
+.shadow {
+	position: fixed;
+	width: 100%;
+	height: 2000px;
+/*	background: rgba(0,0,0,.4);
+*/	z-index: 1;
+}
