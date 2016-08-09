@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
+import Foundation from 'react-foundation';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { NavigationCanvas } from '../containers/NavigationCanvas';
