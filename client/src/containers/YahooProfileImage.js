@@ -6,6 +6,7 @@ import { fetchRoster } from '../actions/index';
 
 class YahooProfileImage extends Component {
   componentWillMount() {
+    console.log('yahooProfile');
     this.props.fetchRoster();
   }
 
@@ -39,4 +40,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { fetchRoster })(YahooProfileImage);
-
