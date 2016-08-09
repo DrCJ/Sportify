@@ -1,18 +1,14 @@
 const db = require('../db_config');
 const Sequelize = require('sequelize');
-// const Team = require('./team');
+const { createSequelizeShape } = require('../helpers/parseStatsHelpers');
+const playerGeneralInfoSample = require('../sampleData/playerGeneralInfoSample');
+const playerGameSchema = require('../sampleData/playerGameSchema');
 
-const Player = db.define('player', {
-  twitterID: {
-    type: Sequelize.STRING,
-  },
-  name: {
-    type: Sequelize.STRING,
-  },
-  photoURL: {
-    type: Sequelize.STRING,
-  },
-});
+const playerGeneralSchema = createSequelizeShape(playerGeneralInfoSample);
+const mergedPlayerSchema = Object.assign({
+  twitterID: Sequelize.STRING,
+}, playerGeneralSchema, playerGameSchema);
 
+const Player = db.define('player', mergedPlayerSchema);
 
 module.exports = Player;
