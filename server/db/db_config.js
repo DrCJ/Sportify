@@ -8,6 +8,7 @@ const db = new Sequelize('nflsportify', userName, password, {
   port,
 });
 
+<<<<<<< HEAD
 // const User = require('./user/userModel');
 // const Player = require('./models/player');
 // const Team = require('./models/team');
@@ -21,4 +22,6 @@ db.sync()
     .then(() => console.log('we are connected'))
     .catch(err => console.log(`unable to connect ${err}`));
 
+=======
+>>>>>>> specs2
 module.exports = db;
