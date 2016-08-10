@@ -6,8 +6,7 @@ import { PlayerEntryView } from '../component/PlayerEntryView';
 export class PlayerListView extends Component {
   render() {
     return (
-    	<tbody>
-    	{console.log(this.props.players)}
+      <tbody>
       {this.props.players.map((player) => <PlayerEntryView key={player.id} player={player} />)}
       </tbody>
 		);

@@ -13,7 +13,7 @@ class PlayerView extends Component {
   }
   render() {
     if (this.props.players.length === 0) {
-      return <div> Loading </div>
+      return <div> Loading (Image????) </div>
     }
     return (
       <div>
@@ -27,7 +27,6 @@ class PlayerView extends Component {
               <thead>
                 <tr>
                   <td>Offense</td>
-                  <td>Owner</td>
                   <td>GP*</td>
                   <td>% Owned</td>
                   <td>Proj</td>
