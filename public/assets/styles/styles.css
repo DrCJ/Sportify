@@ -1,5 +1,16 @@
+* {
+	transition:all .5 ease-in;
+}
+
 body {
 	overflow: hidden;
+	
+
+
+background: #2980b9; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #2980b9 , #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #2980b9 , #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
 }
 
 ul {
@@ -7,7 +18,7 @@ ul {
 }
 
 header {
-   border: 1px solid red;
+   border: 1px solid black;
    margin-bottom: 20px;
 }
 header:after {
@@ -26,9 +37,11 @@ td {
 /*Header Content */
 
 .header {
-	border: 1px solid red;
-	background-color: maroon;
+background: #000000; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
 	overflow: hidden;
+	color: white;
 }
 .center-content {
   width: 960px;
@@ -42,7 +55,7 @@ td {
   padding-top: 18px;
 }
 .menu-btn span {
-  border: 1px solid blue;
+  border: 1px solid #e9e9e9;
   display: block;
   margin-bottom: 5px;
   width: 30px;
@@ -58,13 +71,14 @@ td {
 	height: 100%;
 }
 
-.app-container-clicked {
-
-}
-
 .nav-canvas {
 	position: absolute;
-	left: -200px;
+	left: -170px;
+	-webkit-transition: width .1s, height .1s, background-color .1s, -webkit-transform .1s;
+	transition: width .1s, height .1s, background-color .1s, transform .1s;
+	transition-duration: .1s;
+	transition-timing-function: ease-out;
+	transition: 0.2s;
 }
 
 .nav-canvas-clicked {
@@ -75,6 +89,11 @@ td {
 	z-index: 2;
 	padding-right: 2px;
 	border: 1px black solid;
+	-webkit-transition: width .1s, height .1s, background-color .1s, -webkit-transform .1s;
+	transition: width .1s, height .1s, background-color .1s, transform .1s;
+	transition-duration: .5s;
+	transition-timing-function: ease-in;
+  transition: 0.2s;
 }
 
 .main-content {
@@ -84,7 +103,7 @@ td {
 }
 
 .main-content-clicked {
-	left: 200px;
+	left: 155px;
 	height: 100%;
 	position: relative;
 }
@@ -101,8 +120,12 @@ td {
 }
 .shadow {
 	position: fixed;
+}
+
+.shadow-click {
+	position: fixed;
 	width: 100%;
 	height: 2000px;
-/*	background: rgba(0,0,0,.4);
-*/	z-index: 0;
+	background: rgba(0,0,0,.4);
+	z-index: 1;
 }
