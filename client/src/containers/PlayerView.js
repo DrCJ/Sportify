@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import PlayerListView from './PlayerListView';
+
+import { requestAllPlayers } from '../actions/index';
 
 class PlayerView extends Component {
+  componentWillMount() {
+    this.props.requestAllPlayers().then((data) => {
+      this.props.players.concat(data);
+    });
+  }
   render() {
+    if (this.props.players.length === 0) {
+      return <div> Loading (Image????) </div>
+    }
     return (
       <div>
-      	<h2> PlayerView </h2>
+        <h2> PlayerView </h2>
         <div className="center-content">
           <div className="search-container">
             <input type="text" name="name" value="" placeholder="SEARCH" />
           </div>
-
-          <div className="none">
+          <div className="player-table">
             <table>
               <thead>
                 <tr>
                   <td>Offense</td>
-                  <td>Owner</td>
                   <td>GP*</td>
                   <td>% Owned</td>
                   <td>Proj</td>
@@ -36,29 +45,7 @@ class PlayerView extends Component {
                   <td>Lost</td>
                 </tr>
               </thead>
-
-              <tbody>
-                <tr>
-                  <td>Hendry Key</td>
-                  <td>22</td>
-                  <td>33</td>
-                  <td>44</td>
-                  <td>55</td>
-                  <td>66</td>
-                  <td>77</td>
-                  <td>554</td>
-                  <td>5666</td>
-                  <td>3333</td>
-                  <td>545</td>
-                  <td>5454</td>
-                  <td>3</td>
-                  <td>5</td>
-                  <td>23</td>
-                  <td>55</td>
-                  <td>67</td>
-                  <td>4232</td>
-                </tr>
-              </tbody>
+            <PlayerListView />
             </table>
           </div>
         </div>
@@ -67,5 +54,11 @@ class PlayerView extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    players: state.players,
+  };
+}
 
-export default PlayerView;
+export default connect(mapStateToProps, { requestAllPlayers })(PlayerView);
+

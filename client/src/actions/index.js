@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_ROSTER = 'FETCH_ROSTER';
 export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
+export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
 
 export function fetchRoster() {
   const request = axios.get('/roster');
@@ -44,6 +45,15 @@ export function closeNavigation() {
   return {
     type: CANCEL_NAVIGATION,
     payload: navClose(),
+  };
+}
+
+export function requestAllPlayers() {
+  const request = axios.get('/api/getAllPlayers');
+  console.log('running?')
+  return {
+    type: REQUEST_ALL_PLAYERS,
+    payload: request,
   };
 }
 

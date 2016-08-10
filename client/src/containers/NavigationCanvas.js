@@ -6,7 +6,6 @@ export const NavigationCanvas = () => (
   <nav className="nav-canvas" >
     <div className="player-profile">
     </div>
-
     <ul>
       <li className="nav-link"><Link to="/player">Player</Link></li>
       <li className="nav-link"><Link to="/compare">Compare</Link></li>

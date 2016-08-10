@@ -15,7 +15,6 @@ ul {
 
 header {
    border: 1px solid black;
-   margin-bottom: 20px;
 }
 header:after {
   display: table;
@@ -28,23 +27,33 @@ table {
 }
 td {
   border: 1px solid black;
+  font-size: 12px;
+}
+
+tr {
+	background-color: #e9e9e9;
 }
 
 /*Header Content */
 
 .header {
-background: #000000; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
-	overflow: hidden;
-	color: white;
+	margin-bottom: 0;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */       
+  overflow: hidden;
+  color: white;
 }
+
 .center-content {
   width: 960px;
   margin: 0 auto;
 }
 .search-container {
   margin-bottom: 30px;
+}
+
+.player-table {
 }
 .menu-btn {
   margin-left: 15px;

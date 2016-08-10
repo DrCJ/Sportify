@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import Foundation from 'react-foundation';
 
 import Header from '../containers/Header';
 import { Footer } from './Footer';
