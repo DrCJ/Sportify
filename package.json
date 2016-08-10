@@ -34,13 +34,14 @@
   },
   "scripts": {
     "psql": "psql --host=nflsportify.c3mi87ty0bem.us-west-2.rds.amazonaws.com --port=5432 --username=nflguru --dbname=nflsportify",
+    "start": "sudo node server/server.js",
+    "start:dev": "sudo nodemon server/server.js && webpack --watch",
     "test": "mocha spec/*",
     "test:client": "mocha spec/client",
     "test:server": "mocha spec/server",
     "test:e2e": "mocha spec/e2e",
     "upload": "zip -r -X Archive.zip *",
-    "start": "sudo node server/server.js",
-    "start:dev": "sudo nodemon server/server.js && webpack --watch"
+    "yahooWorker": "node server/workers/yahooPlayerDataWorker/getYahooPlayerData.js"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
