@@ -28,6 +28,7 @@
     "redux-logger": "^2.6.1",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
+    "request": "^2.74.0",
     "sequelize": "^3.23.6",
     "yahoo-fantasy": "^0.5.2"
   },
