@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-
+import { connect } from 'react-redux';
 import Foundation from 'react-foundation';
+
+import Header from '../containers/Header';
 import { Footer } from './Footer';
-import { Header } from './Header';
 import { NavigationCanvas } from '../containers/NavigationCanvas';
+import { closeNavigation } from '../actions/index';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Header />
-        {this.props.children}
-        <h3> Footer </h3>
-        <Footer />
+      <div className="app-container">
         <NavigationCanvas />
+        <div onClick={this.props.closeNavigation} className="shadow" />
+        <div className="main-content">
+          <Header />
+          {this.props.children}
+          <Footer />
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(null, { closeNavigation })(App);
