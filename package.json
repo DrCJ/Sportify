@@ -41,7 +41,7 @@
     "test:server": "mocha spec/server",
     "test:e2e": "mocha spec/e2e",
     "upload": "zip -r -X Archive.zip *",
-    "yahooPlayers": "node server/workers/yahooPlayerDataWorker/getYahooPlayerData.js"
+    "yahooWorker": "node server/workers/yahooPlayerDataWorker/getYahooPlayerData.js"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
