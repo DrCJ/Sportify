@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import { toggleNavigation } from '../actions/index';
+
 export const NavigationCanvas = () => (
   <nav className="nav-canvas" >
     <div className="player-profile">
