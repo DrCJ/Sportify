@@ -1,5 +1,18 @@
 module.exports = (app, express, passport) => {
-  const getTeam = (yahoo) => {
+  const getLeagues = (yahoo) => {
+    return new Promise((resolve, reject) => {
+      yahoo.user.game_leagues('359', (err, data) => {
+        if (err) { reject(err); }
+        if (data) {
+          const leagueArr = data.leagues[0].leagues;
+          const leagueObj = { leagueArr, yahoo };
+          resolve(leagueArr);
+        }
+      });
+    });
+  }
+
+  const getTeams = (yahoo) => {
     return new Promise((resolve, reject) => {
       yahoo.user.game_teams('359', (err, data) => {
         if (err) { reject(err); }
@@ -21,7 +34,8 @@ module.exports = (app, express, passport) => {
 
   const getRoster = (req, res) => {
     const yahoo = req.app.yf;
-    getTeam(yahoo)
+    const responseObj = {};
+    getTeams(yahoo)
       .then(getPlayers)
       .then((roster) => res.json(roster));
   };

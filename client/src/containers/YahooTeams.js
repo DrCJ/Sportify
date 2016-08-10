@@ -7,7 +7,6 @@ import { fetchRoster } from '../actions/index';
 
 class YahooTeams extends Component {
   componentWillMount() {
-    console.log('yahooProfile');
     this.props.fetchRoster();
   }
 
