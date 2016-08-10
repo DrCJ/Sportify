@@ -6,7 +6,7 @@ import App from './component/App';
 import Compare from './component/Compare';
 import Schedule from './component/Schedule';
 import TeamView from './component/TeamView';
-import PlayerView from './component/PlayerView';
+import PlayerView from './containers/PlayerView';
 import LeagueOverview from './component/LeagueOverview';
 import YahooProfileImage from './containers/YahooProfileImage';
 

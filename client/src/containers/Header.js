@@ -6,8 +6,6 @@ import { toggleNavigation } from '../actions/index';
 
 class Header extends Component {
   render() {
-    console.log(this.props);
-    console.log(this.props.toggleNavigation);
     return (
       <div className="header">
         <button onClick={this.props.toggleNavigation} type="button" className="menu-btn">
