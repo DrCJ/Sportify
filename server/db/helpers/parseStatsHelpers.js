@@ -3,11 +3,11 @@ const Sequelize = require('sequelize');
 const createSequelizeShape = (object) => {
   const newObject = {};
   for (const k in object) {
-    if (typeof newObject[k] === 'number') {
+    if (typeof object[k] === 'number') {
       newObject[k] = Sequelize.INTEGER;
+    } else {
+      newObject[k] = Sequelize.STRING;
     }
-    // should be a string
-    newObject[k] = Sequelize.STRING;
   }
   return newObject;
 };

@@ -2,7 +2,8 @@ const request = require('request');
 const { fantasyData, endPoint, port, username, password } = require('../config/credentials');
 const yahooMapId = require('./fantasyYahooID');
 const db = require('./db/modelConnect');
-const
+const yahooId = require('../sampleData/fdIdToYId');
+
 // this is url for all player projections in one week
 // https://api.fantasydata.net/v3/nfl/projections/{format}/PlayerGameProjectionStatsByWeek/{season}/{week}
 
@@ -15,19 +16,24 @@ for(let i = 1; i <= weeks; i++) {
   request({
     headers: {
       'Content-Type': 'application/json',
-      'Ocp-Apim-Subscription-Key': fantasyData
+      'Ocp-Apim-Subscription-Key': fantasyData,
     },
     uri: url,
     method: 'GET',
   }, (err, response, body) => {
     if (err) {
       console.log('error:', err);
-    } else {
-      if(response.statusCode === 200) {
-        let playersStats = body.map(item => {
+    } else if (response.statusCode === 200) {
+      body.forEach(item => {
+        const playerId = item.PlayerID;
 
-        });
-      } else {
+        if (yahooId[playerId]) {
+          item.playerId = yahooId[playerId];
+        }
+
+        db.PlayerProjectedGame.create(item);
+      });
+    } else {
         console.log('err:', response);
       }
     }
