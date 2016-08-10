@@ -4,7 +4,9 @@ const Player = require('./models/player');
 const PlayerYearStat = require('./models/playerYearStat');
 const PlayerGame = require('./models/playerGame');
 const Team = require('./models/team');
+const PlayerProjectedGame = require('./models/playerProjectedGame');
 
+PlayerProjectedGame.belongsTo(Player);
 PlayerYearStat.belongsTo(Player);
 Player.hasOne(PlayerYearStat);
 Player.belongsTo(Team);
@@ -22,4 +24,5 @@ module.exports = {
   Player,
   Team,
   PlayerGame,
+  PlayerProjectedGame,
 };
