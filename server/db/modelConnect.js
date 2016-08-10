@@ -6,7 +6,7 @@ const PlayerGame = require('./models/playerGame');
 const Team = require('./models/team');
 const PlayerProjectedGame = require('./models/playerProjectedGame');
 
-PlayerProjectedGame.belongsTo(Player);
+PlayerProjectedGame.belongsTo(Player, { foreignKey: 'playerId', targetKey: 'id' });
 PlayerYearStat.belongsTo(Player);
 Player.hasOne(PlayerYearStat);
 Player.belongsTo(Team);
