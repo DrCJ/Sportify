@@ -7,7 +7,7 @@ router.post('/getAllPlayers', (req, res) => {
 });
 
 router.post('/getAllTeamPlayers', (req, res) => {
-  // playersController.getPlayersByParams(req, res);
+  playersController.getPlayersByIds(req, res);
 });
 
 router.get('/getAllPlayers', (req, res) => {
