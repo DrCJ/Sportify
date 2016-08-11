@@ -1,10 +1,25 @@
 module.exports = (app, express, passport) => {
-  const getTeam = (yahoo) => {
+  const getLeagues = (req, res) => {
+    const yahoo = req.app.yf;
+    yahoo.user.game_leagues('359', (err, data) => {
+      if (err) { console.log(err); }
+      if (data) {
+        const leagueArr = data.leagues[0].leagues;
+        res.json(leagueArr);
+      }
+    });
+  };
+
+  const getTeams = (yahoo, league_key) => {
     return new Promise((resolve, reject) => {
       yahoo.user.game_teams('359', (err, data) => {
         if (err) { reject(err); }
-        const teamKey = data.teams[0].teams[0].team_key.toString();
-        const teamObj = { teamKey, yahoo };
+        const team = data.teams[0].teams.filter((team) => {
+          if (team.team_key.includes(league_key)) {
+            return team;
+          };
+        });
+        const teamObj = { team, yahoo };
         resolve(teamObj);
       });
     });
@@ -12,7 +27,7 @@ module.exports = (app, express, passport) => {
 
   const getPlayers = (teamObj) => {
     return new Promise((resolve, reject) => {
-      teamObj.yahoo.team.roster(teamObj.teamKey, (err, data) => {
+      teamObj.yahoo.team.roster(teamObj.team[0].team_key, (err, data) => {
         if (err) { reject(err); }
         resolve(data.roster);
       });
@@ -21,7 +36,7 @@ module.exports = (app, express, passport) => {
 
   const getRoster = (req, res) => {
     const yahoo = req.app.yf;
-    getTeam(yahoo)
+    getTeams(yahoo, req.params.league_key)
       .then(getPlayers)
       .then((roster) => res.json(roster));
   };
@@ -41,7 +56,8 @@ module.exports = (app, express, passport) => {
     }
   );
 
-  app.get('/roster', getRoster);
+  app.get('/roster/:league_key', getRoster);
+  app.get('/leagues', getLeagues);
 
   app.get('/logout', (req, res) => {
     req.session.destroy(() => {

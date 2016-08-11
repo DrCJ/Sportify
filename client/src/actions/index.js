@@ -1,18 +1,26 @@
 import axios from 'axios';
 
 export const FETCH_ROSTER = 'FETCH_ROSTER';
+export const FETCH_LEAGUES = 'FETCH_LEAGUES';
 export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
 export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
 
-export function fetchRoster() {
-  const request = axios.get('/roster');
+export function fetchRoster(league_key) {
+  const request = axios.get(`/roster/${league_key}`);
   return {
     type: FETCH_ROSTER,
     payload: request,
   };
 }
 
+export function fetchLeagues() {
+  const request = axios.get('/leagues');
+  return {
+    type: FETCH_LEAGUES,
+    payload: request,
+  };
+}
 
 export function toggleNavigation() {
   const navCanvasClick = document.getElementsByClassName('nav-canvas');
@@ -56,4 +64,3 @@ export function requestAllPlayers() {
     payload: request,
   };
 }
-
