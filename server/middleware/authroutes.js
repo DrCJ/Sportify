@@ -35,7 +35,6 @@ module.exports = (app, express, passport) => {
   };
 
   const getRoster = (req, res) => {
-    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~>',req.params.league_key);
     const yahoo = req.app.yf;
     getTeams(yahoo, req.params.league_key)
       .then(getPlayers)
