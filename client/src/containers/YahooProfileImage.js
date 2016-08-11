@@ -6,7 +6,6 @@ import { fetchRoster } from '../actions/index';
 
 class YahooProfileImage extends Component {
   componentWillMount() {
-    console.log('yahooProfile');
     this.props.fetchRoster();
   }
 
