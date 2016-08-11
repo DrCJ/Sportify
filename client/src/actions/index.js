@@ -5,6 +5,7 @@ export const FETCH_LEAGUES = 'FETCH_LEAGUES';
 export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
 export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
+export const FILTER_PLAYERS = 'FILTER_PLAYERS';
 
 export function fetchRoster(league_key) {
   const request = axios.get(`/roster/${league_key}`);
@@ -61,6 +62,14 @@ export function requestAllPlayers() {
   console.log('running?')
   return {
     type: REQUEST_ALL_PLAYERS,
+    payload: request,
+  };
+}
+
+export function filterPlayers(props) {
+  const request = axios.post('/api/getAllPlayers', props);
+  return {
+    type: FILTER_PLAYERS,
     payload: request,
   };
 }
