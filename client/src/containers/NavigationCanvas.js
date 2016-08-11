@@ -10,9 +10,8 @@ export const NavigationCanvas = () => (
       <li className="nav-link"><Link to="/player">Player</Link></li>
       <li className="nav-link"><Link to="/compare">Compare</Link></li>
       <li className="nav-link"><Link to="/schedule">Game Schedule</Link></li>
-      <li className="nav-link"><Link to="/YahooProfile">My Fantasy Teams</Link></li>
+      <li className="nav-link"><Link to="/LeagueOverview">My Fantasy Teams</Link></li>
       <li className="nav-link"><Link to="/settings">Settings</Link></li>
     </ul>
   </nav>
 );
-

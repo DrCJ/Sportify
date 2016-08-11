@@ -17,9 +17,8 @@ export default (
     <Route path="compare" component={Compare} />
     <Route path="schedule" component={Schedule} />
     <Route path="player" component={PlayerView} />
-    <Route path="YahooProfile" component={YahooProfileImage}>
-      <Route path="LeagueOverview" component={LeagueOverview} />
-      <Route path="TeamView" component={TeamView} />
-    </Route>
+    <Route path="YahooProfile" component={YahooProfileImage} />
+    <Route path="LeagueOverview" component={LeagueOverview} />
+    <Route path="TeamView" component={TeamView} />
 	</Route>
 );

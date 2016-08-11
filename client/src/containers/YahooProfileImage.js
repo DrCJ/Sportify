@@ -10,7 +10,7 @@ class YahooProfileImage extends Component {
       <div>
         <a href="/auth/yahoo"> Login </a>
         <a href="/logout">Logout</a>
-        <Link to="TeamView">TeamView</Link>
+        <Link to="/TeamView">TeamView</Link>
         <h1>Profile Image</h1>
       </div>
     );

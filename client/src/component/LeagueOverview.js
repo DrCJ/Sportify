@@ -20,6 +20,7 @@ class LeagueOverview extends Component {
   render() {
     return (
       <div>
+        <Link to="/TeamView">TeamView</Link>
         {this.renderRoster()}
       </div>
     );
