@@ -9,23 +9,21 @@ export const FILTER_PLAYERS = 'FILTER_PLAYERS';
 
 export function fetchRoster(league_key) {
   const request = axios.get(`/roster/${league_key}`).then((team) => {
-    let playerArray = [];
-    team.data.forEach((player) => {
-      playerArray.push(player.player_id);
-    });
-    const props = {
-      playerId: playerArray,
-    };
+    const playerId = [];
+    for (let i = 0; i < team.data.length; i++) {
+      playerId.push(Number(team.data[i].player_id));
+    }
     const stats = axios({
       method: 'post',
-      url: '/api/getYahooPlayerStats',
-      data: props,
+      url: '/api/getAllTeamPlayers',
+      data: { playerId },
       header: {
         'Content-Type': 'application/json',
       },
     });
-    const returnObj = { roster: team.data, stats };
-    console.log(returnObj);
+
+    const roster = { players: team.data, stats }
+    return roster;
   });
   return {
     type: FETCH_ROSTER,

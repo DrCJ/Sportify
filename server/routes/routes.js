@@ -6,8 +6,7 @@ router.post('/getAllPlayers', (req, res) => {
   playersController.getPlayersByParams(req, res);
 });
 
-router.post('/getYahooPlayerStats', (req, res) => {
-  console.log(req.body);
+router.post('/getAllTeamPlayers', (req, res) => {
   // playersController.getPlayersByParams(req, res);
 });
 
