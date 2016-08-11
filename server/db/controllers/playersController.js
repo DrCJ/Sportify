@@ -7,6 +7,7 @@ module.exports = {
       include: [{
         model: PlayerProjectedGame,
       }],
+      limit: 25
     })
     .then((playerData) => {
       res.send(playerData);
