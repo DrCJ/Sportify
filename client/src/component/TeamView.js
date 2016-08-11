@@ -7,7 +7,7 @@ import { fetchRoster } from '../actions/index';
 
 class TeamView extends Component {
   componentWillMount() {
-    this.props.fetchRoster();
+    this.props.fetchRoster(this.props.params.league_key);
   }
 
   renderRoster() {

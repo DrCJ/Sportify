@@ -6,8 +6,8 @@ export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
 export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
 
-export function fetchRoster() {
-  const request = axios.get('/roster');
+export function fetchRoster(league_key) {
+  const request = axios.get(`/roster/${league_key}`);
   return {
     type: FETCH_ROSTER,
     payload: request,

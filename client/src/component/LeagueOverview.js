@@ -11,16 +11,15 @@ class LeagueOverview extends Component {
 
   renderLeagues() {
     return this.props.leagues.map((league, index) => {
-      console.log('league?------>', league);
       return (
-        <h1 key={index}><Link to='/TeamView'>{league.name}</Link></h1>
+        <h1 key={index}><Link to={`/TeamView/${league.league_key}`}>{league.name}</Link></h1>
       );
     });
   }
 
   render() {
     return (
-      <div>
+      <div className="center-content">
         <Link to="/TeamView">TeamView</Link>
         {this.renderLeagues()}
       </div>

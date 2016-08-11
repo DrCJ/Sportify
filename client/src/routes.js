@@ -19,6 +19,6 @@ export default (
     <Route path="player" component={PlayerView} />
     <Route path="YahooProfile" component={YahooProfileImage} />
     <Route path="LeagueOverview" component={LeagueOverview} />
-    <Route path="TeamView" component={TeamView} />
+    <Route path="TeamView/:league_key" component={TeamView} />
 	</Route>
 );
