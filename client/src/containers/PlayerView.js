@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import PlayerListView from './PlayerListView';
 
-import { requestAllPlayers } from '../actions/index';
+import PlayerListView from './PlayerListView';
+import { reduxForm } from 'redux-form';
+import { requestAllPlayers, filterPlayers } from '../actions/index';
 
 class PlayerView extends Component {
   componentWillMount() {
@@ -11,7 +12,20 @@ class PlayerView extends Component {
       this.props.players.concat(data);
     });
   }
+
+  onSubmit(props) {
+    const reqObj = {
+      Team: this.props.fields.team.value,
+      Week: this.props.fields.weekly.value,
+      Position: this.props.fields.position.value,
+    };
+    this.props.filterPlayers(reqObj).then((data) => {
+      console.log(data, 'data');
+    });
+    // Post Get All Players
+  }
   render() {
+    const { fields: { team, position, weekly }, handleSubmit } = this.props;
     if (this.props.players.length === 0) {
       return <div> Loading (Image????) </div>
     }
@@ -22,48 +36,53 @@ class PlayerView extends Component {
           <div className="search-container">
             <input type="text" name="name" value="" placeholder="SEARCH" />
           </div>
-          <form>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <div className="filter-form-select">
               <label for="teamSelect"> TEAM </label>
-              <select data="team" id="teamSelect">
+              <select data="teamVal" id="teamSelect" {...team}>
                 <option value="All">All</option>
-                <option value="GB">GreenBay</option>  
+                <option value="GB">GreenBay</option> 
               </select>
             </div>
             <div className="filter-form-select">
-            <label for="positionSelect"> POSITION </label>
-              <select data="position" id="positionSelect">
-                <option value="All">All</option>
-                <option value="All">QB</option>
-                <option value="All">RB</option>
-                <option value="All">WR</option>
-                <option value="All">K</option>
-                <option value="All">Def</option>
-              </select>
+              <label for="weekly"> WEEKLY </label>
+                <select data="weeklyVal" id="weeklySelect" {...weekly}>
+                  <option value="All">All</option>
+                  <option value="1">1(proj)</option>
+                  <option value="2">2(proj)</option>
+                  <option value="3">3(proj)</option>
+                  <option value="4">4(proj)</option>
+                  <option value="5">5(proj)</option>
+                  <option value="6">6(proj)</option>
+                  <option value="7">7(proj)</option>
+                  <option value="8">8(proj)</option>
+                  <option value="9">9(proj)</option>
+                  <option value="10">10(proj)</option>
+                  <option value="11">11(proj)</option>
+                  <option value="12">12(proj)</option>
+                  <option value="13">13(proj)</option>
+                  <option value="14">14(proj)</option>
+                  <option value="15">15(proj)</option>
+                  <option value="16">16(proj)</option>
+                  <option value="17">17(proj)</option>
+                </select>
             </div>
             <div className="filter-form-select">
-            <label for="weekly"> WEEKLY </label>
-              <select data="weekly" id="weeklySelect">
-                <option value="All">1(proj)</option>
-                <option value="All">2(proj)</option>
-                <option value="All">3(proj)</option>
-                <option value="All">4(proj)</option>
-                <option value="All">5(proj)</option>
-                <option value="All">6(proj)</option>
-                <option value="All">7(proj)</option>
-                <option value="All">8(proj)</option>
-                <option value="All">9(proj)</option>
-                <option value="All">10(proj)</option>
-                <option value="All">11(proj)</option>
-                <option value="All">12(proj)</option>
-                <option value="All">13(proj)</option>
-                <option value="All">14(proj)</option>
-                <option value="All">15(proj)</option>
-                <option value="All">16(proj)</option>
-                <option value="All">17(proj)</option>
-              </select>
-              </div>
-              <input type="submit" className="button filter-form-select-button" value="Submit"></input>
+              <label for="positionSelect"> POSITION </label>
+                <select data="positionVal" id="positionSelect" {...position}>
+                  <option value="All">All</option>
+                  <option value="QB">QB</option>
+                  <option value="RB">RB</option>
+                  <option value="WR">WR</option>
+                  <option value="K">K</option>
+                  <option value="Def">Def</option>
+                </select>
+            </div>
+            <input
+              type="submit"
+              className="button filter-form-select-button"
+              value="Submit"
+            ></input>
           </form>
           <div className="player-table">
             <table>
@@ -103,5 +122,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { requestAllPlayers })(PlayerView);
+export default reduxForm({
+  form: 'PlayerView',
+  fields: ['team', 'position', 'weekly'],
+}, mapStateToProps, { requestAllPlayers, filterPlayers })(PlayerView);
 
