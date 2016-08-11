@@ -3,8 +3,7 @@
 }
 
 body {
-	overflow: hidden;
-  background: #8e9eab; /* fallback for old browsers */
+	background: #8e9eab; /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #8e9eab , #eef2f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
@@ -32,6 +31,11 @@ td {
 
 tr {
 	background-color: #e9e9e9;
+}
+
+/*App Content*/
+.app {
+	height: 100%;
 }
 
 /*Header Content */
@@ -70,7 +74,17 @@ tr {
   margin-right: 30px;
 }
 
+/*PlayerView*/
 
+.filter-form-select {
+	display: inline-block;
+	width: 10%;
+	margin-right: 3px;
+}
+
+.filter-form-select-button {
+	margin-left: 5%;
+}
 /*Nav bar containers*/
 .app-container {
 	height: 100%;
@@ -133,4 +147,33 @@ tr {
 	height: 2000px;
 	background: rgba(0,0,0,.4);
 	z-index: 1;
+}
+
+/* Compare Container */
+.compare-container {
+	margin: 0 auto;
+}
+
+.compare-player1 {
+	margin-left: 20%;
+	display: inline-block;
+}
+
+.compare-player2 {
+	display: inline-block;
+}
+
+.player1-image, .player2-image {
+	width: 80px;
+	height: 80px;
+}
+
+.switch-player {
+	display: inline-block;
+}
+
+.inline-button {
+	border: 1px solid black;
+	display: block;
+	width: 100%;
 }
