@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { fetchRoster } from '../actions/index';
+import { fetchLeagues } from '../actions/index';
 
 class LeagueOverview extends Component {
   componentWillMount() {
-    this.props.fetchRoster();
+    this.props.fetchLeagues();
   }
 
-  renderRoster() {
-    return this.props.tempTableData.map((player, index) => {
+  renderLeagues() {
+    return this.props.leagues.map((league, index) => {
+      console.log('league?------>', league);
       return (
-        <h1>league-info</h1>
+        <h1 key={index}><Link to='/TeamView'>{league.name}</Link></h1>
       );
     });
   }
@@ -21,14 +22,14 @@ class LeagueOverview extends Component {
     return (
       <div>
         <Link to="/TeamView">TeamView</Link>
-        {this.renderRoster()}
+        {this.renderLeagues()}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { tempTableData: state.yahooProfile };
+  return { leagues: state.leagues };
 }
 
-export default connect(mapStateToProps, { fetchRoster })(LeagueOverview);
+export default connect(mapStateToProps, { fetchLeagues })(LeagueOverview);
