@@ -17,16 +17,18 @@ module.exports = {
   },
   getPlayersByParams: (req, res) => {
     const stat = req.body;
-    console.log(stat);
     const limit = 25;
     let subQ = '';
     let orderStat = '';
     for (const filter in stat) {
       orderStat = stat[filter];
-      subQ += `"playerProjectedGames"."${filter} = '${orderStat}' AND `;
+      if (!isNaN(Number(orderStat))) {
+        orderStat = Number(orderStat);
+      }
+      subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
     }
-    subQ += `"playerProjectedGames"."Week" = 1
-    ORDER BY ${orderStat} DESC LIMIT ${limit}`;
+    subQ = subQ.substr(0, subQ.length - 4);
+    subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "playerProjectedGames"
     ON "players"."id" = "playerProjectedGames"."playerId" WHERE ${subQ}`;
 

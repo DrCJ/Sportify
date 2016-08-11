@@ -19,8 +19,8 @@ class PlayerView extends Component {
       Week: this.props.fields.weekly.value,
       Position: this.props.fields.position.value,
     };
+    console.log(reqObj);
     this.props.filterPlayers(reqObj).then((data) => {
-      console.log(data, 'data');
     });
     // Post Get All Players
   }
@@ -41,7 +41,7 @@ class PlayerView extends Component {
               <label for="teamSelect"> TEAM </label>
               <select data="teamVal" id="teamSelect" {...team}>
                 <option value="All">All</option>
-                <option value="GB">GreenBay</option> 
+                <option value="GB">GreenBay</option>
               </select>
             </div>
             <div className="filter-form-select">
@@ -126,4 +126,3 @@ export default reduxForm({
   form: 'PlayerView',
   fields: ['team', 'position', 'weekly'],
 }, mapStateToProps, { requestAllPlayers, filterPlayers })(PlayerView);
-
