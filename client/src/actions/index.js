@@ -8,7 +8,23 @@ export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
 export const FILTER_PLAYERS = 'FILTER_PLAYERS';
 
 export function fetchRoster(league_key) {
-  const request = axios.get(`/roster/${league_key}`);
+  const request = axios.get(`/roster/${league_key}`).then((team) => {
+    const playerId = [];
+    for (let i = 0; i < team.data.length; i++) {
+      playerId.push(Number(team.data[i].player_id));
+    }
+    const stats = axios({
+      method: 'post',
+      url: '/api/getAllTeamPlayers',
+      data: { playerId },
+      header: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const roster = { players: team.data, stats }
+    return roster;
+  });
   return {
     type: FETCH_ROSTER,
     payload: request,

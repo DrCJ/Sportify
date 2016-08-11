@@ -11,7 +11,7 @@ class TeamView extends Component {
   }
 
   renderRoster() {
-    return this.props.tempTableData.map((player, index) => {
+    return this.props.yahooProfile.players.map((player, index) => {
       return (
         <tbody key={index}>
           <tr>
@@ -81,7 +81,7 @@ class TeamView extends Component {
 }
 
 function mapStateToProps(state) {
-  return { tempTableData: state.yahooProfile };
+  return { yahooProfile: state.yahooProfile };
 }
 
 export default connect(mapStateToProps, { fetchRoster })(TeamView);
