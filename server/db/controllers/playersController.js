@@ -3,11 +3,11 @@ const Sequelize = require('sequelize');
 
 module.exports = {
   getAllPlayers: (req, res) => {
-    Player.findAll({
-      include: [{
-        model: PlayerProjectedGame,
-      }],
-      limit: 25
+    PlayerProjectedGame.findAll({
+      order: [
+      ['id', 'DESC'],
+      ],
+      limit: 25,
     })
     .then((playerData) => {
       res.send(playerData);
