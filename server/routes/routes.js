@@ -11,7 +11,6 @@ router.post('/getAllTeamPlayers', (req, res) => {
 });
 
 router.get('/getAllPlayers', (req, res) => {
-	console.log('working?')
   playersController.getAllPlayers(req, res);
 });
 

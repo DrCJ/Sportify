@@ -9,6 +9,7 @@ import { requestAllPlayers, filterPlayers } from '../actions/index';
 class PlayerView extends Component {
   componentWillMount() {
     this.props.requestAllPlayers().then((data) => {
+      console.log(data, 'data');
       this.props.players.concat(data);
     });
   }
@@ -20,8 +21,11 @@ class PlayerView extends Component {
       Position: this.props.fields.position.value,
     };
     console.log(reqObj);
-    this.props.filterPlayers(reqObj).then((data) => {
-    });
+    this.props.filterPlayers(reqObj)
+      .then((data) => {
+        console.log(data);
+        // this.props.players.concat()
+      });
     // Post Get All Players
   }
   render() {
@@ -47,24 +51,24 @@ class PlayerView extends Component {
             <div className="filter-form-select">
               <label for="weekly"> WEEKLY </label>
                 <select data="weeklyVal" id="weeklySelect" {...weekly}>
-                  <option value="All">All</option>
-                  <option value="1">1(proj)</option>
-                  <option value="2">2(proj)</option>
-                  <option value="3">3(proj)</option>
-                  <option value="4">4(proj)</option>
-                  <option value="5">5(proj)</option>
-                  <option value="6">6(proj)</option>
-                  <option value="7">7(proj)</option>
-                  <option value="8">8(proj)</option>
-                  <option value="9">9(proj)</option>
-                  <option value="10">10(proj)</option>
-                  <option value="11">11(proj)</option>
-                  <option value="12">12(proj)</option>
-                  <option value="13">13(proj)</option>
-                  <option value="14">14(proj)</option>
-                  <option value="15">15(proj)</option>
-                  <option value="16">16(proj)</option>
-                  <option value="17">17(proj)</option>
+                  <option value="">2015-2016</option>
+                  <option value="1">Week 1</option>
+                  <option value="2">Week 2</option>
+                  <option value="3">Week 3</option>
+                  <option value="4">Week 4</option>
+                  <option value="5">Week 5</option>
+                  <option value="6">Week 6</option>
+                  <option value="7">Week 7</option>
+                  <option value="8">Week 8</option>
+                  <option value="9">Week 9</option>
+                  <option value="10">Week 10</option>
+                  <option value="11">Week 11</option>
+                  <option value="12">Week 12</option>
+                  <option value="13">Week 13</option>
+                  <option value="14">Week 14</option>
+                  <option value="15">Week 15</option>
+                  <option value="16">Week 16</option>
+                  <option value="17">Week 17</option>
                 </select>
             </div>
             <div className="filter-form-select">
@@ -74,6 +78,7 @@ class PlayerView extends Component {
                   <option value="QB">QB</option>
                   <option value="RB">RB</option>
                   <option value="WR">WR</option>
+                  <option value="TE">TE</option>
                   <option value="K">K</option>
                   <option value="Def">Def</option>
                 </select>
@@ -89,8 +94,9 @@ class PlayerView extends Component {
               <thead>
                 <tr>
                   <td>Offense</td>
+                  <td>Position</td>
                   <td>GP*</td>
-                  <td>% Owned</td>
+                  <td>Opp</td>
                   <td>Proj</td>
                   <td>Actual</td>
                   <td>Yds</td>
@@ -101,10 +107,10 @@ class PlayerView extends Component {
                   <td>TD</td>
                   <td>Tgt*</td>
                   <td>Rec</td>
-                  <td>TD</td>
-                  <td>TD</td>
+                  <td>RshTD</td>
+                  <td>RecTD</td>
                   <td>2PT</td>
-                  <td>Lost</td>
+                  <td>Carlos </td>
                 </tr>
               </thead>
             <PlayerListView />
