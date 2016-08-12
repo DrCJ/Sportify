@@ -177,3 +177,20 @@ tr {
 	display: block;
 	width: 100%;
 }
+
+
+/*Modal Content*/
+
+.modal {
+	position: absolute;
+	top: 50%;
+	width: 50%;
+	background: #fff;
+	border: 1px solid #dedede;
+	border-radius: 4px;
+	height: 50%;
+	left: 25%;
+	z-index: 20;
+	/*Look for the translate property.. It will translate the component 50% of the page (horizontal, vertical)*/
+
+}
