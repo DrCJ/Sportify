@@ -46,6 +46,7 @@ class TeamView extends Component {
   render() {
     return (
       <div className="center-content">
+        <Link to="/LeagueOverview">Back to My Leagues</Link>
         <h1>Team View</h1>
         <div className="none">
           <table>
