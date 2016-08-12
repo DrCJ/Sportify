@@ -18,10 +18,11 @@ class App extends Component {
           {this.props.children}
         </div>
         <Footer />
-        <PlayerModal />
       </div>
     );
   }
 }
 
 export default connect(null, { closeNavigation })(App);
+
+// <PlayerModal />

@@ -151,21 +151,27 @@ tr {
 
 /* Compare Container */
 .compare-container {
-	margin: 0 auto;
+	width: 75%;
+	margin: auto;
 }
 
 .compare-player1 {
-	margin-left: 20%;
+	width: 40%;
 	display: inline-block;
+	background-color: blue;
+	float: left;
 }
 
 .compare-player2 {
+	width: 40%;
 	display: inline-block;
+	background-color: red;
+	float: right;
 }
 
 .player1-image, .player2-image {
-	width: 80px;
-	height: 80px;
+	width: 100%;
+	height: 100%;
 }
 
 .switch-player {
@@ -173,9 +179,11 @@ tr {
 }
 
 .inline-button {
+	margin: auto;
 	border: 1px solid black;
 	display: block;
-	width: 100%;
+	width: 50%;
+	float: left
 }
 
 
