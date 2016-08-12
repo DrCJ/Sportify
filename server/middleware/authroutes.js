@@ -69,7 +69,6 @@ module.exports = (app, express, passport) => {
   });
 
   app.get('/*', (req, res) => {
-    console.log(req, 'req');
     res.sendFile(path.join(__dirname, '../../public/index.html'));
   });
 };

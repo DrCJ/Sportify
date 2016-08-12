@@ -50,7 +50,7 @@ tr {
 }
 
 .center-content {
-  width: 960px;
+  width: 80%;
   margin: 0 auto;
 }
 .search-container {
@@ -152,21 +152,23 @@ tr {
 /* Compare Container */
 .compare-container {
 	width: 75%;
+	height: 300px;
 	margin: auto;
+	background-color: yellow;
 }
 
 .compare-player1 {
 	width: 40%;
 	display: inline-block;
-	background-color: blue;
+	background-color: white;
 	float: left;
 }
 
 .compare-player2 {
 	width: 40%;
 	display: inline-block;
-	background-color: red;
-	float: right;
+	background-color: white;
+	float: left;
 }
 
 .player1-image, .player2-image {
@@ -175,15 +177,14 @@ tr {
 }
 
 .switch-player {
-	display: inline-block;
+	text-align: center;
+	float: left;
+	background-color: green;
 }
 
 .inline-button {
 	margin: auto;
 	border: 1px solid black;
-	display: block;
-	width: 50%;
-	float: left
 }
 
 
