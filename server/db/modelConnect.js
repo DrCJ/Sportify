@@ -3,9 +3,13 @@ const User = require('./user/userModel');
 const Player = require('./models/player');
 const PlayerYearStat = require('./models/playerYearStat');
 const PlayerGame = require('./models/playerGame');
-const Team = require('./models/team');
 const PlayerProjectedGame = require('./models/playerProjectedGame');
 const PlayerProjectedYear = require('./models/playerProjectedYear');
+const Team = require('./models/team');
+const TeamYearStat = require('./models/teamYearStat');
+const TeamGame = require('./models/teamGame');
+const TeamProjectedGame = require('./models/teamProjectedGame');
+const TeamProjectedYear = require('./models/teamProjectedYear');
 const Game = require('./models/game');
 
 PlayerProjectedGame.belongsTo(Player, { foreignKey: 'playerId', targetKey: 'id' });
@@ -25,7 +29,26 @@ Player.hasMany(PlayerGame);
 
 PlayerGame.belongsTo(Game);
 Game.hasMany(PlayerGame);
-// PlayerGame.belongsTo(Team);
+
+
+TeamProjectedGame.belongsTo(Team);
+Team.hasMany(TeamProjectedGame);
+
+TeamProjectedGame.belongsTo(Game);
+Game.hasMany(TeamProjectedGame);
+
+TeamProjectedYear.belongsTo(Team);
+Team.hasMany(TeamProjectedYear);
+
+TeamYearStat.belongsTo(Team);
+Team.hasMany(TeamYearStat);
+
+TeamGame.belongsTo(Game);
+Game.hasMany(TeamGame);
+
+TeamGame.belongsTo(Team);
+Team.hasMany(TeamGame);
+
 
 db.sync()
   .then(() => console.log('we are connected'))
@@ -36,7 +59,13 @@ module.exports = {
   User,
   Player,
   PlayerYearStat,
-  Team,
   PlayerGame,
   PlayerProjectedGame,
+  PlayerProjectedYear,
+  Team,
+  Game,
+  TeamYearStat,
+  TeamGame,
+  TeamProjectedGame,
+  TeamProjectedYear,
 };
