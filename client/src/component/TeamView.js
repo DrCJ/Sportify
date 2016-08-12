@@ -11,7 +11,6 @@ class TeamView extends Component {
   }
 
   renderRoster() {
-    console.log(this.props.yahooProfile);
     return this.props.yahooProfile.stats.map((player, index) => {
       return (
         <tbody key={index}>
