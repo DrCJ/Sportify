@@ -202,6 +202,10 @@ tr {
     z-index: 20;
 }
 	/*Look for the translate property.. It will translate the component 50% of the page (horizontal, vertical)*/
+.modal {
+	visibility: hidden;
+}
+
 .modal-header {
 	    height: 15%;
 	    background-color: #292929;
@@ -249,7 +253,3 @@ table.modal-table {
     size: 100%;
     height: 100%;
 }
-
-
-
-
