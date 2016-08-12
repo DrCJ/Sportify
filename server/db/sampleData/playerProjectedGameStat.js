@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
   "gameId": "201510101",
   "PlayerID": 15224,
   "SeasonType": 1,

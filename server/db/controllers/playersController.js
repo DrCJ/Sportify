@@ -1,13 +1,14 @@
-const { PlayerProjectedGame, Player, db } = require('../modelConnect');
+const { PlayerProjectedGame, PlayerProjectedYear, Player, db } = require('../modelConnect');
 const Sequelize = require('sequelize');
 const { sortByPosition } = require('../helpers/sortByPosition');
 
 module.exports = {
   getAllPlayers: (req, res) => {
-    PlayerProjectedGame.findAll({
+    PlayerProjectedYear.findAll({
       order: [
-      ['id', 'DESC'],
+      ['FantasyPointsYahoo', 'DESC'],
       ],
+      where: { 'Season': 2016 },
       limit: 25,
     })
     .then((playerData) => {
