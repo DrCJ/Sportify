@@ -19,15 +19,15 @@ module.exports = {
   "ForecastWindSpeed": 7,
   "AwayTeamMoneyLine": null,
   "HomeTeamMoneyLine": null,
-  "StadiumDetails": {
+  // "StadiumDetails": {
     "StadiumID": 4,
-    "Name": "Gillette Stadium",
-    "City": "Foxborough",
-    "State": "MA",
-    "Country": "USA",
-    "Capacity": 68756,
-    "PlayingSurface": "Grass",
-    "GeoLat": 42.090866,
-    "GeoLong": -71.264244
-  },
+  //   "Name": "Gillette Stadium",
+  //   "City": "Foxborough",
+  //   "State": "MA",
+  //   "Country": "USA",
+  //   "Capacity": 68756,
+  //   "PlayingSurface": "Grass",
+  //   "GeoLat": 42.090866,
+  //   "GeoLong": -71.264244
+  // },
 }

@@ -153,18 +153,4 @@ module.exports = {
   'InjuryPractice': null,
   'InjuryPracticeDescription': null,
   'DeclaredInactive': false,
-  'ScoringDetails': [
-    {
-      'GameKey': '201510101',
-      'SeasonType': 1,
-      'PlayerID': 15224,
-      'Team': 'ARI',
-      'Season': 2015,
-      'Week': 1,
-      'ScoringType': 'RushingTouchdown',
-      'Length': 1,
-      'ScoringDetailID': 439523,
-      'PlayerGameID': 14455195,
-    },
-  ],
 };
