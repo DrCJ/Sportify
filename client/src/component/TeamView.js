@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import YahooProfileImage from '../containers/YahooProfileImage';
 
+import { PlayerEntryView } from '../component/PlayerEntryView';
 import { fetchRoster } from '../actions/index';
 
 class TeamView extends Component {
@@ -14,30 +15,7 @@ class TeamView extends Component {
     return this.props.yahooProfile.stats.map((player, index) => {
       return (
         <tbody key={index}>
-          <tr>
-            <td>
-              <Link to={`posts/${index}`}>
-                <span>{player.Name}</span>
-              </Link>
-            </td>
-            <td> {player.Position || 'NA'} </td>
-            <td> {player.Played || 0}</td>
-            <td> {player.Opponent || 'BYE'} </td>
-            <td> {player.FantasyPoints || 0}</td>
-            <td> Actual </td>
-            <td> {parseInt(player.PassingYards) || 0}</td>
-            <td> {player.PassingTouchdowns || 0}</td>
-            <td> {player.PassingInterceptions || 0}</td>
-            <td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
-            <td> {parseInt(player.RushingYards) || 0}</td>
-            <td> {player.RushingTouchdowns || 0}</td>
-            <td> {player.ReceivingTargets || 0}</td>
-            <td> {player.Receptions || 0} </td>
-            <td> {player.RushingTouchdowns || 0}</td>
-            <td> {player.ReceivingTouchdowns || 0}</td>
-            <td>{player.TwoPointConversionReturns || 0}</td>
-            <td />
-          </tr>
+          <PlayerEntryView key={player.id} player={player} />
         </tbody>
       );
     });
@@ -48,7 +26,7 @@ class TeamView extends Component {
       <div className="center-content">
         <Link to="/LeagueOverview">Back to My Leagues</Link>
         <h1>Team View</h1>
-        <div className="none">
+        <div className="player-table">
           <table>
             <thead>
               <tr>
