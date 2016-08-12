@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Header from '../containers/Header';
 import { Footer } from './Footer';
+import Header from '../containers/Header';
 import { NavigationCanvas } from '../containers/NavigationCanvas';
+import PlayerModal from '../containers/PlayerModal';
 import { closeNavigation } from '../actions/index';
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
           <Header />
           {this.props.children}
         </div>
-      <Footer />
+        <Footer />
+        <PlayerModal />
       </div>
     );
   }
