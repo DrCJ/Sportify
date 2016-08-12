@@ -50,7 +50,7 @@ tr {
 }
 
 .center-content {
-  width: 960px;
+  width: 80%;
   margin: 0 auto;
 }
 .search-container {
@@ -151,31 +151,40 @@ tr {
 
 /* Compare Container */
 .compare-container {
-	margin: 0 auto;
+	width: 75%;
+	height: 300px;
+	margin: auto;
+	background-color: yellow;
 }
 
 .compare-player1 {
-	margin-left: 20%;
+	width: 40%;
 	display: inline-block;
+	background-color: white;
+	float: left;
 }
 
 .compare-player2 {
+	width: 40%;
 	display: inline-block;
+	background-color: white;
+	float: left;
 }
 
 .player1-image, .player2-image {
-	width: 80px;
-	height: 80px;
+	width: 100%;
+	height: 100%;
 }
 
 .switch-player {
-	display: inline-block;
+	text-align: center;
+	float: left;
+	background-color: green;
 }
 
 .inline-button {
+	margin: auto;
 	border: 1px solid black;
-	display: block;
-	width: 100%;
 }
 
 

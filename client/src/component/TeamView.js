@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import YahooProfileImage from '../containers/YahooProfileImage';
-
+import PlayerFilterForm from '../containers/PlayerFilterForm';
 import { PlayerEntryView } from '../component/PlayerEntryView';
 import { fetchRoster } from '../actions/index';
 
@@ -26,6 +26,7 @@ class TeamView extends Component {
       <div className="center-content">
         <Link to="/LeagueOverview">Back to My Leagues</Link>
         <h1>Team View</h1>
+        <PlayerFilterForm />
         <div className="player-table">
           <table>
             <thead>

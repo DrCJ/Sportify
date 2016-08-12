@@ -34,6 +34,14 @@ export function fetchLeagues() {
   };
 }
 
+export function fetchSpecificPlayers(playerId) {
+  const request = axios.post('/api/getAllTeamPlayers', { playerId });
+  return {
+    type: FETCH_SPECIFIC_PLAYERS,
+    payload: request,
+  };
+}
+
 export function toggleNavigation() {
   const navCanvasClick = document.getElementsByClassName('nav-canvas');
   const mainContentClick = document.getElementsByClassName('main-content');
