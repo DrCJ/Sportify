@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = (app, express, passport) => {
   const getLeagues = (req, res) => {
     const yahoo = req.app.yf;
@@ -64,5 +66,10 @@ module.exports = (app, express, passport) => {
       req.app.yf = null;
       res.redirect('/');
     });
+  });
+
+  app.get('/*', (req, res) => {
+    console.log(req, 'req');
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
   });
 };

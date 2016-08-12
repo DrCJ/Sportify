@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export const PlayerEntryView = ( {player} ) => (
 	<tr> 
-		<td> {player.Name || player.full }</td>
+		<td> <Link to={player.Name || player.full}>{player.Name || player.full } </Link></td>
 		<td> {player.Position || 'NA'} </td>
 		<td> {player.Played || 0}</td>
 		<td> {player.Opponent || 'BYE'} </td>
