@@ -11,33 +11,33 @@ class TeamView extends Component {
   }
 
   renderRoster() {
-    console.log(this.props.yahooProfile.stats);
-    return this.props.yahooProfile.players.map((player, index) => {
+    console.log(this.props.yahooProfile);
+    return this.props.yahooProfile.stats.map((player, index) => {
       return (
         <tbody key={index}>
           <tr>
             <td>
               <Link to={`posts/${index}`}>
-                <span>{player.name.first} {player.name.last}</span>
+                <span>{player.Name}</span>
               </Link>
             </td>
-            <td>22</td>
-            <td>33</td>
-            <td>44</td>
-            <td>55</td>
-            <td>66</td>
-            <td>77</td>
-            <td>554</td>
-            <td>5666</td>
-            <td>3333</td>
-            <td>545</td>
-            <td>5454</td>
-            <td>3</td>
-            <td>5</td>
-            <td>23</td>
-            <td>55</td>
-            <td>67</td>
-            <td>4232</td>
+            <td> {player.Position || 'NA'} </td>
+            <td> {player.Played || 0}</td>
+            <td> {player.Opponent || 'BYE'} </td>
+            <td> {player.FantasyPoints || 0}</td>
+            <td> Actual </td>
+            <td> {parseInt(player.PassingYards) || 0}</td>
+            <td> {player.PassingTouchdowns || 0}</td>
+            <td> {player.PassingInterceptions || 0}</td>
+            <td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
+            <td> {parseInt(player.RushingYards) || 0}</td>
+            <td> {player.RushingTouchdowns || 0}</td>
+            <td> {player.ReceivingTargets || 0}</td>
+            <td> {player.Receptions || 0} </td>
+            <td> {player.RushingTouchdowns || 0}</td>
+            <td> {player.ReceivingTouchdowns || 0}</td>
+            <td>{player.TwoPointConversionReturns || 0}</td>
+            <td />
           </tr>
         </tbody>
       );
@@ -47,36 +47,35 @@ class TeamView extends Component {
   render() {
     return (
       <div className="center-content">
-        <YahooProfileImage />
-        <div>general info</div>
-          <div className="none">
-            <table>
-              <thead>
-                <tr>
-                  <td>Offense</td>
-                  <td>Owner</td>
-                  <td>GP*</td>
-                  <td>% Owned</td>
-                  <td>Proj</td>
-                  <td>Actual</td>
-                  <td>Yds</td>
-                  <td>TD</td>
-                  <td>Int</td>
-                  <td>Att*</td>
-                  <td>Yds</td>
-                  <td>TD</td>
-                  <td>Tgt*</td>
-                  <td>Rec</td>
-                  <td>TD</td>
-                  <td>TD</td>
-                  <td>2PT</td>
-                  <td>Lost</td>
-                </tr>
-              </thead>
-              {this.renderRoster()}
-            </table>
-          </div>
+        <h1>Team View</h1>
+        <div className="none">
+          <table>
+            <thead>
+              <tr>
+                <td>Offense</td>
+                <td>Position</td>
+                <td>GP*</td>
+                <td>Opp</td>
+                <td>Proj</td>
+                <td>Actual</td>
+                <td>Yds</td>
+                <td>TD</td>
+                <td>Int</td>
+                <td>Att*</td>
+                <td>Yds</td>
+                <td>TD</td>
+                <td>Tgt*</td>
+                <td>Rec</td>
+                <td>RshTD</td>
+                <td>RecTD</td>
+                <td>2PT</td>
+                <td>Carlos </td>
+              </tr>
+            </thead>
+            {this.renderRoster()}
+          </table>
         </div>
+      </div>
     );
   }
 }

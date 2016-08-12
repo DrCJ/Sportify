@@ -18,7 +18,9 @@ class Header extends Component {
           <img src="" alt="SOME RANDOM LOGO" />
         </div>
         <div className="login-btn">
-          <a href="/auth/yahoo"> <div> Yahoo Profile Login </div> </a>
+          <a href="/auth/yahoo">Yahoo Profile Login</a>
+          <span> | </span>
+          <a href="/logout">Logout</a>
         </div>
       </div>
     );
