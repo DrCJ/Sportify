@@ -1,5 +1,5 @@
 module.exports = {
-  "GameKey": "201510121",
+  "gameId": "201510121",
   "SeasonType": 1,
   "Season": 2015,
   "Week": 1,

@@ -1,5 +1,5 @@
 module.exports = {
-  'GameKey': '201510101',
+  'gameId': '201510101',
   'PlayerID': 15224,
   'SeasonType': 1,
   'Season': 2015,
