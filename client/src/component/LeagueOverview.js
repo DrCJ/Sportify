@@ -20,7 +20,7 @@ class LeagueOverview extends Component {
   render() {
     return (
       <div className="center-content">
-        <Link to="/TeamView">TeamView</Link>
+        <h1>League Overview</h1>
         {this.renderLeagues()}
       </div>
     );

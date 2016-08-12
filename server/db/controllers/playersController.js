@@ -1,5 +1,6 @@
 const { PlayerProjectedGame, Player, db } = require('../modelConnect');
 const Sequelize = require('sequelize');
+const { sortByPosition } = require('../helpers/sortByPosition');
 
 module.exports = {
   getAllPlayers: (req, res) => {
@@ -57,7 +58,8 @@ module.exports = {
     AND "playerProjectedGames"."Week" = 1`;
 
     db.query(q).then(stats => {
-      res.send(stats);
+      const sortedStats = sortByPosition(stats);
+      res.send(sortedStats);
     });
   },
 };

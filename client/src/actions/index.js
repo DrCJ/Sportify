@@ -13,17 +13,12 @@ export function fetchRoster(league_key) {
     for (let i = 0; i < team.data.length; i++) {
       playerId.push(Number(team.data[i].player_id));
     }
-    const stats = axios({
-      method: 'post',
-      url: '/api/getAllTeamPlayers',
-      data: { playerId },
-      header: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const statsRequest = axios.post('/api/getAllTeamPlayers', { playerId })
+      .then((stats) => {
+        return { players: team.data, stats: stats.data[0] };
+      });
 
-    const roster = { players: team.data, stats }
-    return roster;
+    return statsRequest;
   });
   return {
     type: FETCH_ROSTER,
