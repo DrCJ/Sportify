@@ -34,6 +34,7 @@
     "yahoo-fantasy": "^0.5.2"
   },
   "scripts": {
+    "fdata": "node server/workers/getFantasyDataStats.js",
     "psql": "psql --host=nflsportify.c3mi87ty0bem.us-west-2.rds.amazonaws.com --port=5432 --username=nflguru --dbname=nflsportify",
     "start": "sudo node server/server.js",
     "start:dev": "sudo nodemon server/server.js && webpack --watch",

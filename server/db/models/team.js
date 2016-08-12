@@ -1,12 +1,13 @@
 const db = require('../db_config');
 const Sequelize = require('sequelize');
-const Player = require('./player');
+const { createSequelizeShape } = require('../helpers/parseStatsHelpers');
+const TeamSampleData = require('../sampleData/team');
 
-const Team = db.define('team', {
-  name: {
-    type: Sequelize.STRING,
-  },
-});
+const TeamSchema = createSequelizeShape(TeamSampleData);
+const mergedSchema = Object.assign({
+  name: Sequelize.STRING,
+}, TeamSchema);
 
+const Team = db.define('team', mergedSchema);
 
 module.exports = Team;

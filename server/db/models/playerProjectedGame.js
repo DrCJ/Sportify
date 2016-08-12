@@ -4,6 +4,6 @@ const playerStats = require('../sampleData/playerProjectedStats');
 
 const playerGeneralSchema = createSequelizeShape(playerStats);
 
-const PlayerYearStat = db.define('playerProjectedGame', playerGeneralSchema);
+const PlayerProjectedGame = db.define('playerProjectedGame', playerGeneralSchema);
 
-module.exports = PlayerYearStat;
+module.exports = PlayerProjectedGame;
