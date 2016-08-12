@@ -14,4 +14,7 @@ router.get('/getAllPlayers', (req, res) => {
   playersController.getAllPlayers(req, res);
 });
 
+// router.get('/*', (req, res) => {
+// });
+
 module.exports = router;
