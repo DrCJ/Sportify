@@ -1,27 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getOnePlayerModal } from '../actions/index';
 
-export const PlayerEntryView = ( {player} ) => (
-	<tr> 
-		<td> <Link to={player.Name || player.full}>{player.Name || player.full } </Link></td>
-		<td> {player.Position || 'NA'} </td>
-		<td> {player.Played || 0}</td>
-		<td> {player.Opponent || 'BYE'} </td>
-		<td> {player.FantasyPoints || 0}</td>
-		<td> Actual </td>
-		<td> {parseInt(player.PassingYards) || 0}</td>
-		<td> {player.PassingTouchdowns || 0}</td>
-		<td> {player.PassingInterceptions || 0}</td>
-		<td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
-		<td> {parseInt(player.RushingYards) || 0}</td>
-		<td> {player.RushingTouchdowns || 0}</td>
-		<td> {player.ReceivingTargets || 0}</td>
-		<td> {player.Receptions || 0} </td>
-		<td> {player.RushingTouchdowns || 0}</td>
-		<td> {player.ReceivingTouchdowns || 0}</td>
-		<td>{player.TwoPointConversionReturns || 0}</td>
-	</tr>
-);
+
+class PlayerEntryView extends Component {
+	constructor(props) {
+		super(props);
+	}
+
+	handleClick(playerId) {
+		const playerIdArray = { playerId:[playerId] };
+		console.log('playerIdArray ' , playerIdArray);
+		this.props.getOnePlayerModal(playerIdArray)
+			.then((data) => console.log(data));
+	}
+	render() {
+		return (
+			<tr>
+        <td> <a onClick={this.handleClick.bind(this, this.props.player.playerId)}> {this.props.player.Name || this.props.player.full }</a></td>
+				<td> {this.props.player.Position || 'NA'} </td>
+				<td> {this.props.player.Played || 0}</td>
+				<td> {this.props.player.Opponent || 'BYE'} </td>
+				<td> {this.props.player.FantasyPoints || 0}</td>
+				<td> Actual </td>
+				<td> {parseInt(this.props.player.PassingYards) || 0}</td>
+				<td> {this.props.player.PassingTouchdowns || 0}</td>
+				<td> {this.props.player.PassingInterceptions || 0}</td>
+				<td> {this.props.player.PassingAttempts || this.props.player.RushingAttempts || 0 }</td>
+				<td> {parseInt(this.props.player.RushingYards) || 0}</td>
+				<td> {this.props.player.RushingTouchdowns || 0}</td>
+				<td> {this.props.player.ReceivingTargets || 0}</td>
+				<td> {this.props.player.Receptions || 0} </td>
+				<td> {this.props.player.RushingTouchdowns || 0}</td>
+				<td> {this.props.player.ReceivingTouchdowns || 0}</td>
+				<td> {this.props.player.TwoPointConversionReturns || 0}</td>
+				<td> {this.props.player.PassingTouchdowns > 30 ? 'Approve' : 'Disapprove'} </td>
+			</tr>
+		);
+	}
+}
+
+function mapStateToProps(state) {
+  return {
+    modal: state.modal,
+  };
+}
+
+export default connect(mapStateToProps, { getOnePlayerModal })(PlayerEntryView);
 
 // Action.payload.data[0] = [{
 // Object.Played = GP

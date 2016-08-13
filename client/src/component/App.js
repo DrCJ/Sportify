@@ -15,6 +15,7 @@ class App extends Component {
         <div onClick={this.props.closeNavigation} className="shadow" />
         <div className="main-content">
           <Header />
+          <PlayerModal />
           {this.props.children}
         </div>
         <Footer />
@@ -25,4 +26,3 @@ class App extends Component {
 
 export default connect(null, { closeNavigation })(App);
 
-// <PlayerModal />

@@ -76,7 +76,7 @@ const abbreviations = {
   // 'FieldGoalsMade': 0,
   // 'FieldGoalsLongestMade': 0,
   // 'ExtraPointsMade': 0,
-  // 'TwoPointConversionPasses': 0,
+  'TwoPointConversionPasses': '2PT',
   // 'TwoPointConversionRuns': 0,
   // 'TwoPointConversionReceptions': 0,
   // 'FantasyPoints': 'Actual',

@@ -32,6 +32,7 @@ const headings = [
 
   //Misc
   // '2PT',  -> 2PT is split into multiple db fields
+  'TwoPointConversionPasses',
   'Fumbles',
   'Carlos',
 ].map(val => abbreviations[val]);
@@ -49,7 +50,7 @@ const StatHeadings = () => {
         <td colSpan="4">Passing</td>
         <td colSpan="2">Rushing</td>
         <td colSpan="3">Receiving</td>
-        <td colSpan="2">Misc</td>
+        <td colSpan="3">Misc</td>
       </tr>
       <tr>
         {mapHeadings}
