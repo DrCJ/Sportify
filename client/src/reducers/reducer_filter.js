@@ -1,10 +1,10 @@
-import { GET_ONE_PLAYER_MODAL } from '../actions/index';
+import { TOGGLE_NAVIGATION } from '../actions/index.js';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = ['nav-canvas'];
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case GET_ONE_PLAYER_MODAL:
+    case TOGGLE_NAVIGATION:
       return state.concat(action.payload);
     default:
       return state;

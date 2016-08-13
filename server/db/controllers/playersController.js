@@ -40,6 +40,7 @@ module.exports = {
     });
   },
   getPlayersByIds: (req, res) => {
+
     const stat = req.body;
     const limit = 25;
     let subQ = '';
@@ -58,8 +59,10 @@ module.exports = {
     WHERE "playerProjectedGames"."playerId" IN (${stat.playerId.join()})
     AND "playerProjectedGames"."Week" = 1`;
 
+
     db.query(q).then(stats => {
       const sortedStats = sortByPosition(stats);
+      console.log(sortedStats, 'sorted stats');
       res.send(sortedStats);
     });
   },

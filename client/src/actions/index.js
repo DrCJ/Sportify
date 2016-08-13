@@ -6,6 +6,7 @@ export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
 export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
 export const FILTER_PLAYERS = 'FILTER_PLAYERS';
+export const GET_ONE_PLAYER_MODAL = 'GET_ONE_PLAYER_MODAL';
 
 export function fetchRoster(league_key) {
   const request = axios.get(`/roster/${league_key}`).then((team) => {
@@ -78,7 +79,6 @@ export function closeNavigation() {
 
 export function requestAllPlayers() {
   const request = axios.get('/api/getAllPlayers');
-  console.log('running?')
   return {
     type: REQUEST_ALL_PLAYERS,
     payload: request,
@@ -96,6 +96,21 @@ export function filterPlayers(props) {
   });
   return {
     type: FILTER_PLAYERS,
+    payload: request,
+  };
+}
+
+export function getOnePlayerModal(playerId) {
+  const request = axios({
+    method: 'post',
+    url: '/api/getPlayersByIds',
+    data: playerId,
+    header: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return {
+    type: GET_ONE_PLAYER_MODAL,
     payload: request,
   };
 }

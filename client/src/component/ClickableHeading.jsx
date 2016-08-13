@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 
 const ClickableHeading = (props) => (
-  <td className="stat-heading" onClick={console.log('clicked on:', props.name)}>{props.name}</td>
+  <td className="stat-heading">{props.name}</td>
 );
 
 export default ClickableHeading;

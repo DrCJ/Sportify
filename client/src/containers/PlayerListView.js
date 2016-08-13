@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { PlayerEntryView } from '../component/PlayerEntryView';
+import PlayerEntryView from '../component/PlayerEntryView';
 
 export class PlayerListView extends Component {
   render() {
