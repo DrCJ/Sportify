@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export const PlayerEntryView = ( {player} ) => (
-	<tr> 
-		<td> <Link to={player.Name || player.full}>{player.Name || player.full } </Link></td>
+export const PlayerEntryView = ({ player }) => (
+	<tr>
+		<td> <a onClick={() => console.log(player.id)}> {player.Name || player.full }</a></td>
 		<td> {player.Position || 'NA'} </td>
 		<td> {player.Played || 0}</td>
 		<td> {player.Opponent || 'BYE'} </td>
@@ -19,7 +19,8 @@ export const PlayerEntryView = ( {player} ) => (
 		<td> {player.Receptions || 0} </td>
 		<td> {player.RushingTouchdowns || 0}</td>
 		<td> {player.ReceivingTouchdowns || 0}</td>
-		<td>{player.TwoPointConversionReturns || 0}</td>
+		<td> {player.TwoPointConversionReturns || 0}</td>
+		<td> {player.PassingTouchdowns > 30 ? 'Approve' : 'Disapprove'} </td>
 	</tr>
 );
 
