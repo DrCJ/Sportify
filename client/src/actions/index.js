@@ -86,7 +86,18 @@ export function requestAllPlayers() {
   };
 }
 
-// this goes to post getPlayersByParams
+// for getPlayersByParams
+
+//  props shape
+// {
+//   orderBy: stat,
+//   tableName: playerProjectedYears,
+//   filters: {
+//     Team: this.props.fields.team.value,
+//     Week: this.props.fields.weekly.value,
+//     Position: this.props.fields.position.value,
+//   }
+// }
 export function filterPlayers(props) {
   const request = axios({
     method: 'post',
