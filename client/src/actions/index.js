@@ -37,15 +37,7 @@ export function fetchLeagues() {
 }
 
 export function fetchSpecificPlayers(playerId) {
-  const request = axios.post('/api/getAllTeamPlayers', playerId).then((players) => {
-    players.data[0].map((player) => {
-      console.log(player);
-      player.image_url = player.image_url.substring(155);
-      return player;
-    });
-
-    return players;
-  });
+  const request = axios.post('/api/getAllTeamPlayers', playerId);
   return {
     type: FETCH_SPECIFIC_PLAYERS,
     payload: request,

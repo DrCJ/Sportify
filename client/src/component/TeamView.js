@@ -26,24 +26,24 @@ class TeamView extends Component {
         <tbody key={index}>
           <tr>
             <td> <a onClick={this.handleClick.bind(this, player.playerId)}> {player.Name || player.full }</a></td>
-    				<td> {player.Position || 'NA'} </td>
-    				<td> {player.Played || 0}</td>
-    				<td> {player.Opponent || 'BYE'} </td>
-    				<td> {player.FantasyPoints || 0}</td>
-    				<td> Actual </td>
-    				<td> {parseInt(player.PassingYards) || 0}</td>
-    				<td> {player.PassingTouchdowns || 0}</td>
-    				<td> {player.PassingInterceptions || 0}</td>
-    				<td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
-    				<td> {parseInt(player.RushingYards) || 0}</td>
-    				<td> {player.RushingTouchdowns || 0}</td>
-    				<td> {player.ReceivingTargets || 0}</td>
-    				<td> {player.Receptions || 0} </td>
-    				<td> {player.RushingTouchdowns || 0}</td>
-    				<td> {player.ReceivingTouchdowns || 0}</td>
-    				<td> {player.TwoPointConversionReturns || 0}</td>
-    				<td> {player.PassingTouchdowns > 30 ? 'Approve' : 'Disapprove'} </td>
-    			</tr>
+            <td> {player.Position || 'NA'} </td>
+            <td> {player.Played || 0}</td>
+            <td> {player.Opponent || 'BYE'} </td>
+            <td> {player.FantasyPoints || 0}</td>
+            <td> Actual </td>
+            <td> {parseInt(player.PassingYards) || 0}</td>
+            <td> {player.PassingTouchdowns || 0}</td>
+            <td> {player.PassingInterceptions || 0}</td>
+            <td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
+            <td> {parseInt(player.RushingYards) || 0}</td>
+            <td> {player.RushingTouchdowns || 0}</td>
+            <td> {player.ReceivingTargets || 0}</td>
+            <td> {player.Receptions || 0} </td>
+            <td> {player.RushingTouchdowns || 0}</td>
+            <td> {player.ReceivingTouchdowns || 0}</td>
+            <td> {player.TwoPointConversionReturns || 0}</td>
+            <td> {player.PassingTouchdowns > 30 ? 'Approve' : 'Disapprove'} </td>
+          </tr>
         </tbody>
       );
     });
@@ -67,7 +67,10 @@ class TeamView extends Component {
 }
 
 function mapStateToProps(state) {
-  return { yahooProfile: state.yahooProfile };
+  return {
+    yahooProfile: state.yahooProfile,
+    modal: state.modal,
+ };
 }
 
 export default connect(mapStateToProps, { fetchRoster, getOnePlayerModal })(TeamView);
