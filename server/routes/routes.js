@@ -7,11 +7,11 @@ router.post('/getAllPlayers', (req, res) => {
 });
 
 router.post('/getAllTeamPlayers', (req, res) => {
-  if (req.body.playerId) {
+  // if (req.body.playerId) {
     playersController.getPlayersByIds(req, res);
-  } else {
-    playersController.getPlayersByName(req, res);
-  }
+  // } else {
+  //   playersController.getPlayersByName(req, res);
+  // }
 });
 
 router.get('/getAllPlayers', (req, res) => {

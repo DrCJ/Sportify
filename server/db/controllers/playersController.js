@@ -62,7 +62,6 @@ module.exports = {
 
     db.query(q).then(stats => {
       const sortedStats = sortByPosition(stats);
-      console.log(sortedStats, 'sorted stats');
       res.send(sortedStats);
     });
   },
