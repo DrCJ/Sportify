@@ -11,14 +11,16 @@ class ClickableHeading extends Component {
   }
 
   componentWillMount() {
-    this.setState({ clicked: false });
+    // this.setState({ clicked: false });
+    this.state.clicked = false;
   }
 
   clickHandler() {
-    // if (!this.state.clicked) {
+    if (!this.state.clicked) {
+      this.state.clicked = true;
       console.log('clicked on ', this.props.fieldName, this.props.name);
       this.props.dispatch(filterPlayers({ orderBy: this.props.fieldName }));
-    // }
+    }
   }
 
   render() {
