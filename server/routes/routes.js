@@ -13,4 +13,9 @@ router.get('/getAllPlayers', (req, res) => {
 router.post('/getPlayersByIds', (req, res) => {
   playersController.getPlayersByIds(req, res);
 });
+
+router.post('/getPlayersByName', (req, res) => {
+  playersController.getPlayersByName(req, res);
+});
+
 module.exports = router;

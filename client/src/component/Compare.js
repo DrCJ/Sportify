@@ -6,7 +6,7 @@ import ComparePlayerStats from './ComparePlayerStats';
 
 class Compare extends Component {
   componentWillMount() {
-    this.props.fetchSpecificPlayers({ playerId: [7200, 24788] });
+    this.props.fetchSpecificPlayers({ playerId: ['Aaron'] });
   }
 
   onSubmit(event) {

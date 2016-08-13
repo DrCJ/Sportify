@@ -80,13 +80,13 @@ module.exports = {
     PlayerProjectedYear.findOne({
       where: {
         'Name': {
-          $iLike: `%${req.body[0]}%`
+          $iLike: `%${req.body.playerId[0]}%`
         }
       },
     })
     .then((playerData) => {
-      const responseArr = [playerData, playerData];
-      res.send(responseArr);
+      console.log('---------------------------------------------->', playerData);
+      res.send([[playerData]]);
     })
     .catch((err) => {
       console.log(err);
