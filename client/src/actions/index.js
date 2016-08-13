@@ -38,7 +38,6 @@ export function fetchLeagues() {
 
 export function fetchSpecificPlayers(playerId) {
   const request = axios.post('/api/getPlayersByName', playerId);
-  console.log(request);
   return {
     type: FETCH_SPECIFIC_PLAYERS,
     payload: request,
