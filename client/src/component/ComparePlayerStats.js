@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 export default class ComparePlayerStats extends Component {
   renderStats() {
-    console.log(this.props.players);
     return statIndex.map((stat, index) => {
       return (
         <tr>
