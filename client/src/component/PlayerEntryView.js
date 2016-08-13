@@ -15,34 +15,44 @@ class PlayerEntryView extends Component {
 			.then((data) => console.log(data));
 	}
 	render() {
+		const headings = this.props.headings;
+		var tableInfo = [];
+		for (let i = 1; i < headings.length - 1; i++) {
+			tableInfo[i] = <td> {this.props.player[headings[i]] || 0}</td>
+		}
 		return (
 			<tr>
-        <td> <a onClick={this.handleClick.bind(this, this.props.player.playerId)}> {this.props.player.Name || this.props.player.full }</a></td>
-				<td> {this.props.player.Position || 'NA'} </td>
-				<td> {this.props.player.Played || 0}</td>
-				<td> {this.props.player.Opponent || 'BYE'} </td>
-				<td> {this.props.player.FantasyPoints || 0}</td>
-				<td> Actual </td>
-				<td> {parseInt(this.props.player.PassingYards) || 0}</td>
-				<td> {this.props.player.PassingTouchdowns || 0}</td>
-				<td> {this.props.player.PassingInterceptions || 0}</td>
-				<td> {this.props.player.PassingAttempts || this.props.player.RushingAttempts || 0 }</td>
-				<td> {parseInt(this.props.player.RushingYards) || 0}</td>
-				<td> {this.props.player.RushingTouchdowns || 0}</td>
-				<td> {this.props.player.ReceivingTargets || 0}</td>
-				<td> {this.props.player.Receptions || 0} </td>
-				<td> {this.props.player.RushingTouchdowns || 0}</td>
-				<td> {this.props.player.ReceivingTouchdowns || 0}</td>
-				<td> {this.props.player.TwoPointConversionReturns || 0}</td>
-				<td> {this.props.player.PassingTouchdowns > 30 ? 'Approve' : 'Disapprove'} </td>
+				<td> <a onClick={this.handleClick.bind(this, this.props.player.playerId)}> {this.props.player[headings[0]] || this.props.player.full }</a></td>
+        {tableInfo}
+				<td> {this.props.player.FantasyPointsYahoo > 250 ? '👍' : '👎'} </td>
 			</tr>
 		);
 	}
 }
 
+//  It would be nice if we could map 'default values... perhaps using a lookup table like abbreviations'
+/* <td> {this.props.player[headings[1]] || 'NA'} </td>
+<td> {this.props.player[headings[2]] || 0}</td>
+<td> {this.props.player[headings[3]] || 'BYE'} </td>
+<td> {this.props.player[headings[4]] || 0}</td>
+<td> {this.props.player[headings[5]] || 0}</td>
+<td> {this.props.player[headings[6]] || 0}</td>
+<td> {this.props.player[headings[7]] || 0}</td>
+<td> {this.props.player[headings[8]] || 0}</td> 
+<td> {this.props.player[headings[9]] || 0}</td> 
+<td> {this.props.player.RushingYards || 0}</td>
+<td> {this.props.player.RushingTouchdowns || 0}</td>
+<td> {this.props.player.ReceivingTargets || 0}</td>
+<td> {this.props.player.Receptions || 0} </td>
+<td> {this.props.player.RushingTouchdowns || 0}</td>
+<td> {this.props.player.ReceivingTouchdowns || 0}</td>
+<td> {this.props.player.TwoPointConversionReturns || 0}</td>
+*/
+
 function mapStateToProps(state) {
   return {
     modal: state.modal,
+    headings: state.search.headings,
   };
 }
 

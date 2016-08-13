@@ -4,7 +4,7 @@ const abbreviations = {
   // 'Season': 2015,
   // 'GameDate': '2015-09-13T16:05:00',
   // 'Week': 'Week',
-  // 'Team': 'ARI',
+  'Team': 'Team',
   'Opponent': 'Opp',
   // 'HomeOrAway': 'HOME',
   // 'Number': 38,

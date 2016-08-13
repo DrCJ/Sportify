@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { filterPlayers } from '../actions';
 import PlayerSearchInput from './PlayerSearchInput.jsx';
+import teams from '../helpers/teamNames';
 
 class PlayerFilterForm extends Component {
   onSubmit(props) {
@@ -19,11 +20,11 @@ class PlayerFilterForm extends Component {
       reqObj.tableName = 'playerProjectedGames';
     }
 
-    if (team !== '' && team !== 'All') {
+    if (team !== '') {
       reqObj.filters.Team = team;
     }
 
-    if (position !== '' && team !== 'All') {
+    if (position !== '') {
       reqObj.filters.Position = position;
     }
 
@@ -32,13 +33,18 @@ class PlayerFilterForm extends Component {
 
   render() {
     const { fields: { team, position, weekly }, handleSubmit } = this.props;
+    const teamOptions = [];
+    for (let k in teams) {
+      teamOptions.push(<option value={k}>{teams[k]}</option>);
+    }
+
     return (
       <form className="filter-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <div className="filter-form-select">
           <label htmlFor="teamSelect"> TEAM </label>
           <select data="teamVal" id="teamSelect" {...team}>
-            <option value="All">All</option>
-            <option value="GB">GreenBay</option>
+            <option value="">All</option>
+            {teamOptions}
           </select>
         </div>
         <div className="filter-form-select">
@@ -67,7 +73,7 @@ class PlayerFilterForm extends Component {
         <div className="filter-form-select">
           <label htmlFor="positionSelect"> POSITION </label>
           <select data="positionVal" id="positionSelect" {...position}>
-            <option value="All">All</option>
+            <option value="">All</option>
             <option value="QB">QB</option>
             <option value="RB">RB</option>
             <option value="WR">WR</option>
