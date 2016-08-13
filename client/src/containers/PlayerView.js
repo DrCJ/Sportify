@@ -17,7 +17,7 @@ class PlayerView extends Component {
       return <div> Loading (Image????) </div>
     }
     return (
-      <div>
+      <div className="player-background-image">
         <h2> PlayerView </h2>
         <div className="center-content">
           <div className="search-container">
