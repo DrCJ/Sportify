@@ -86,6 +86,7 @@ export function requestAllPlayers() {
   };
 }
 
+// this goes to post getPlayersByParams
 export function filterPlayers(props) {
   const request = axios({
     method: 'post',

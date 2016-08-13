@@ -19,22 +19,31 @@ module.exports = {
       console.log(err);
     });
   },
+
+  //  we should provide a lookup table for acceptable params fields
+  //  here since we are accepting user input = security issue
   getPlayersByParams: (req, res) => {
     const stat = req.body;
     const limit = 25;
+    const orderBy = req.body.orderBy || 'FantasyPointsYahoo';
     let subQ = '';
     let orderStat = '';
+    let tableName = req.body.tableName || 'playerProjectedYears';
     for (const filter in stat) {
-      orderStat = stat[filter];
-      if (!isNaN(Number(orderStat))) {
-        orderStat = Number(orderStat);
+      if (filter !== 'orderBy') {
+        if (orderStat === '') { orderStat = 'WHERE '; }
+        orderStat = stat[filter];
+        if (!isNaN(Number(orderStat))) {
+          orderStat = Number(orderStat);
+        }
+        subQ += `"${tableName}"."${filter}" = '${orderStat}' AND `;
       }
-      subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
     }
     subQ = subQ.substr(0, subQ.length - 4);
-    subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
-    const q = `SELECT * FROM players INNER JOIN "playerProjectedGames"
-    ON "players"."id" = "playerProjectedGames"."playerId" WHERE ${subQ}`;
+    console.log('-----------orderBy', orderBy);
+    subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
+    const q = `SELECT * FROM players INNER JOIN "${tableName}"
+    ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
 
     db.query(q).then(stats => {
       res.send(stats);

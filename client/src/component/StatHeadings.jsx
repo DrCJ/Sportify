@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import ClickableHeading from './ClickableHeading.jsx';
+import React from 'react';
+import ClickableHeading from '../containers/ClickableHeading.jsx';
 import abbreviations from '../helpers/mapStatToAbbreviation';
 
 const headings = [
@@ -11,41 +9,46 @@ const headings = [
   'Played',
   'Opponent',
 
-  //Fan Pts
+  //  Fan Pts
   'FantasyPointsYahoo',
   'FantasyPointsPPR',
 
-  //Passing
+  //  Passing
   'PassingYards',
   'PassingCompletions',
   'PassingTouchdowns',
   'PassingInterceptions',
 
-  //Rushing
+  //  Rushing
   'RushingYards',
   'RushingTouchdowns',
 
-  //Recieving
+  //  Recieving
   'ReceivingYards',
   'Receptions',
   'ReceivingTouchdowns',
 
-  //Misc
+  //  Misc
   // '2PT',  -> 2PT is split into multiple db fields
   'TwoPointConversionPasses',
   'Fumbles',
   'Carlos',
-].map(val => abbreviations[val]);
+].map(val => {
+  return {
+    fieldName: val,
+    name: abbreviations[val],
+  };
+});
 
 console.log('HEADINGS:', headings);
 
 const StatHeadings = () => {
 
-  const mapHeadings = headings.map(val => (<ClickableHeading name={val} />));
+  const mapHeadings = headings.map((val, i) => (<ClickableHeading key={i} {...val} />));
   return (
     <thead>
       <tr>
-        <td colSpan="4"></td>
+        <td colSpan="4" />
         <td colSpan="2">Fan Pts</td>
         <td colSpan="4">Passing</td>
         <td colSpan="2">Rushing</td>
