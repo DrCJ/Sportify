@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { filterPlayers } from '../actions';
+import PlayerSearchInput from './PlayerSearchInput.jsx';
 
 class PlayerFilterForm extends Component {
   onSubmit(props) {
@@ -58,11 +59,7 @@ class PlayerFilterForm extends Component {
             <option value="Def">Def</option>
           </select>
         </div>
-        <input
-          type="submit"
-          className="button filter-form-select-button"
-          value="Submit"
-        />
+        <PlayerSearchInput />
       </form>
     );
   }
