@@ -11,6 +11,8 @@ class PlayerEntryView extends Component {
 	handleClick(playerId) {
 		const playerIdArray = { playerId:[playerId] };
 		this.props.getOnePlayerModal(playerIdArray);
+    document.getElementsByClassName('shadow-modal')[0].className = ('shadow-modal-click');
+    document.getElementsByClassName('modal')[0].className = ('modal-click');
 	}
 	render() {
 		return ( 

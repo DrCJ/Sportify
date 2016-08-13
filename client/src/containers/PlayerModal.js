@@ -9,14 +9,11 @@ class PlayerModal extends Component {
   render() {
     return (
       <div className="modal">
-        <div className="modal-header"> This is going to be the Header </div>
+        <div className="modal-header"> {this.props.modal.length > 1 ? this.props.modal[0].full : 'none'} </div>
         <PlayerModalInfo modal={this.props.modal[0] || []} />
         <div className="modal-schedule-info">
           <div className="modal-schedule-container">
             <PlayerModalTable modal={this.props.modal} />
-          </div>
-          <div className="modal-player-notes-container">
-            <div className="modal-player-notes"> Player Notes </div>
           </div>
         </div>
       </div>
@@ -30,4 +27,7 @@ function mapStateToProps(state) {
   };
 }
 
+// This will be nested in the model-schedule-info <div className="modal-player-notes-container">
+          // </div><div className="modal-player-notes"> Player Notes </div>
+// 
 export default connect(mapStateToProps, null)(PlayerModal);

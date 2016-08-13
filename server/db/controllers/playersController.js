@@ -74,7 +74,7 @@ module.exports = {
 
     db.query(q).then(stats => {
       let sortedStats = sortByPosition(stats);
-      sortedStats = getHighResolution(sortedStats);
+      // sortedStats = getHighResolution(sortedStats);
       res.send(sortedStats);
     });
   },
