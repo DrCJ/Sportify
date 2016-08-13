@@ -5,11 +5,28 @@ import PlayerSearchInput from './PlayerSearchInput.jsx';
 
 class PlayerFilterForm extends Component {
   onSubmit(props) {
+    const week = this.props.fields.weekly.value;
+    const team = this.props.fields.team.value;
+    const position = this.props.fields.position.value;
+
+
     const reqObj = {
-      Team: this.props.fields.team.value,
-      Week: this.props.fields.weekly.value,
-      Position: this.props.fields.position.value,
+      filters: {},
     };
+
+    if (week !== '') {
+      reqObj.filters.Week = week;
+      reqObj.tableName = 'playerProjectedGames';
+    }
+
+    if (team !== '' && team !== 'All') {
+      reqObj.filters.Team = team;
+    }
+
+    if (position !== '' && team !== 'All') {
+      reqObj.filters.Position = position;
+    }
+
     this.props.filterPlayers(reqObj);
   }
 
@@ -27,7 +44,7 @@ class PlayerFilterForm extends Component {
         <div className="filter-form-select">
           <label htmlFor="weekly"> WEEKLY </label>
           <select data="weeklyVal" id="weeklySelect" {...weekly}>
-            <option value="">2015-2016</option>
+            <option value="">2016(proj)</option>
             <option value="1">Week 1</option>
             <option value="2">Week 2</option>
             <option value="3">Week 3</option>
