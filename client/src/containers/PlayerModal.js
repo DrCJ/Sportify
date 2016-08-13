@@ -4,15 +4,22 @@ import { Link } from 'react-router';
 
 class PlayerModal extends Component {
   render() {
+    console.log(this.props.modal.image_url);
     return (
       <div className="modal">
         <div className="modal-header"> This is going to be the Header </div>
         <div className="modal-player-info">
-          <img src="http://img.wennermedia.com/article-leads-horizontal/jordan-rodgers-53420e9d-f112-4125-b967-ea77af834e76.jpg" height="100px" width="160px"/>
-          <span> Name Position etc </span>
-          <span> Season Stats </span>
+          <img src={this.props.modal.image_url || 'playerPic'} height="75px" width="75x"/>
+          <span className="modal-player-bio">
+            <ul>
+              <li>{this.props.modal.full}</li>
+              <li>{this.props.modal.Team}</li>
+              <li>{this.props.modal.Position}</li>
+            </ul>
+          </span>
+          <div> Season Stats </div>
         </div>
-        <div className="modal-schedule-info">  
+        <div className="modal-schedule-info">
           <div className="modal-schedule-container">
             <table className="modal-table">
               <thead>
@@ -24,7 +31,7 @@ class PlayerModal extends Component {
                   <td> TD </td>
                 </tr>
               </thead>
-              <tbody> 
+              <tbody>
                 <tr>
                   <td> Week 1 </td>
                   <td> 2 </td>
@@ -113,4 +120,10 @@ class PlayerModal extends Component {
   }
 }
 
-export default connect(null, null)(PlayerModal);
+function mapStateToProps(state) {
+  return {
+    modal: state.modal,
+  };
+}
+
+export default connect(mapStateToProps, null)(PlayerModal);

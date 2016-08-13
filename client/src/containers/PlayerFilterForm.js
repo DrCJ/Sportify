@@ -15,7 +15,7 @@ class PlayerFilterForm extends Component {
   render() {
     const { fields: { team, position, weekly }, handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+      <form className="filter-form" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <div className="filter-form-select">
           <label htmlFor="teamSelect"> TEAM </label>
           <select data="teamVal" id="teamSelect" {...team}>
