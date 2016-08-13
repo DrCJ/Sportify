@@ -78,15 +78,35 @@ module.exports = {
   },
   getPlayersByName: (req, res) => {
     PlayerProjectedYear.findOne({
+      order: [
+      ['FantasyPointsYahoo', 'DESC'],
+      ],
       where: {
-        'Name': {
-          $iLike: `%${req.body.playerOne}%`
-        }
+        Name: {
+          $iLike: `%${req.body.playerNames[0]}%`,
+        },
       },
+      include: [
+        { model: Player, required: true },
+      ],
     })
     .then((playerData) => {
-      const responseArr = [playerData, playerData];
-      res.send(responseArr);
+      // WARNING: Callback hell. Will have to refactor this soon.
+      PlayerProjectedYear.findOne({
+        order: [
+        ['FantasyPointsYahoo', 'DESC'],
+        ],
+        where: {
+          Name: {
+            $iLike: `%${req.body.playerNames[1]}%`,
+          },
+        },
+        include: [
+          { model: Player, required: true },
+        ],
+      }).then((player2Data) => {
+        res.send([[playerData, player2Data]]);
+      });
     })
     .catch((err) => {
       console.log(err);

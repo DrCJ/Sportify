@@ -3,16 +3,21 @@ import { connect } from 'react-redux';
 
 class ComparePlayers extends Component {
   render() {
+    var playerImage1, playerImage2;
+    if (this.props.players[0].player) {
+      playerImage1 = <img className="player2-image" src={this.props.players[0].player.image_url.substring(155)}></img>;
+      playerImage2 = <img className="player2-image" src={this.props.players[1].player.image_url.substring(155)}></img>;
+    }
     return (
       <div className="compare-container">
         <div className="compare-player1">
-        	<div>{this.props.players[1].Name}</div>
-        	<img className="player2-image" src={this.props.players[1].image_url}></img>
+          {this.props.players[0].Name}
+          {playerImage1}
         </div>
         <div className="compare-player2">
-        	<div>{this.props.players[0].Name}</div>
-        	<img className="player2-image" src={this.props.players[0].image_url}></img>
-      </div>
+          {this.props.players[1].Name}
+          {playerImage2}
+        </div>
       </div>
 		);
   }

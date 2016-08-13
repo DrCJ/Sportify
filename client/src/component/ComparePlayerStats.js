@@ -7,8 +7,8 @@ class ComparePlayerStats extends Component {
       return (
         <tr>
           <td>{stat}</td>
-          <td>{this.props.players[1][stat]}</td>
           <td>{this.props.players[0][stat]}</td>
+          <td>{this.props.players[1][stat]}</td>
         </tr>
       );
     });
