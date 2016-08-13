@@ -1,6 +1,7 @@
 const { PlayerProjectedGame, PlayerProjectedYear, Player, db } = require('../modelConnect');
 const Sequelize = require('sequelize');
 const { sortByPosition } = require('../helpers/sortByPosition');
+const { getHighResolution } = require('../helpers/getHighResolution');
 
 module.exports = {
   getAllPlayers: (req, res) => {
@@ -61,9 +62,25 @@ module.exports = {
 
 
     db.query(q).then(stats => {
-      const sortedStats = sortByPosition(stats);
-      console.log(sortedStats, 'sorted stats');
+      let sortedStats = sortByPosition(stats);
+      sortedStats = getHighResolution(sortedStats);
       res.send(sortedStats);
+    });
+  },
+  getPlayersByName: (req, res) => {
+    PlayerProjectedYear.findOne({
+      where: {
+        'Name': {
+          $iLike: `%${req.body.playerOne}%`
+        }
+      },
+    })
+    .then((playerData) => {
+      const responseArr = [playerData, playerData];
+      res.send(responseArr);
+    })
+    .catch((err) => {
+      console.log(err);
     });
   },
 };

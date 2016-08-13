@@ -152,23 +152,19 @@ tr {
 /* Compare Container */
 .compare-container {
 	width: 75%;
-	height: 300px;
 	margin: auto;
-	background-color: yellow;
 }
 
 .compare-player1 {
 	width: 40%;
 	display: inline-block;
-	background-color: white;
 	float: left;
 }
 
 .compare-player2 {
 	width: 40%;
 	display: inline-block;
-	background-color: white;
-	float: left;
+	float: right;
 }
 
 .player1-image, .player2-image {

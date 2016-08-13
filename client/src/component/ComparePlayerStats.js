@@ -1,35 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSpecificPlayers } from '../actions/index';
 
 class ComparePlayerStats extends Component {
-  componentWillMount() {
-    this.props.fetchSpecificPlayers()
-  }
-
   renderStats() {
-    //player1{}
     return statIndex.map((stat, index) => {
       return (
         <tr>
-          <td>{lookup[stat]}</td>
-          <td>{player1[stat]}</td>
-          <td>80</td>
+          <td>{stat}</td>
+          <td>{this.props.players[1][stat]}</td>
+          <td>{this.props.players[0][stat]}</td>
         </tr>
       );
     });
   }
 
-  // renderPlayers() {
-  //   return this.state.yahooProfile.stats.map((i){
-  //
-  //   })
-  // }
-
   render() {
     return (
       <div>
-        <h1>STATS TABLE GOES HERE</h1>
         <table>
           <thead>
             <tr>
@@ -51,7 +38,8 @@ function mapStateToProps(state) {
   return { players: state.players };
 }
 
-export default connect(mapStateToProps, { fetchSpecificPlayers })(ComparePlayerStats);
+export default connect(mapStateToProps)(ComparePlayerStats);
 
-const statIndex = ['Offense', 'Position', 'GP*', 'Opp', 'Proj', 'Actual', 'Yds',
-                  'TD', 'Int', 'Att*', 'Yds', 'TD', 'Tgt*', 'Rec', 'RshTD', 'RecTD', '2PT', 'Carlos'];
+const statIndex = ['Position', 'Played', 'Opponent', 'FantasyPointsYahoo', 'PassingYards',
+'PassingTouchdowns', 'PassingInterceptions', 'PassingAttempts', 'RushingYards', 'RushingTouchdowns',
+'ReceivingTargets', 'ReceivingYardsPerTarget', 'ReceivingTouchdowns', 'TwoPointConversionReturns'];

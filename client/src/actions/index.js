@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const FETCH_ROSTER = 'FETCH_ROSTER';
+export const FETCH_SPECIFIC_PLAYERS = 'FETCH_SPECIFIC_PLAYERS';
 export const FETCH_LEAGUES = 'FETCH_LEAGUES';
 export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
@@ -36,7 +37,7 @@ export function fetchLeagues() {
 }
 
 export function fetchSpecificPlayers(playerId) {
-  const request = axios.post('/api/getAllTeamPlayers', { playerId });
+  const request = axios.post('/api/getAllTeamPlayers', playerId);
   return {
     type: FETCH_SPECIFIC_PLAYERS,
     payload: request,
