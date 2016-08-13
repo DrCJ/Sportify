@@ -176,7 +176,7 @@ li {
 
 /* Compare Container */
 .compare-container {
-	width: 75%;
+	width: 80%;
 	margin: auto;
 }
 
@@ -224,7 +224,7 @@ li {
     height: 350px;
     left: 25%;
     z-index: 20;
-    visibility: show;
+    visibility: hidden;
     -webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
 }
 	/*Look for the translate property.. It will translate the component 50% of the page (horizontal, vertical)*/
