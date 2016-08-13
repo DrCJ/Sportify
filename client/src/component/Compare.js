@@ -6,11 +6,12 @@ import ComparePlayerStats from './ComparePlayerStats';
 
 class Compare extends Component {
   componentWillMount() {
-    this.props.fetchSpecificPlayers({ playerId: ['Aaron'] });
+    this.props.fetchSpecificPlayers({ playerNames: ['Aaron Rodgers', 'Cam Newton'] });
   }
 
   onSubmit(event) {
     event.preventDefault();
+    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value, event.target[1].value] });
   }
 
   render() {
