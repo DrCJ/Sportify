@@ -66,8 +66,10 @@ module.exports = {
     subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "playerProjectedGames"
     ON "players"."id" = "playerProjectedGames"."playerId"
-    WHERE "playerProjectedGames"."playerId" IN (${stat.playerId.join()})
-    AND "playerProjectedGames"."Week" = 1`;
+    WHERE "playerProjectedGames"."playerId" IN (${stat.playerId.join()})`;
+
+        // AND "playerProjectedGames"."Week" = 1`;
+
 
 
     db.query(q).then(stats => {
