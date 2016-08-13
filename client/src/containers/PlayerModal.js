@@ -9,7 +9,7 @@ class PlayerModal extends Component {
       <div className="modal">
         <div className="modal-header"> This is going to be the Header </div>
         <div className="modal-player-info">
-          <img src={this.props.modal.image_url || 'playerPic'} height="80px" width="100x"/>
+          <img src={this.props.modal.image_url || 'playerPic'} height="75px" width="75x"/>
           <span className="modal-player-bio">
             <ul>
               <li>{this.props.modal.full}</li>
@@ -17,7 +17,7 @@ class PlayerModal extends Component {
               <li>{this.props.modal.Position}</li>
             </ul>
           </span>
-          <span> Season Stats </span>
+          <div> Season Stats </div>
         </div>
         <div className="modal-schedule-info">
           <div className="modal-schedule-container">
