@@ -23,30 +23,30 @@ module.exports = {
   //  we should provide a lookup table for acceptable params fields
   //  here since we are accepting user input = security issue
   getPlayersByParams: (req, res) => {
-    const stat = req.body;
+    const filters = req.body.filters;
     const limit = 25;
     const orderBy = req.body.orderBy || 'FantasyPointsYahoo';
     let subQ = '';
     let orderStat = '';
     let tableName = req.body.tableName || 'playerProjectedYears';
-    for (const filter in stat) {
-      if (filter !== 'orderBy') {
-        if (orderStat === '') { orderStat = 'WHERE '; }
-        orderStat = stat[filter];
+    for (const key in filters) {
+        if (subQ === '') { subQ = 'WHERE '; }
+        orderStat = filters[key];
         if (!isNaN(Number(orderStat))) {
           orderStat = Number(orderStat);
         }
-        subQ += `"${tableName}"."${filter}" = '${orderStat}' AND `;
-      }
+        subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
     }
     subQ = subQ.substr(0, subQ.length - 4);
-    console.log('-----------orderBy', orderBy);
     subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "${tableName}"
     ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
-
+    console.log('-----------query', q);
     db.query(q).then(stats => {
       res.send(stats);
+    })
+    .catch(err => {
+      console.log('db error:', err);
     });
   },
   getPlayersByIds: (req, res) => {
