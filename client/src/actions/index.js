@@ -22,6 +22,7 @@ export function fetchRoster(league_key) {
 
     return statsRequest;
   });
+  console.log(request);
   return {
     type: FETCH_ROSTER,
     payload: request,
