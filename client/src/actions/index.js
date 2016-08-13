@@ -10,6 +10,7 @@ export const CANCEL_MODAL = 'CANCEL_MODAL';
 export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
 export const FILTER_PLAYERS = 'FILTER_PLAYERS';
 export const GET_ONE_PLAYER_MODAL = 'GET_ONE_PLAYER_MODAL';
+export const CHANGE_SEARCH_TEXT = 'CHANGE_SEARCH_TEXT';
 
 export function fetchRoster(league_key) {
   const request = axios.get(`/roster/${league_key}`).then((team) => {
@@ -104,7 +105,18 @@ export function requestAllPlayers() {
   };
 }
 
-// this goes to post getPlayersByParams
+// for getPlayersByParams
+
+//  props shape
+// {
+//   orderBy: stat,
+//   tableName: playerProjectedYears,
+//   filters: {
+//     Team: this.props.fields.team.value,
+//     Week: this.props.fields.weekly.value,
+//     Position: this.props.fields.position.value,
+//   }
+// }
 export function filterPlayers(props) {
   const request = axios({
     method: 'post',
@@ -132,5 +144,12 @@ export function getOnePlayerModal(playerId) {
   return {
     type: GET_ONE_PLAYER_MODAL,
     payload: request,
+  };
+}
+
+export function changeSearchText(string) {
+  return {
+    type: CHANGE_SEARCH_TEXT,
+    string,
   };
 }

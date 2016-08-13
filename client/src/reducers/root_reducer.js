@@ -6,6 +6,7 @@ import YahooProfileReducer from './reducer_yahooProfile';
 import PlayersReducer from './reducer_players';
 import Header from './reducer_header';
 import ModalReducer from './reducer_modal';
+import SearchReducer from './reducer_search';
 
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   players: PlayersReducer,
   form: formReducer,
   modal: ModalReducer,
+  search: SearchReducer,
 });
 
 export default rootReducer;

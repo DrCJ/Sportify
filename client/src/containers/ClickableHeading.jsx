@@ -11,7 +11,6 @@ class ClickableHeading extends Component {
   }
 
   componentWillMount() {
-    // this.setState({ clicked: false });
     this.state.clicked = false;
   }
 
