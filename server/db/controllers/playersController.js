@@ -80,7 +80,7 @@ module.exports = {
     PlayerProjectedYear.findOne({
       where: {
         'Name': {
-          $iLike: `%${req.body.playerOne}%`
+          $iLike: `%${req.body[0]}%`
         }
       },
     })

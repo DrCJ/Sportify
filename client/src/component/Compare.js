@@ -11,10 +11,6 @@ class Compare extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    this.props.fetchSpecificPlayers({
-      playerOne: event.target[0].value,
-      playerTwo: event.target[1].value
-    });
   }
 
   render() {
