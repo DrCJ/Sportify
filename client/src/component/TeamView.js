@@ -15,9 +15,7 @@ class TeamView extends Component {
 
   handleClick(playerId) {
     const playerIdArray = { playerId:[playerId] };
-    console.log('playerIdArray ' , playerIdArray);
-    this.props.getOnePlayerModal(playerIdArray)
-      .then((data) => console.log(data));
+    this.props.getOnePlayerModal(playerIdArray);
   }
 
   renderRoster() {

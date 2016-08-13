@@ -18,7 +18,7 @@ class PlayerView extends Component {
     }
     return (
       <div className="player-background-image">
-        <h2> PlayerView </h2>
+        <h2>   </h2>
         <div className="center-content">
           <div className="search-container">
             <input type="text" name="name" value="" placeholder="SEARCH" />
