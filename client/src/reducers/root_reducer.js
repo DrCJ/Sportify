@@ -5,6 +5,7 @@ import Leagues from './reducer_leagues';
 import YahooProfileReducer from './reducer_yahooProfile';
 import PlayersReducer from './reducer_players';
 import Header from './reducer_header';
+import SearchReducer from './reducer_search';
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   header: Header,
   players: PlayersReducer,
   form: formReducer,
+  search: SearchReducer,
 });
 
 export default rootReducer;

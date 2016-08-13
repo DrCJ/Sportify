@@ -6,6 +6,7 @@ export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
 export const REQUEST_ALL_PLAYERS = 'REQUEST_ALL_PLAYERS';
 export const FILTER_PLAYERS = 'FILTER_PLAYERS';
+export const CHANGE_SEARCH_TEXT = 'CHANGE_SEARCH_TEXT';
 
 export function fetchRoster(league_key) {
   const request = axios.get(`/roster/${league_key}`).then((team) => {
@@ -97,5 +98,12 @@ export function filterPlayers(props) {
   return {
     type: FILTER_PLAYERS,
     payload: request,
+  };
+}
+
+export function changeSearchText(string) {
+  return {
+    type: CHANGE_SEARCH_TEXT,
+    string,
   };
 }
