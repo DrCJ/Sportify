@@ -187,6 +187,9 @@ tr {
 	border: 1px solid black;
 }
 
+.stat-heading {
+  cursor: pointer;
+}
 
 /*Modal Content*/
 

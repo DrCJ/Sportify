@@ -9,7 +9,6 @@ export const PlayerEntryView = ( {player} ) => (
 		<td> {player.Opponent || 'BYE'} </td>
 		<td> {player.FantasyPoints || 0}</td>
 		<td> Actual </td>
-		<td />
 		<td> {parseInt(player.PassingYards) || 0}</td>
 		<td> {player.PassingTouchdowns || 0}</td>
 		<td> {player.PassingInterceptions || 0}</td>
