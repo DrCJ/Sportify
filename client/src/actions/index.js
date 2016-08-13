@@ -89,7 +89,7 @@ export function requestAllPlayers() {
 export function filterPlayers(props) {
   const request = axios({
     method: 'post',
-    url: '/api/getAllPlayers',
+    url: '/api/getPlayersByParams',
     data: props,
     header: {
       'Content-Type': 'application/json',
