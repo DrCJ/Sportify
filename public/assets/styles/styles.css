@@ -43,6 +43,20 @@ li {
 	list-style: none;
 }
 
+#footer {
+	width: 100%;
+  background-color: black;
+  bottom: -50px;
+  height: 50px;
+  font: white;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  overflow: hidden;
+  padding-left: 5%;
+  text-align: left;
+}
+
 /*App Content*/
 .app {
 	height: 100%;
@@ -91,6 +105,7 @@ li {
 
 /*PlayerView*/
 .player-background-image {
+	margin-top: -8px;
 	background-image: url(http://wallpapercave.com/wp/iYwVeZy.jpg);
   background-size: cover;
   background-repeat: no-repeat;
