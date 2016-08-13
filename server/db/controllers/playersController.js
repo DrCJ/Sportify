@@ -19,12 +19,16 @@ module.exports = {
       console.log(err);
     });
   },
+
+  //  we should provide a lookup table for acceptable params fields
+  //  here since we are accepting user input = security issue
   getPlayersByParams: (req, res) => {
     const stat = req.body;
     const limit = 25;
     const orderBy = req.body.orderBy || 'FantasyPointsYahoo';
     let subQ = '';
     let orderStat = '';
+    let tableName = req.body.tableName || 'playerProjectedGames';
     for (const filter in stat) {
       if (filter !== 'orderBy') {
         if (orderStat === '') { orderStat = 'WHERE '; }

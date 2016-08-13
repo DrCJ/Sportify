@@ -15,15 +15,15 @@ class ClickableHeading extends Component {
   }
 
   clickHandler() {
-    if (!this.state.clicked) {
+    // if (!this.state.clicked) {
       console.log('clicked on ', this.props.fieldName, this.props.name);
-      this.props.filterPlayers({ orderBy: this.props.fieldName });
-    }
+      this.props.dispatch(filterPlayers({ orderBy: this.props.fieldName }));
+    // }
   }
 
   render() {
     return (
-      <td className="stat-heading" onClick={this.clickHandler}>{this.props.name}</td>
+      <td className="stat-heading" onClick={this.clickHandler.bind(this)}>{this.props.name}</td>
     );
   }
 }
@@ -31,13 +31,6 @@ class ClickableHeading extends Component {
 ClickableHeading.propTypes = {
   name: PropTypes.string.isRequired,
   fieldName: PropTypes.string.isRequired,
-  filterPlayers: PropTypes.function.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    filterPlayers: (obj) => dispatch(filterPlayers(obj)),
-  };
-}
-
-export default connect(mapDispatchToProps)(ClickableHeading);
+export default connect()(ClickableHeading);
