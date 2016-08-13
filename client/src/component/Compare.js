@@ -11,10 +11,10 @@ class Compare extends Component {
 
   onSubmit(event) {
     event.preventDefault();
-    const reqObj = {
-      playerOne: event.target[0].value
-    };
-    this.props.fetchSpecificPlayers(reqObj);
+    this.props.fetchSpecificPlayers({
+      playerOne: event.target[0].value,
+      playerTwo: event.target[1].value
+    });
   }
 
   render() {
@@ -22,14 +22,14 @@ class Compare extends Component {
       <div className='center-content'>
         <h1>Compare Players</h1>
         <div className="search-container">
-          <form onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit.bind(this)}>
             <input type="text" name="name" placeholder="SEARCH" />
             <input type="text" name="name" placeholder="SEARCH" />
             <input type="submit" />
           </form>
         </div>
-        <ComparePlayerHeadshots players={this.props.players}/>
-        <ComparePlayerStats players={this.props.players}/>
+        <ComparePlayerHeadshots />
+        <ComparePlayerStats />
       </div>
 		);
   }

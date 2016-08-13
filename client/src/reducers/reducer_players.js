@@ -1,5 +1,4 @@
-import { REQUEST_ALL_PLAYERS } from '../actions/index';
-import { FILTER_PLAYERS, FETCH_SPECIFIC_PLAYERS } from '../actions/index';
+import { REQUEST_ALL_PLAYERS, FILTER_PLAYERS, FETCH_SPECIFIC_PLAYERS } from '../actions/index';
 
 const INITIAL_STATE = [];
 

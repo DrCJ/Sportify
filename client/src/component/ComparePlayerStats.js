@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export default class ComparePlayerStats extends Component {
+class ComparePlayerStats extends Component {
   renderStats() {
     return statIndex.map((stat, index) => {
       return (
@@ -33,6 +33,12 @@ export default class ComparePlayerStats extends Component {
 		);
   }
 }
+
+function mapStateToProps(state) {
+  return { players: state.players };
+}
+
+export default connect(mapStateToProps)(ComparePlayerStats);
 
 const statIndex = ['Position', 'Played', 'Opponent', 'FantasyPointsYahoo', 'PassingYards',
 'PassingTouchdowns', 'PassingInterceptions', 'PassingAttempts', 'RushingYards', 'RushingTouchdowns',

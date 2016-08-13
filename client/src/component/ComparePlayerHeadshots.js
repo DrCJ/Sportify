@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class ComparePlayers extends Component {
+class ComparePlayers extends Component {
   render() {
     return (
       <div className="compare-container">
@@ -16,3 +17,9 @@ export default class ComparePlayers extends Component {
 		);
   }
 }
+
+function mapStateToProps(state) {
+  return { players: state.players };
+}
+
+export default connect(mapStateToProps)(ComparePlayers);

@@ -66,4 +66,20 @@ module.exports = {
       res.send(sortedStats);
     });
   },
+  getPlayersByName: (req, res) => {
+    PlayerProjectedYear.findOne({
+      where: {
+        'Name': {
+          $iLike: `%${req.body.playerOne}%`
+        }
+      },
+    })
+    .then((playerData) => {
+      const responseArr = [playerData, playerData];
+      res.send(responseArr);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },
 };
