@@ -6,14 +6,6 @@ router.post('/getAllPlayers', (req, res) => {
   playersController.getPlayersByParams(req, res);
 });
 
-router.post('/getAllTeamPlayers', (req, res) => {
-  // if (req.body.playerId) {
-    playersController.getPlayersByIds(req, res);
-  // } else {
-  //   playersController.getPlayersByName(req, res);
-  // }
-});
-
 router.get('/getAllPlayers', (req, res) => {
   playersController.getAllPlayers(req, res);
 });

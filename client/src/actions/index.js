@@ -15,7 +15,7 @@ export function fetchRoster(league_key) {
     for (let i = 0; i < team.data.length; i++) {
       playerId.push(Number(team.data[i].player_id));
     }
-    const statsRequest = axios.post('/api/getAllTeamPlayers', { playerId })
+    const statsRequest = axios.post('/api/getPlayersByIds', { playerId })
       .then((stats) => {
         return { players: team.data, stats: stats.data[0] };
       });
@@ -37,7 +37,7 @@ export function fetchLeagues() {
 }
 
 export function fetchSpecificPlayers(playerId) {
-  const request = axios.post('/api/getAllTeamPlayers', playerId);
+  const request = axios.post('/api/getPlayersByIds', playerId);
   return {
     type: FETCH_SPECIFIC_PLAYERS,
     payload: request,
