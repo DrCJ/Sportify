@@ -44,6 +44,9 @@ module.exports = {
     console.log('-----------query', q);
     db.query(q).then(stats => {
       res.send(stats);
+    })
+    .catch(err => {
+      console.log('db error:', err);
     });
   },
   getPlayersByIds: (req, res) => {
