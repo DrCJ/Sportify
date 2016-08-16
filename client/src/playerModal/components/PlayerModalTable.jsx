@@ -1,7 +1,7 @@
 import React from 'react';
-import { PlayerModalTableBody } from './PlayerModalTableBody';
+import PlayerModalTableBody from './PlayerModalTableBody.jsx';
 
-export const PlayerModalTable = ({ modal }) => (
+const PlayerModalTable = ({ modal }) => (
   <table className="modal-table">
     <thead>
       <tr>
@@ -15,3 +15,9 @@ export const PlayerModalTable = ({ modal }) => (
     <PlayerModalTableBody modal={modal} />
   </table>
 );
+
+PlayerModalTable.propTypes = {
+  modal: React.PropTypes.array.isRequired,
+};
+
+export default PlayerModalTable;
