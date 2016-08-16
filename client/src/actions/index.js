@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const FETCH_ROSTER = 'FETCH_ROSTER';
-export const FETCH_SPECIFIC_PLAYERS = 'FETCH_SPECIFIC_PLAYERS';
 export const FETCH_LEAGUES = 'FETCH_LEAGUES';
+export const FETCH_SPECIFIC_PLAYERS = 'FETCH_SPECIFIC_PLAYERS';
 // export const TOGGLE_NAVIGATION = 'TOGGLE_NAVIGATION';
 export const CANCEL_NAVIGATION = 'CANCEL_NAVIGATION';
 // export const TOGGLE_MODAL = 'TOGGLE_MODAL';
@@ -27,22 +27,6 @@ export function fetchRoster(league_key) {
   });
   return {
     type: FETCH_ROSTER,
-    payload: request,
-  };
-}
-
-export function fetchLeagues() {
-  const request = axios.get('/leagues');
-  return {
-    type: FETCH_LEAGUES,
-    payload: request,
-  };
-}
-
-export function fetchSpecificPlayers(playerId) {
-  const request = axios.post('/api/getPlayersByName', playerId);
-  return {
-    type: FETCH_SPECIFIC_PLAYERS,
     payload: request,
   };
 }

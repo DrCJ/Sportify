@@ -7,8 +7,8 @@ import Compare from './compare';
 import Schedule from './component/Schedule';
 import TeamView from './component/TeamView';
 import PlayerView from './containers/PlayerView';
-import LeagueOverview from './component/LeagueOverview';
 import StatisticsOverview from './component/StatisticsOverview.jsx';
+import LeagueOverview from './league';
 import YahooProfileImage from './containers/YahooProfileImage';
 
 
