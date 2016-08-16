@@ -31,6 +31,7 @@
     "pg": "^6.0.3",
     "pg-hstore": "^2.3.2",
     "react": "^15.3.0",
+    "react-d3-basic": "^1.6.11",
     "react-dom": "^15.3.0",
     "react-foundation": "^0.6.8",
     "react-redux": "^4.4.5",
