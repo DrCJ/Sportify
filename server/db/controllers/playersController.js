@@ -4,6 +4,9 @@ const { sortByPosition } = require('../helpers/sortByPosition');
 const { getHighResolution } = require('../helpers/getHighResolution');
 
 module.exports = {
+
+  //  the shape of this is slightly different from getPlayersByParams
+  //  because this one uses Sequelize vs Raw Sql, should have a consistent approach
   getAllPlayers: (req, res) => {
     PlayerProjectedYear.findAll({
       order: [
@@ -43,31 +46,35 @@ module.exports = {
     ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
     console.log('-----------query', q);
     db.query(q).then(stats => {
+      delete stats[1];  //this query returns a lot of "junk" values at index 1;
       res.send(stats);
+    })
+    .catch(err => {
+      console.log('db error:', err);
     });
   },
+
+  // see above regarding security / lookup table
   getPlayersByIds: (req, res) => {
 
     const stat = req.body;
-    const limit = 25;
-    let subQ = '';
-    let orderStat = '';
-    for (const filter in stat) {
-      orderStat = stat[filter];
-      if (!isNaN(Number(orderStat))) {
-        orderStat = Number(orderStat);
-      }
-      subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
-    }
-    subQ = subQ.substr(0, subQ.length - 4);
-    subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
+    // const limit = 25;
+    // let subQ = '';
+    // let orderStat = '';
+    // for (const filter in stat) {
+    //   orderStat = stat[filter];
+    //   if (!isNaN(Number(orderStat))) {
+    //     orderStat = Number(orderStat);
+    //   }
+    //   subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
+    // }
+    // subQ = subQ.substr(0, subQ.length - 4);
+    // subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "playerProjectedGames"
     ON "players"."id" = "playerProjectedGames"."playerId"
     WHERE "playerProjectedGames"."playerId" IN (${stat.playerId.join()})`;
 
         // AND "playerProjectedGames"."Week" = 1`;
-
-
 
     db.query(q).then(stats => {
       let sortedStats = sortByPosition(stats);
