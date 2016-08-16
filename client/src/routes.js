@@ -8,6 +8,7 @@ import Schedule from './component/Schedule';
 import TeamView from './component/TeamView';
 import PlayerView from './containers/PlayerView';
 import LeagueOverview from './component/LeagueOverview';
+import StatisticsOverview from './component/StatisticsOverview.jsx';
 import YahooProfileImage from './containers/YahooProfileImage';
 
 
@@ -19,6 +20,7 @@ export default (
     <Route path="player" component={PlayerView} />
     <Route path="YahooProfile" component={YahooProfileImage} />
     <Route path="LeagueOverview" component={LeagueOverview} />
+    <Route path="Statistics" component={StatisticsOverview} />
     <Route path="TeamView/:league_key" component={TeamView} />
 	</Route>
 );
