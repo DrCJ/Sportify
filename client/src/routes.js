@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Route, IndexRoute } from 'react-router';
 
-import App from './component/App';
+import App from './App';
 import Compare from './component/Compare';
 import Schedule from './component/Schedule';
 import TeamView from './component/TeamView';

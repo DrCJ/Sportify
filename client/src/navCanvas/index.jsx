@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-
-export const NavigationCanvas = () => (
+const NavigationCanvas = () => (
   <nav className="nav-canvas" >
-    <div className="player-profile">
-    </div>
+    <div className="player-profile" />
     <ul>
       <li className="nav-link"><Link to="/player">Player</Link></li>
       <li className="nav-link"><Link to="/compare">Compare</Link></li>
@@ -15,3 +13,5 @@ export const NavigationCanvas = () => (
     </ul>
   </nav>
 );
+
+export default NavigationCanvas;
