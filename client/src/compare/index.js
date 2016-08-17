@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSpecificPlayers } from '../actions/index';
+import { fetchSpecificPlayers } from './actions';
 import ComparePlayerHeadshots from './ComparePlayerHeadshots';
 import ComparePlayerStats from './ComparePlayerStats';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import { filterPlayers } from '../actions';
+import { filterPlayers } from './actions';
 import PlayerSearchInput from './PlayerSearchInput.jsx';
 import teams from '../helpers/teamNames';
 
@@ -19,7 +19,7 @@ class PlayerFilterForm extends Component {
       reqObj.filters.Week = week;
       reqObj.tableName = 'playerProjectedGames';
     }
-   
+
     if (team !== '') {
       reqObj.filters.Team = team;
     }

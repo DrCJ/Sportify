@@ -1,5 +1,5 @@
 import React from 'react';
-import PlayerListView from '../containers/PlayerListView';
+import PlayerListView from './PlayerListView';
 import StatHeadings from './StatHeadings.jsx';
 
 export const PlayerViewTable = () => (

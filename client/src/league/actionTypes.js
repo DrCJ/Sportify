@@ -1,5 +1,5 @@
 const exports = {
-  CANCEL_MODAL: 'CANCEL_MODAL',
+  FETCH_LEAGUES: 'FETCH_LEAGUES',
 };
 
 export default exports;

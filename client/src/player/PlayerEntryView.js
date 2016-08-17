@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getOnePlayerModal } from '../actions/index';
+import { getOnePlayerModal } from './actions';
 
 
 class PlayerEntryView extends Component {
@@ -38,8 +38,8 @@ class PlayerEntryView extends Component {
 <td> {this.props.player[headings[5]] || 0}</td>
 <td> {this.props.player[headings[6]] || 0}</td>
 <td> {this.props.player[headings[7]] || 0}</td>
-<td> {this.props.player[headings[8]] || 0}</td> 
-<td> {this.props.player[headings[9]] || 0}</td> 
+<td> {this.props.player[headings[8]] || 0}</td>
+<td> {this.props.player[headings[9]] || 0}</td>
 <td> {this.props.player.RushingYards || 0}</td>
 <td> {this.props.player.RushingTouchdowns || 0}</td>
 <td> {this.props.player.ReceivingTargets || 0}</td>

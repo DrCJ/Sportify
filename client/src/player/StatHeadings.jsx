@@ -1,5 +1,5 @@
 import React from 'react';
-import ClickableHeading from '../containers/ClickableHeading.jsx';
+import ClickableHeading from './ClickableHeading.jsx';
 import abbreviations from '../helpers/mapStatToAbbreviation';
 import { connect } from 'react-redux';
 

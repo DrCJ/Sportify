@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CANCEL_MODAL, GET_ONE_PLAYER_MODAL } from './actionTypes';
+import { CANCEL_MODAL } from './actionTypes';
 
 export function closeModal() {
   const modalClose = () => {
@@ -7,22 +7,7 @@ export function closeModal() {
     document.getElementsByClassName('modal-click')[0].className = ('modal');
   };
   return {
-    type: CANCEL_MODAL,
+    type: 'CANCEL_MODAL',
     payload: modalClose(),
-  };
-}
-
-export function getOnePlayerModal(playerId) {
-  const request = axios({
-    method: 'post',
-    url: '/api/getPlayersByIds',
-    data: playerId,
-    header: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return {
-    type: GET_ONE_PLAYER_MODAL,
-    payload: request,
   };
 }
