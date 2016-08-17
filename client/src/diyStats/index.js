@@ -1,40 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import teams from '../helpers/teamNames';
 
-const DIYStatsView = () => {
-  const teamOptions = [];
-  for (let k in teams) {
-    teamOptions.push(<option value={k}>{teams[k]}</option>);
+class DIYStatsView extends Component {
+  onCheck(event) {
+    // console.log('checked!', event.target.name, event.target.checked);
   }
-  return (
-    <div className="center-content">
-      <h1>DIY Stats View</h1>
-      <h3>Choose a player:</h3>
-      <div className="search-container">
-        <form>
-          <input type="text" name="name" placeholder="SEARCH" />
+  render() {
+    const teamOptions = [];
+    for (let k in teams) {
+      teamOptions.push(<option value={k}>{teams[k]}</option>);
+    }
+    return (
+      <div className="center-content">
+        <h1>DIY Stats View</h1>
+        <h3>Choose a player:</h3>
+        <div className="search-container">
+          <form>
+            <input type="text" name="name" placeholder="SEARCH" />
+          </form>
+        </div>
+        <h3>Current Player:</h3>
+        <h3>Performance</h3>
+        <form onChange={this.onCheck}>
+          <input type="checkbox" name="0"/> Against a Team
+          <input type="checkbox" name="1"/> On a Day of the Week
+          <input type="checkbox" name="2"/> At a Specific Stadium
+          <input type="checkbox" name="3"/> At Home/Away
+          <input type="checkbox" name="4"/> Under Specific Weather Conditions
+          <input type="checkbox" name="5"/> Started/Benched
         </form>
+        <div className="filter-form-select">
+          <label htmlFor="teamSelect"> AGAINST A TEAM </label>
+          <select data="teamVal" id="teamSelect">
+            <option value="">All</option>
+            {teamOptions}
+          </select>
+        </div>
       </div>
-      <h3>Current Player:</h3>
-      <h3>Performance</h3>
-      <form>
-        <input type="checkbox" /> Against a Team
-        <input type="checkbox" /> Against Another Player
-        <input type="checkbox" /> On a Day of the Week
-        <input type="checkbox" /> At a Specific Stadium
-        <input type="checkbox" /> At Home/Away
-        <input type="checkbox" /> Under Specific Weather Conditions
-        <input type="checkbox" /> Started/Benched
-      </form>
-      <div className="filter-form-select">
-        <label htmlFor="teamSelect"> AGAINST A TEAM </label>
-        <select data="teamVal" id="teamSelect">
-          <option value="">All</option>
-          {teamOptions}
-        </select>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default DIYStatsView;
