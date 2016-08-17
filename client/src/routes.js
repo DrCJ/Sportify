@@ -9,7 +9,7 @@ import Schedule from './schedule';
 import TeamView from './yahooTeam';
 import PlayerView from './player';
 import LeagueOverview from './league';
-
+import DIYStatsView from './diyStats';
 
 export default (
   <Route path="/" component={App}>
@@ -18,6 +18,7 @@ export default (
     <Route path="schedule" component={Schedule} />
     <Route path="player" component={PlayerView} />
     <Route path="LeagueOverview" component={LeagueOverview} />
+    <Route path="DIYStats" component={DIYStatsView} />
     <Route path="Statistics" component={StatisticsOverview} />
     <Route path="TeamView/:league_key" component={TeamView} />
 	</Route>
