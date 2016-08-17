@@ -29,11 +29,12 @@ module.exports = {
     const filters = req.body.filters;
     const limit = 25;
     const orderBy = req.body.orderBy || 'FantasyPointsYahoo';
-    let subQ = '';
     let orderStat = '';
-    let tableName = req.body.tableName || 'playerProjectedYears';
+    const tableName = req.body.tableName || 'playerProjectedYears';
+    const season = req.body.season || '2016';
+    let subQ = `WHERE "${tableName}"."Season"=${season} AND `;
     for (const key in filters) {
-        if (subQ === '') { subQ = 'WHERE '; }
+        // if (subQ === '') { subQ = 'WHERE '; }
         orderStat = filters[key];
         if (!isNaN(Number(orderStat))) {
           orderStat = Number(orderStat);
@@ -134,7 +135,6 @@ module.exports = {
       result.projected = stats[0];
 
       const playerIDs = stats[0].map(player => player.playerId);
-      // console.log('playerIDs:', playerIDs);
 
       const q2 = `SELECT "playerId", "FantasyPointsYahoo" 
       FROM "playerYearStats"
