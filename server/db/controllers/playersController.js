@@ -40,7 +40,7 @@ module.exports = {
         }
         subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
     }
-    subQ = subQ.substr(0, subQ.length - 4);
+    subQ = subQ.substr(0, subQ.length - 4);  //delete the last 'AND'
     subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "${tableName}"
     ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
@@ -117,5 +117,34 @@ module.exports = {
     .catch((err) => {
       console.log(err);
     });
+  },
+  getProjectedVsActual: (req, res) => {
+    const position = req.body.position || 'RB';
+    const season = req.body.season || 2016;
+    const limit = req.body.limit || 10;
+    const result = {};
+
+    const q = `SELECT "playerId", "FantasyPointsYahoo" 
+    FROM "playerProjectedYears"
+    WHERE "Position"='${position}' AND 
+    "Season"='${season}' ORDER BY "FantasyPointsYahoo" 
+    DESC LIMIT ${limit};`;
+
+    db.query(q).then(stats => {
+      result.projected = stats[0];
+
+      const playerIDs = stats[0].map(player => player.playerId);
+      // console.log('playerIDs:', playerIDs);
+
+      const q2 = `SELECT "playerId", "FantasyPointsYahoo" 
+      FROM "playerYearStats"
+      WHERE "playerId" IN (${playerIDs.join()})`;
+
+      db.query(q2).then(stats2 => {
+        result.actual = stats2[0];
+        res.send(result);
+      });
+    });
+
   },
 };

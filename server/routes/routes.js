@@ -18,4 +18,8 @@ router.post('/getPlayersByName', (req, res) => {
   playersController.getPlayersByName(req, res);
 });
 
+router.post('/getProjectedVsActual', (req, res) => {
+  playersController.getProjectedVsActual(req, res);
+});
+
 module.exports = router;
