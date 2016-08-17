@@ -12,7 +12,7 @@ export function toggleNavigation() {
   };
 
   return {
-    type: TOGGLE_NAVIGATION,
+    type: 'TOGGLE_NAVIGATION',
     payload: navOpen(),
   };
 }

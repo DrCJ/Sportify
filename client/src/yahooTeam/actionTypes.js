@@ -1,5 +1,5 @@
 const exports = {
-  CANCEL_MODAL: 'CANCEL_MODAL',
+  FETCH_ROSTER: 'FETCH_ROSTER',
 };
 
 export default exports;

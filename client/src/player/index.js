@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import { PlayerViewTable } from './PlayerViewTable';
-import { requestAllPlayers } from '../actions/index';
+import { requestAllPlayers } from './actions';
 import PlayerFilterForm from './PlayerFilterForm';
 
 class PlayerView extends Component {

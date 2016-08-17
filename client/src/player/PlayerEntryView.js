@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getOnePlayerModal } from '../playerModal/actions';
+import { getOnePlayerModal } from './actions';
 
 
 class PlayerEntryView extends Component {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ROSTER } from '../actions';
+import { FETCH_ROSTER } from './actionTypes';
 
 export function fetchRoster(league_key) {
   const request = axios.get(`/roster/${league_key}`).then((team) => {
@@ -15,7 +15,7 @@ export function fetchRoster(league_key) {
     return statsRequest;
   });
   return {
-    type: FETCH_ROSTER,
+    type: 'FETCH_ROSTER',
     payload: request,
   };
 }

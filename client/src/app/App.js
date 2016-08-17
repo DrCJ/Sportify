@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Footer from './footer/index.jsx';
-import Header from './header/index.jsx';
-import NavigationCanvas from './navCanvas/index.jsx';
-import PlayerModal from './playerModal/index.jsx';
-import { closeNavigation, closeModal } from './actions/index';
+import Footer from '../footer/index.jsx';
+import Header from '../header/index.jsx';
+import NavigationCanvas from '../navCanvas/index.jsx';
+import PlayerModal from '../playerModal/index.jsx';
+import { closeNavigation, closeModal } from './actions';
 
 class App extends Component {
   render() {
