@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import YahooProfileImage from '../containers/YahooProfileImage';
-import PlayerFilterForm from '../containers/PlayerFilterForm';
-import StatHeadings from './StatHeadings.jsx';
+import StatHeadings from '../player/StatHeadings.jsx';
 
-import { PlayerEntryView } from '../component/PlayerEntryView';
-import { fetchRoster, getOnePlayerModal } from '../actions/index';
+import { fetchRoster } from './actions';
+import { getOnePlayerModal } from '../playerModal/actions';
 
 class TeamView extends Component {
   componentWillMount() {
@@ -52,7 +50,6 @@ class TeamView extends Component {
       <div className="center-content">
         <Link to="/LeagueOverview">Back to My Leagues</Link>
         <h1>Team View</h1>
-        <PlayerFilterForm />
         <div className="player-table">
           <table>
             <StatHeadings />
@@ -68,7 +65,7 @@ function mapStateToProps(state) {
   return {
     yahooProfile: state.yahooProfile,
     modal: state.modal,
- };
+  };
 }
 
 export default connect(mapStateToProps, { fetchRoster, getOnePlayerModal })(TeamView);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { PlayerViewTable } from '../component/PlayerViewTable';
+import { PlayerViewTable } from './PlayerViewTable';
 import { requestAllPlayers } from '../actions/index';
 import PlayerFilterForm from './PlayerFilterForm';
 

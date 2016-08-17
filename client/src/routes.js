@@ -4,10 +4,10 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from './App';
 import Compare from './compare';
-import Schedule from './component/Schedule';
-import TeamView from './component/TeamView';
-import PlayerView from './containers/PlayerView';
 import StatisticsOverview from './component/StatisticsOverview.jsx';
+import Schedule from './schedule';
+import TeamView from './yahooTeam';
+import PlayerView from './player';
 import LeagueOverview from './league';
 import YahooProfileImage from './containers/YahooProfileImage';
 
