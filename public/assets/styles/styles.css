@@ -1,0 +1,353 @@
+* {
+	transition:all .8 ease-in;
+}
+
+body {
+	background: #8e9eab; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #8e9eab , #eef2f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+ul {
+	margin-left: 0;
+}
+
+header {
+   border: 1px solid black;
+}
+header:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+label {
+	color: white;
+}
+table {
+  border: 1px solid black;
+  border-collapse: collapse !important;
+  -webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+
+}
+td {
+  border: 1px solid black;
+  font-size: 12px;
+}
+
+tr {
+	background-color: #e9e9e9;
+}
+
+li {
+	list-style: none;
+}
+
+#footer {
+	width: 100%;
+  background-color: black;
+  bottom: -50px;
+  height: 50px;
+  font: white;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  overflow: hidden;
+  padding-left: 5%;
+  text-align: left;
+}
+
+/*App Content*/
+.app {
+	height: 100%;
+}
+
+/*Header Content */
+
+.header {
+	margin-bottom: 0;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #000000 , #202020); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #000000 , #202020); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  overflow: hidden;
+  color: white;
+  -webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+.center-content {
+  width: 80%;
+  margin: 0 auto;
+}
+.search-container {
+  margin-bottom: 30px;
+  -webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+.player-table {
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+	height: 500px;
+	overflow: auto;
+}
+.menu-btn {
+  margin-left: 15px;
+  padding-top: 18px;
+}
+.menu-btn span {
+  border: 1px solid #e9e9e9;
+  display: block;
+  margin-bottom: 5px;
+  width: 30px;
+}
+.login-btn {
+  float: right;
+  margin-right: 30px;
+}
+
+/*PlayerView*/
+.player-background-image {
+	margin-top: -8px;
+	background-image: url(http://wallpapercave.com/wp/iYwVeZy.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.filter-form {
+	background-color: #202020;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+	padding: 5px;
+}
+
+.filter-form-select {
+	display: inline-block;
+	width: 15%;
+	margin-right: 3px;
+	padding: 5px;
+}
+
+.filter-form-select-button {
+	margin-left: 3%;
+}
+/*Nav bar containers*/
+.app-container {
+	height: 100%;
+}
+
+.nav-canvas {
+	position: absolute;
+	left: -170px;
+	-webkit-transition: width .1s, height .1s, background-color .1s, -webkit-transform .1s;
+	transition: width .1s, height .1s, background-color .1s, transform .1s;
+	transition-duration: .1s;
+	transition-timing-function: ease-out;
+	transition: 0.2s;
+}
+
+.nav-canvas-clicked {
+	position: absolute;
+	left: 0px;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .7);
+	z-index: 2;
+	padding-right: 2px;
+	border: 1px black solid;
+	-webkit-transition: width .1s, height .1s, background-color .1s, -webkit-transform .1s;
+	transition: width .1s, height .1s, background-color .1s, transform .1s;
+	transition-duration: .5s;
+	transition-timing-function: ease-in;
+  transition: 0.2s;
+}
+
+.main-content {
+	position: relative;
+	left: 0px;
+	height: 100%;
+}
+
+.main-content-clicked {
+	left: 155px;
+	height: 100%;
+	position: relative;
+}
+
+.nav-link {
+	list-style: none;
+	border: 2px solid black;
+	padding: 10px;
+	margin-top: .5px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	width: 100%;
+}
+.shadow {
+	position: fixed;
+}
+.shadow-modal {
+	position: fixed;
+}
+
+.shadow-click {
+	position: fixed;
+	width: 100%;
+	height: 2000px;
+	background: rgba(0,0,0,.4);
+	z-index: 1;
+}
+
+.shadow-modal-click {
+	position: fixed;
+	width: 100%;
+	height: 2000px;
+	background: rgba(0,0,0,.4);
+	z-index: 2;
+}
+
+/* Compare Container */
+.compare-container {
+	width: 80%;
+	margin: auto;
+}
+
+.compare-player1 {
+	width: 40%;
+	display: inline-block;
+	float: left;
+}
+
+.compare-player2 {
+	width: 40%;
+	display: inline-block;
+	float: right;
+}
+
+.player1-image, .player2-image {
+	width: 100%;
+	height: 100%;
+}
+
+.switch-player {
+	text-align: center;
+	float: left;
+	background-color: green;
+}
+
+.inline-button {
+	margin: auto;
+	border: 1px solid black;
+}
+
+.stat-heading {
+  cursor: pointer;
+}
+
+/*Modal Content*/
+
+.modal {
+  visibility: hidden;
+  position: fixed;
+  top: 25%;
+  width: 50%;
+  background: #e9e9e9;
+  border: 3px solid black;
+  border-radius: 4px;
+  height: 350px;
+  left: 25%;
+  z-index: 20;
+  -webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+.modal-click {
+	position: fixed;
+  top: 25%;
+  width: 50%;
+  background: #e9e9e9;
+  border: 3px solid black;
+  border-radius: 4px;
+  height: 400px;
+  left: 25%;
+  z-index: 20;
+  -webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  -webkit-transition: width .1s, height .1s, background-color .1s, -webkit-transform .1s;
+}
+
+	/*Look for the translate property.. It will translate the component 50% of the page (horizontal, vertical)*/
+.modal-header {
+	height: 15%;
+	background-color: #333;
+	background-size: contain;
+	border-top: 1px solid white;
+	color: white;
+	text-align: center;
+	padding-top: 11px;
+	font-weight: bold;
+	font-size: 20px;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+.modal-player-info {
+  border: 1px solid black;
+  height: 35%;
+  background-color: black;
+  color: white;
+  padding: 3px;
+}
+
+.modal-player-image {
+	height: 100%;
+	width: 20%;
+}
+.modal-player-bio {
+	float: right;
+	margin-right: 55%;
+	padding-top: 5%;
+	height: 100%;
+	font-weight: bold;
+}
+
+.modal-schedule-info {
+  width: 100%;
+  height: 50%;
+}
+
+.modal-schedule-container {
+  width: 100%;
+  display: inline-block;
+  float: left;
+  overflow: auto;
+  height: 100%;
+}
+
+.modal-table {
+    font-size: 10px;
+    font-color: red;
+    font-size: 10px;
+    width: 100%;
+    display: inline-table;
+    height: 100%;
+    margin-bottom: -32px;
+}
+
+.modal-player-notes-container {
+    overflow: auto;
+    width: 30%;
+    display: inline-block;
+    height: 100%;
+}
+
+.modal-player-notes {
+    width: 100%;
+    display: inline-block;
+    background-color: yellow;
+    size: 100%;
+    height: 100%;
+}
+
+/* Charts */
+.chart-container {
+  width: 500px;
+}
+
+.double-bar-chart {
+  width: 100px;
+  height: 100px;
+}

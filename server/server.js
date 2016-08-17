@@ -1,8 +1,9 @@
-// const db = require('./db/db_config');
+const db = require('./db/modelConnect');
 const express = require('express');
 const middleware = require('./middleware/middleware');
 const auth = require('./middleware/auth');
 const routes = require('./middleware/authroutes');
+const apiRoutes = require('./routes/routes');
 
 const app = express();
 const passport = auth(app, express);

@@ -1,13 +1,11 @@
-import { FETCH_ROSTER } from '../actions/index';
+import { FETCH_ROSTER } from '../yahooTeam/actionTypes';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = { players: [], stats: [] };
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case FETCH_ROSTER:
-      // return { ...state, tempTableData: action.payload.data };
-      return state.concat(action.payload.data);
-      // return Object.assign({}, state, { tempTableData: action.payload.data });
+    case 'FETCH_ROSTER':
+      return action.payload;
     default:
       return state;
   }

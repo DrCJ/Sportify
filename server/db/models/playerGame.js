@@ -1,10 +1,8 @@
 const db = require('../db_config');
-// const Sequelize = require('sequelize');
-const playerGameStats = require('../sampleData/playerGameStats');
 const { createSequelizeShape } = require('../helpers/parseStatsHelpers');
+const playerStats = require('../sampleData/playerGameStats');
 
-const playerGameShape = createSequelizeShape(playerGameStats);
-
-const PlayerGame = db.define('playerGame', playerGameShape);
+const playerGeneralSchema = createSequelizeShape(playerStats);
+const PlayerGame = db.define('playerGame', playerGeneralSchema);
 
 module.exports = PlayerGame;
