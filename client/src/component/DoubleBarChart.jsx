@@ -5,7 +5,7 @@ import axios from 'axios';
 const overlayData = {
   labels: ['Adrian Peterson', 'Devonta Freeman', 'Jamaal Charles', 'Todd Gurley', 'Darren McFadden', 'David Johnson', 'Bo Jackson', 'Herschel Walker', 'Lavonte David', 'DeAngelo Williams'],
   datasets: [{
-    label: '2015 Projected Points',
+    label: '2016 Projected Points',
     type: 'bar',
     yAxesGroup: '1',
     backgroundColor: 'rgba(124,211,83,0.5)',
@@ -35,9 +35,9 @@ const overlayData = {
 };
 
 const getChartData = (position, year, limit) => {
-  year = year || 2015;
-  position = position || 'RB';
-  limit = limit || 10;
+  // year = year || 2015;
+  // position = position || 'RB';
+  // limit = limit || 10;
   const request = axios({
     method: 'post',
     url: '/api/getProjectedVsActual',
@@ -60,12 +60,26 @@ class DoubleBarChart extends Component {
 
   componentDidMount() {
     const ctx = document.getElementById('double-bar-chart-rb');
-    let myChart = new Chart(ctx, {
-      type: 'bar',
-      data: overlayData,
-      // responsive: true,
-      // maintainAspectRatio: false,
-    });
+    getChartData('QB')
+      .then(response => {
+        console.log('response:', response.data);
+
+        const names = response.data.projected.map(player => player.Name);
+        overlayData.labels = names;
+
+        const projData = response.data.projected.map(player => player.FantasyPointsYahoo);
+        const actualData = response.data.actual.map(player => player.FantasyPointsYahoo);
+
+        overlayData.datasets[0].data = projData;
+        overlayData.datasets[1].data = actualData;
+
+        let myChart = new Chart(ctx, {
+          type: 'bar',
+          data: overlayData,
+          // responsive: true,
+          // maintainAspectRatio: false,
+        });
+      });
   }
 
   render() {
