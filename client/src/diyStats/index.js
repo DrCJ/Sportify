@@ -17,6 +17,15 @@ const DIYStatsView = () => {
       </div>
       <h3>Current Player:</h3>
       <h3>Performance</h3>
+      <form>
+        <input type="checkbox" /> Against a Team
+        <input type="checkbox" /> Against Another Player
+        <input type="checkbox" /> On a Day of the Week
+        <input type="checkbox" /> At a Specific Stadium
+        <input type="checkbox" /> At Home/Away
+        <input type="checkbox" /> Under Specific Weather Conditions
+        <input type="checkbox" /> Started/Benched
+      </form>
       <div className="filter-form-select">
         <label htmlFor="teamSelect"> AGAINST A TEAM </label>
         <select data="teamVal" id="teamSelect">
