@@ -67,7 +67,11 @@ const getPlayerWeeklyGames = () => {
 const getPlayerYearStats = () => {
   return {
     weeks: 1,
-    baseUrl: 'https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerSeasonStats/2015REG',
+    //  YearStats
+    // baseUrl: 'https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerSeasonStats/2015REG',
+
+    // ProjectedYear
+    baseUrl: 'https://api.fantasydata.net/v3/nfl/projections/JSON/PlayerSeasonProjectionStats/2015REG',
     appendWeeks: false,
     onEachItem: (item) => {
       const playerId = item.PlayerID;
@@ -75,7 +79,11 @@ const getPlayerYearStats = () => {
       if (yahooId[playerId]) {
         item.playerId = yahooId[playerId];
         delete item.ScoringDetails;
-        PlayerYearStat.findOrCreate(
+        //  YearStat
+        // PlayerYearStat.findOrCreate(
+
+        //  ProjectedYear
+        PlayerProjectedYear.findOrCreate(
           {
             where: { playerId: yahooId[playerId] },
             defaults: item,
@@ -191,7 +199,7 @@ const getGameInfo = () => {
 };
 
 
-const { weeks, baseUrl, appendWeeks, onEachItem } = getTeamYearStats();
+const { weeks, baseUrl, appendWeeks, onEachItem } = getPlayerYearStats();
 const startWeek = 1;
 
 const getNext = (i) => {
