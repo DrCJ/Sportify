@@ -112,6 +112,13 @@ class DIYStatsView extends Component {
               <option value={'AWAY'}>Away</option>
             </select>
           </div>
+          <div className="filter-form-select">
+            <label htmlFor="teamSelect"> When Started/Benched </label>
+            <select data="teamVal" id="teamSelect">
+              <option value={'HOME'}>Started</option>
+              <option value={'AWAY'}>Benched</option>
+            </select>
+          </div>
           <button type="Submit" >Submit</button>
         </form>
         <h3>Past Statistics</h3>
