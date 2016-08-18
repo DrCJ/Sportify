@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import teams from '../helpers/teamNames';
 import { fetchSpecificPlayers } from '../compare/actions';
 import { filterPlayers } from '../player/actions';
 import StatHeadings from '../player/StatHeadings.jsx';
+import teams from '../helpers/teamNames';
+import stadiums from '../helpers/stadiumNames';
 
 class DIYStatsView extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class DIYStatsView extends Component {
     reqObj.filters.playerId = this.props.search[0].playerId;
     reqObj.filters.Opponent = event.target[0].value;
     reqObj.filters.HomeOrAway = event.target[1].value;
+    reqObj.filters.Started = event.target[2].value;
     reqObj.tableName = 'playerProjectedGames';
     reqObj.season = 2015;
     console.log(reqObj);
@@ -71,9 +73,13 @@ class DIYStatsView extends Component {
 
   render() {
     const teamOptions = [];
+    const stadiumOptions = [];
     let playerImage, playerStats;
     for (let k in teams) {
       teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
+    }
+    for (let j in stadiums) {
+      stadiumOptions.push(<option key={j} value={j}>{j}</option>);
     }
     if (this.props.search[0]) {
       playerImage = <img src={this.props.search[0].player.image_url} role="presentation"/>;
@@ -98,6 +104,7 @@ class DIYStatsView extends Component {
         <input type="checkbox" name="3" /> At Home/Away
         <input type="checkbox" name="4" /> Under Specific Weather Conditions
         <input type="checkbox" name="5" /> Started/Benched
+        <input type="checkbox" name="5" /> Playing Surface
         <form onSubmit={this.onFieldSubmit}>
           <div className="filter-form-select">
             <label htmlFor="teamSelect"> AGAINST A TEAM </label>
@@ -115,8 +122,14 @@ class DIYStatsView extends Component {
           <div className="filter-form-select">
             <label htmlFor="teamSelect"> When Started/Benched </label>
             <select data="teamVal" id="teamSelect">
-              <option value={'HOME'}>Started</option>
-              <option value={'AWAY'}>Benched</option>
+              <option value={1}>Started</option>
+              <option value={0}>Benched</option>
+            </select>
+          </div>
+          <div className="filter-form-select">
+            <label htmlFor="teamSelect"> When Started/Benched </label>
+            <select data="teamVal" id="teamSelect">
+              {stadiumOptions}
             </select>
           </div>
           <button type="Submit" >Submit</button>
