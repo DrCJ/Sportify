@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchSpecificPlayers } from './actions';
 import ComparePlayerHeadshots from './ComparePlayerHeadshots';
 import ComparePlayerStats from './ComparePlayerStats';
+// import LineChart from './LineChart';
 
 class Compare extends Component {
   componentWillMount() {
@@ -15,6 +16,7 @@ class Compare extends Component {
   }
 
   render() {
+    console.log("This are the new players: ",this.props.players);
     return (
       <div className='center-content'>
         <h1>Compare Players</h1>
