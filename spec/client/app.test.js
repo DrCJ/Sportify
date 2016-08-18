@@ -39,6 +39,7 @@ describe("<App />", function() {
     expect(wrapper.find('.shadow-modal-click')).to.have.length(0);
   });
 
+<<<<<<< d02171b39c88a4f7921d9cbe5866df8d4cdbc93e
   it("wrapper", () => {
     const children = wrapper.children();
     // const grandchildren = children[0].children();
@@ -49,3 +50,6 @@ describe("<App />", function() {
   });
 
 });
+=======
+});
+>>>>>>> Complete Actiontypes tests
