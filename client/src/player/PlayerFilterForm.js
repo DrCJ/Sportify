@@ -15,9 +15,19 @@ class PlayerFilterForm extends Component {
       filters: {},
     };
 
-    if (week !== '') {
-      reqObj.filters.Week = week;
+    // if (week !== '') {
+      // reqObj.filters.Week = week;
+      // reqObj.tableName = 'playerProjectedGames';
+    if (week === '2015') {
+      reqObj.tableName = 'playerYearStats';
+      reqObj.season = 2015;
+    } else if (week === '1proj') {
+      reqObj.filters.Week = 1;
       reqObj.tableName = 'playerProjectedGames';
+    } else {
+      reqObj.filters.Week = week;
+      reqObj.tableName = 'playerGames';
+      reqObj.season = 2015;
     }
 
     if (team !== '') {
@@ -34,8 +44,10 @@ class PlayerFilterForm extends Component {
   render() {
     const { fields: { team, position, weekly }, handleSubmit } = this.props;
     const teamOptions = [];
+    var i = 1;
     for (let k in teams) {
-      teamOptions.push(<option value={k}>{teams[k]}</option>);
+      teamOptions.push(<option key={i} value={k}>{teams[k]}</option>);
+      i++;
     }
 
     return (
@@ -50,24 +62,26 @@ class PlayerFilterForm extends Component {
         <div className="filter-form-select">
           <label htmlFor="weekly"> WEEKLY </label>
           <select data="weeklyVal" id="weeklySelect" {...weekly}>
-            <option value="">2016(proj)</option>
-            <option value="1">Week 1</option>
-            <option value="2">Week 2</option>
-            <option value="3">Week 3</option>
-            <option value="4">Week 4</option>
-            <option value="5">Week 5</option>
-            <option value="6">Week 6</option>
-            <option value="7">Week 7</option>
-            <option value="8">Week 8</option>
-            <option value="9">Week 9</option>
-            <option value="10">Week 10</option>
-            <option value="11">Week 11</option>
-            <option value="12">Week 12</option>
-            <option value="13">Week 13</option>
-            <option value="14">Week 14</option>
-            <option value="15">Week 15</option>
-            <option value="16">Week 16</option>
-            <option value="17">Week 17</option>
+            <option value="">2016 (proj)</option>
+            <option value="2015">2015 Season</option>
+            <option value="1proj">Week 1 (proj)</option>
+            <option value="1">Week 1 (2015)</option>
+            <option value="2">Week 2 (2015)</option>
+            <option value="3">Week 3 (2015)</option>
+            <option value="4">Week 4 (2015)</option>
+            <option value="5">Week 5 (2015)</option>
+            <option value="6">Week 6 (2015)</option>
+            <option value="7">Week 7 (2015)</option>
+            <option value="8">Week 8 (2015)</option>
+            <option value="9">Week 9 (2015)</option>
+            <option value="10">Week 10 (2015)</option>
+            <option value="11">Week 11 (2015)</option>
+            <option value="12">Week 12 (2015)</option>
+            <option value="13">Week 13 (2015)</option>
+            <option value="14">Week 14 (2015)</option>
+            <option value="15">Week 15 (2015)</option>
+            <option value="16">Week 16 (2015)</option>
+            <option value="17">Week 17 (2015)</option>
           </select>
         </div>
         <div className="filter-form-select">
@@ -79,7 +93,6 @@ class PlayerFilterForm extends Component {
             <option value="WR">WR</option>
             <option value="TE">TE</option>
             <option value="K">K</option>
-            <option value="Def">Def</option>
           </select>
         </div>
         <PlayerSearchInput />
