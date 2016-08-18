@@ -26,121 +26,31 @@ module.exports = {
   //  we should provide a lookup table for acceptable params fields
   //  here since we are accepting user input = security issue
   getPlayersByParams: (req, res) => {
+    console.log('req.body:', req.body);
     const filters = req.body.filters;
-    console.log('filters:', filters);
     const limit = 25;
     const orderBy = req.body.orderBy || 'FantasyPointsYahoo';
-    // let orderStat = '';
+    let orderStat = '';
     const tableName = req.body.tableName || 'playerProjectedYears';
     const season = req.body.season || '2016';
-
-    var filterString = '';
+    let subQ = `WHERE "${tableName}"."Season"=${season} AND `;
     for (const key in filters) {
-      filterString += ` AND "${key}" = '${filters[key]}' `;
+      if (filters[key]) {  // this will purge empty string values
+        orderStat = filters[key];
+        if (!isNaN(Number(orderStat))) {
+          orderStat = Number(orderStat);
+        }
+        subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
+      }
     }
-    console.log('filters:', filterString);
-
-    // let subQ = `WHERE "${tableName}"."Season"=${season} AND `;
-    // for (const key in filters) {
-    //     orderStat = filters[key];
-    //     if (!isNaN(Number(orderStat))) {
-    //       orderStat = Number(orderStat);
-    //     }
-    //     subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
-    // }
-    // subQ = subQ.substr(0, subQ.length - 4);  //delete the last 'AND'
-    // subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
-    // const q = `SELECT * FROM players INNER JOIN "${tableName}"
-    // ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
-    // console.log('-----------query', q);
-
-    // let subQ = `"${tableName}"."Season"=${season} AND `;
-
-    // const q =
-    // `
-    // SELECT *
-    // FROM (
-    //   SELECT *
-    //   FROM "${tableName}"
-    //   GROUP BY "${orderBy}"
-    //   ) players JOIN "${tableName}"
-    //   ON "players"."id" = "${tableName}"."playerId"
-    //   AND
-    //   ${subQ};
-    // `;
-
-    // const q = `SELECT * FROM (SELECT * FROM "playerProjectedYears" GROUP BY "FantasyPointsYahoo") players JOIN "players" ON "players"."id" = "playerProjectedYears"."playerId" AND "playerProjectedYears"."playerId" = 'QB' ORDERBY "FantasyPointsYahoo" DESC LIMIT 5;`;
-
-    const q = `
-      SELECT
-        p.*,
-        tbl.*
-      FROM
-        players p join "${tableName}" tbl
-          on (p.id = tbl."playerId")
-      WHERE
-        "playerId" in (SELECT
-          "playerId"
-        FROM
-          "${tableName}"
-        WHERE
-          "Season" = ${season}
-          ${filterString})
-      ORDER BY "${orderBy}" DESC
-      LIMIT ${limit};
-      `;
-
-
-SELECT
-  tbl."FantasyPointsYahoo"
-FROM
-  players p join "playerProjectedGames" tbl
-    on (p.id = tbl."playerId")
-WHERE
-  "playerId" in (SELECT
-    "playerId"
-  FROM
-    "playerProjectedGames"
-  WHERE
-    "Season" = 2016 AND "Week" = 1 AND "Position" = 'RB' AND "Team" = 'ATL')
-ORDER BY "FantasyPointsYahoo" DESC
-LIMIT 25;
-
-
-
-SELECT
-  tbl."FantasyPointsYahoo"
-FROM
-  players p join "playerProjectedYears" tbl
-    on (p.id = tbl."playerId")
-WHERE
-  "playerId" in (SELECT
-    "playerId"
-  FROM
-    "playerProjectedYears"
-  WHERE
-    "Season" = 2016)
-ORDER BY "FantasyPointsYahoo" DESC
-LIMIT 25;
-
-      // SELECT
-      //   ppy."Name"
-      // FROM
-      //   players p join "playerProjectedYears" ppy
-      //     on (p.id = ppy."playerId")
-      // WHERE
-      //   "playerId" in (SELECT
-      //     "playerId"
-      //   FROM
-      //     "playerProjectedYears"
-      //   WHERE
-      //     "Position" = 'QB'
-      //   ORDER BY "FantasyPointsYahoo" DESC
-      //   LIMIT 25);
-//SELECT * FROM (SELECT * FROM "playerProjectedYears" GROUP BY "FantasyPointsYahoo") players JOIN "players" ON "players"."id" = "playerProjectedYears"."playerId" AND "playerProjectedYears"."playerId" = 'QB' ORDERBY "FantasyPointsYahoo" DESC LIMIT 5;
-
+    subQ = subQ.substr(0, subQ.length - 4);  //delete the last 'AND'
+    subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
+    const q = `SELECT * FROM players INNER JOIN "${tableName}"
+    ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
+    console.log('-----------query', q);
     db.query(q).then(stats => {
       delete stats[1];  //this query returns a lot of "junk" values at index 1;
+      console.log(stats);
       res.send(stats);
     })
     .catch(err => {

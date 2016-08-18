@@ -119,9 +119,9 @@ li {
 
 .filter-form-select {
 	display: inline-block;
-	width: 15%;
+	width: 20%;
 	margin-right: 3px;
-	padding: 5px;
+	padding: 8px;
 }
 
 .filter-form-select-button {

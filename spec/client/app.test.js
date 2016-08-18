@@ -9,7 +9,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import reducers from '../../client/src/reducers/root_reducer';
 
-import App from '../../client/src/App';
+import App from '../../client/src/app/App';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
