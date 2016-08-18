@@ -50,7 +50,6 @@ module.exports = {
     ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
     db.query(q).then(stats => {
       delete stats[1];  //this query returns a lot of "junk" values at index 1;
-      console.log(stats);
       res.send(stats);
     })
     .catch(err => {

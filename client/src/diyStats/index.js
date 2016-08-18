@@ -23,10 +23,12 @@ class DIYStatsView extends Component {
     const reqObj = {};
     reqObj.filters = {};
     reqObj.filters.playerId = this.props.search[0].playerId;
-    reqObj.filters.Opponent = event.target[0].value;
-    reqObj.filters.HomeOrAway = event.target[1].value;
-    reqObj.filters.Started = event.target[2].value;
-    reqObj.tableName = 'playerProjectedGames';
+    // reqObj.filters.Opponent = event.target[0].value;
+    // reqObj.filters.HomeOrAway = event.target[1].value;
+    // reqObj.filters.Started = event.target[2].value;
+    // reqObj.filters.Stadium = event.target[3].value;
+    reqObj.filters.PlayingSurface = event.target[4].value;
+    reqObj.tableName = 'playerGames';
     reqObj.season = 2015;
     console.log(reqObj);
     this.props.filterPlayers(reqObj)
@@ -37,9 +39,7 @@ class DIYStatsView extends Component {
 
   onSearch(event) {
     event.preventDefault();
-    console.log(event.target[0].value);
-    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] })
-    .then((response) => { console.log(response.payload.data[0]); });
+    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] });
   }
 
   renderStats() {
@@ -84,7 +84,6 @@ class DIYStatsView extends Component {
     if (this.props.search[0]) {
       playerImage = <img src={this.props.search[0].player.image_url} role="presentation"/>;
     }
-    console.log(this.props.players);
     return (
       <div className="center-content">
         <h1>DIY Stats View</h1>
@@ -127,9 +126,17 @@ class DIYStatsView extends Component {
             </select>
           </div>
           <div className="filter-form-select">
-            <label htmlFor="teamSelect"> When Started/Benched </label>
+            <label htmlFor="teamSelect"> At a Specific Stadium </label>
             <select data="teamVal" id="teamSelect">
               {stadiumOptions}
+            </select>
+          </div>
+          <div className="filter-form-select">
+            <label htmlFor="teamSelect"> Playing Surface </label>
+            <select data="teamVal" id="teamSelect">
+              <option value={'Grass'}>Grass</option>
+              <option value={'Artificial'}>Artificial</option>
+              <option value={'Dome'}>Dome</option>
             </select>
           </div>
           <button type="Submit" >Submit</button>
