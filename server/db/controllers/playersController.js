@@ -34,18 +34,16 @@ module.exports = {
     const season = req.body.season || '2016';
     let subQ = `WHERE "${tableName}"."Season"=${season} AND `;
     for (const key in filters) {
-        // if (subQ === '') { subQ = 'WHERE '; }
-        orderStat = filters[key];
-        if (!isNaN(Number(orderStat))) {
-          orderStat = Number(orderStat);
-        }
-        subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
+      orderStat = filters[key];
+      if (!isNaN(Number(orderStat))) {
+        orderStat = Number(orderStat);
+      }
+      subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
     }
     subQ = subQ.substr(0, subQ.length - 4);  //delete the last 'AND'
     subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "${tableName}"
     ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
-    console.log('-----------query', q);
     db.query(q).then(stats => {
       delete stats[1];  //this query returns a lot of "junk" values at index 1;
       res.send(stats);
@@ -84,36 +82,44 @@ module.exports = {
     });
   },
   getPlayersByName: (req, res) => {
-    PlayerProjectedYear.findOne({
+    PlayerProjectedYear.findAll({
       order: [
-      ['FantasyPointsYahoo', 'DESC'],
+        ['FantasyPointsYahoo', 'DESC'],
       ],
       where: {
-        Name: {
-          $iLike: `%${req.body.playerNames[0]}%`,
-        },
+        $or: [
+          {
+            Name: {
+              $iLike: `%${req.body.playerNames[0]}%`,
+            },
+          },
+          {
+            Name: {
+              $iLike: `%${req.body.playerNames[1]}%`,
+            },
+          },
+        ],
       },
+      limit: 2,
       include: [
         { model: Player, required: true },
       ],
     })
     .then((playerData) => {
-      // WARNING: Callback hell. Will have to refactor this soon.
-      PlayerProjectedYear.findOne({
-        order: [
-        ['FantasyPointsYahoo', 'DESC'],
-        ],
-        where: {
-          Name: {
-            $iLike: `%${req.body.playerNames[1]}%`,
-          },
-        },
-        include: [
-          { model: Player, required: true },
-        ],
-      }).then((player2Data) => {
-        res.send([[playerData, player2Data]]);
+      const playersId = []
+      playerData.forEach(function(player) {
+        playersId.push(player.dataValues.playerId);
       });
+
+      PlayerProjectedGame.findAll({
+        where: {
+          playerId: playersId,
+        }
+      })
+      .then(stats => {
+        console.log(stats);
+        res.send([playerData, stats]);
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -125,10 +131,10 @@ module.exports = {
     const limit = req.body.limit || 10;
     const result = {};
 
-    const q = `SELECT "playerId", "FantasyPointsYahoo" 
+    const q = `SELECT "playerId", "FantasyPointsYahoo"
     FROM "playerProjectedYears"
-    WHERE "Position"='${position}' AND 
-    "Season"='${season}' ORDER BY "FantasyPointsYahoo" 
+    WHERE "Position"='${position}' AND
+    "Season"='${season}' ORDER BY "FantasyPointsYahoo"
     DESC LIMIT ${limit};`;
 
     db.query(q).then(stats => {
@@ -136,7 +142,7 @@ module.exports = {
 
       const playerIDs = stats[0].map(player => player.playerId);
 
-      const q2 = `SELECT "playerId", "FantasyPointsYahoo" 
+      const q2 = `SELECT "playerId", "FantasyPointsYahoo"
       FROM "playerYearStats"
       WHERE "playerId" IN (${playerIDs.join()})`;
 
@@ -145,6 +151,5 @@ module.exports = {
         res.send(result);
       });
     });
-
   },
 };
