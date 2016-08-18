@@ -18,8 +18,16 @@ class DIYStatsView extends Component {
 
   onFieldSubmit(event) {
     event.preventDefault();
-    console.log(event.target[0].value);
-    this.props.filterPlayers({ filters: { playerId: this.props.search[0].playerId, Opponent: event.target[0].value }, tableName: 'playerProjectedGames', season: 2015 })
+    console.log(event.target[1].value);
+    const reqObj = {};
+    reqObj.filters = {};
+    reqObj.filters.playerId = this.props.search[0].playerId;
+    reqObj.filters.Opponent = event.target[0].value;
+    reqObj.filters.HomeOrAway = event.target[1].value;
+    reqObj.tableName = 'playerProjectedGames';
+    reqObj.season = 2015;
+    console.log(reqObj);
+    this.props.filterPlayers(reqObj)
     .then((response) => {
       console.log(response.payload.data[0]);
     });
@@ -95,6 +103,13 @@ class DIYStatsView extends Component {
             <label htmlFor="teamSelect"> AGAINST A TEAM </label>
             <select data="teamVal" id="teamSelect">
               {teamOptions}
+            </select>
+          </div>
+          <div className="filter-form-select">
+            <label htmlFor="teamSelect"> At Home/Away </label>
+            <select data="teamVal" id="teamSelect">
+              <option value={'HOME'}>Home</option>
+              <option value={'AWAY'}>Away</option>
             </select>
           </div>
           <button type="Submit" >Submit</button>
