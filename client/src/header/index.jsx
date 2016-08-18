@@ -12,7 +12,7 @@ const Header = (props) => (
       <span />
     </button>
     <div className="logo">
-      <img src="" alt="SOME RANDOM LOGO" />
+      <img src="" alt="Some RANDOM LOGO" />
     </div>
     <div className="login-btn">
       <a href="/auth/yahoo">Yahoo Profile Login</a>

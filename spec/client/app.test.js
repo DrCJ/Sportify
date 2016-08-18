@@ -2,7 +2,7 @@ import React from 'react';
 import promise from 'redux-promise';
 import { beforeEach } from 'mocha';
 import { expect } from 'chai';
-import { shallow, mount, render } from 'enzyme';
+import { mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
@@ -39,7 +39,6 @@ describe("<App />", function() {
     expect(wrapper.find('.shadow-modal-click')).to.have.length(0);
   });
 
-<<<<<<< d02171b39c88a4f7921d9cbe5866df8d4cdbc93e
   it("wrapper", () => {
     const children = wrapper.children();
     // const grandchildren = children[0].children();
@@ -50,6 +49,3 @@ describe("<App />", function() {
   });
 
 });
-=======
-});
->>>>>>> Complete Actiontypes tests
