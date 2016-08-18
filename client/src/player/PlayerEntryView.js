@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getOnePlayerModal } from '../actions/index';
+import { getOnePlayerModal } from './actions';
 
 
 class PlayerEntryView extends Component {
-	constructor(props) {
+  constructor(props) {
 		super(props);
 	}
 
-	handleClick(playerId) {
-		const playerIdArray = { playerId:[playerId] };
-		this.props.getOnePlayerModal(playerIdArray);
+  handleClick(playerId) {
+    const playerIdArray = { playerId:[playerId] };
+    this.props.getOnePlayerModal(playerIdArray);
     document.getElementsByClassName('shadow-modal')[0].className = ('shadow-modal-click');
     document.getElementsByClassName('modal')[0].className = ('modal-click');
 	}
-	render() {
-		const headings = this.props.headings;
-		var tableInfo = [];
-		for (let i = 1; i < headings.length - 1; i++) {
-			tableInfo[i] = <td> {this.props.player[headings[i]] || 0}</td>
-		}
-		return (
+  render() {
+    const headings = this.props.headings;
+    const tableInfo = [];
+    for (let i = 1; i < headings.length - 1; i++) {
+      tableInfo[i] = <td key={i + 1}> {this.props.player[headings[i]] || 0}</td>
+    }
+    return (
 			<tr>
 				<td> <a onClick={this.handleClick.bind(this, this.props.player.playerId)}> {this.props.player[headings[0]] || this.props.player.full }</a></td>
         {tableInfo}
@@ -38,8 +38,8 @@ class PlayerEntryView extends Component {
 <td> {this.props.player[headings[5]] || 0}</td>
 <td> {this.props.player[headings[6]] || 0}</td>
 <td> {this.props.player[headings[7]] || 0}</td>
-<td> {this.props.player[headings[8]] || 0}</td> 
-<td> {this.props.player[headings[9]] || 0}</td> 
+<td> {this.props.player[headings[8]] || 0}</td>
+<td> {this.props.player[headings[9]] || 0}</td>
 <td> {this.props.player.RushingYards || 0}</td>
 <td> {this.props.player.RushingTouchdowns || 0}</td>
 <td> {this.props.player.ReceivingTargets || 0}</td>

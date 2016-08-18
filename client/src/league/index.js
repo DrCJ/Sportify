@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { fetchLeagues } from '../actions/index';
+import { fetchLeagues } from './actions';
 
 class LeagueOverview extends Component {
   componentWillMount() {

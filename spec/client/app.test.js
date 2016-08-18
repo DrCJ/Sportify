@@ -9,7 +9,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import reducers from '../../client/src/reducers/root_reducer';
 
-import App from '../../client/src/App';
+import App from '../../client/src/app/App';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -39,4 +39,17 @@ describe("<App />", function() {
     expect(wrapper.find('.shadow-modal-click')).to.have.length(0);
   });
 
+<<<<<<< d02171b39c88a4f7921d9cbe5866df8d4cdbc93e
+  it("wrapper", () => {
+    const children = wrapper.children();
+    // const grandchildren = children[0].children();
+    const appContainer = children[0];
+    const mainContent = wrapper.find('.main-content');
+
+    console.log('wrapper:', mainContent);
+  });
+
 });
+=======
+});
+>>>>>>> Complete Actiontypes tests

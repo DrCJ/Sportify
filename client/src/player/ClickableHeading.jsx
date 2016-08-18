@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { filterPlayers } from '../actions';
+import { filterPlayers } from './actions';
 
 class ClickableHeading extends Component {
   constructor(props) {

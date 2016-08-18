@@ -26,6 +26,7 @@ module.exports = {
   //  we should provide a lookup table for acceptable params fields
   //  here since we are accepting user input = security issue
   getPlayersByParams: (req, res) => {
+    console.log('req.body:', req.body);
     const filters = req.body.filters;
     const limit = 25;
     const orderBy = req.body.orderBy || 'FantasyPointsYahoo';
@@ -34,11 +35,14 @@ module.exports = {
     const season = req.body.season || '2016';
     let subQ = `WHERE "${tableName}"."Season"=${season} AND `;
     for (const key in filters) {
-      orderStat = filters[key];
-      if (!isNaN(Number(orderStat))) {
-        orderStat = Number(orderStat);
+
+      if (filters[key]) {  // this will purge empty string values
+        orderStat = filters[key];
+        if (!isNaN(Number(orderStat))) {
+          orderStat = Number(orderStat);
+        }
+        subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
       }
-      subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
     }
     subQ = subQ.substr(0, subQ.length - 4);  //delete the last 'AND'
     subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
@@ -46,6 +50,7 @@ module.exports = {
     ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
     db.query(q).then(stats => {
       delete stats[1];  //this query returns a lot of "junk" values at index 1;
+      console.log(stats);
       res.send(stats);
     })
     .catch(err => {
@@ -57,18 +62,18 @@ module.exports = {
   getPlayersByIds: (req, res) => {
 
     const stat = req.body;
-    const limit = 25;
-    let subQ = '';
-    let orderStat = '';
-    for (const filter in stat) {
-      orderStat = stat[filter];
-      if (!isNaN(Number(orderStat))) {
-        orderStat = Number(orderStat);
-      }
-      subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
-    }
-    subQ = subQ.substr(0, subQ.length - 4);
-    subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
+    // const limit = 25;
+    // let subQ = '';
+    // let orderStat = '';
+    // for (const filter in stat) {
+    //   orderStat = stat[filter];
+    //   if (!isNaN(Number(orderStat))) {
+    //     orderStat = Number(orderStat);
+    //   }
+    //   subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
+    // }
+    // subQ = subQ.substr(0, subQ.length - 4);
+    // subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "playerProjectedGames"
     ON "players"."id" = "playerProjectedGames"."playerId"
     WHERE "playerProjectedGames"."playerId" IN (${stat.playerId.join()})`;
@@ -128,10 +133,9 @@ module.exports = {
   getProjectedVsActual: (req, res) => {
     const position = req.body.position || 'RB';
     const season = req.body.season || 2016;
-    const limit = req.body.limit || 10;
+    const limit = req.body.limit || 20;
     const result = {};
-
-    const q = `SELECT "playerId", "FantasyPointsYahoo"
+    const q = `SELECT "playerId", "FantasyPointsYahoo", "Name"
     FROM "playerProjectedYears"
     WHERE "Position"='${position}' AND
     "Season"='${season}' ORDER BY "FantasyPointsYahoo"
@@ -141,8 +145,7 @@ module.exports = {
       result.projected = stats[0];
 
       const playerIDs = stats[0].map(player => player.playerId);
-
-      const q2 = `SELECT "playerId", "FantasyPointsYahoo"
+      const q2 = `SELECT "playerId", "FantasyPointsYahoo", "Name"
       FROM "playerYearStats"
       WHERE "playerId" IN (${playerIDs.join()})`;
 

@@ -1,4 +1,4 @@
-import { TOGGLE_NAVIGATION } from '../actions/index.js';
+import { TOGGLE_NAVIGATION } from '../header/actionTypes';
 
 const INITIAL_STATE = ['nav-canvas'];
 
