@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import teams from '../helpers/teamNames';
 import { fetchSpecificPlayers } from '../compare/actions';
 import { filterPlayers } from '../player/actions';
+import StatHeadings from '../player/StatHeadings.jsx';
 
 class DIYStatsView extends Component {
   constructor(props) {
@@ -10,31 +11,66 @@ class DIYStatsView extends Component {
     this.onSearch = this.onSearch.bind(this);
     this.onFieldSubmit = this.onFieldSubmit.bind(this);
   }
+
   onCheck(event) {
     // console.log('checked!', event.target.name, event.target.checked);
   }
+
   onFieldSubmit(event) {
     event.preventDefault();
     console.log(event.target[0].value);
-    this.props.filterPlayers({ filters: { playerId: this.props.players[0].playerId, Opponent: event.target[0].value }, tableName: 'playerGames' })
-    .then((data) => {
-      console.log(data);
+    this.props.filterPlayers({ filters: { playerId: this.props.search[0].playerId, Opponent: event.target[0].value }, tableName: 'playerProjectedGames', season: 2015 })
+    .then((response) => {
+      console.log(response.payload.data[0]);
     });
   }
+
   onSearch(event) {
     event.preventDefault();
     console.log(event.target[0].value);
-    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] }).then((data) => { console.log(data); });
+    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] })
+    .then((response) => { console.log(response.payload.data[0]); });
   }
+
+  renderStats() {
+    return this.props.players.map((player, index) => {
+      return (
+        <tbody key={index}>
+          <tr>
+            <td> <a> {player.Name || player.full }</a></td>
+            <td> {player.Position || 'NA'} </td>
+            <td> {player.Played || 0}</td>
+            <td> {player.Opponent || 'BYE'} </td>
+            <td> {player.FantasyPoints || 0}</td>
+            <td> Actual </td>
+            <td> {parseInt(player.PassingYards) || 0}</td>
+            <td> {player.PassingTouchdowns || 0}</td>
+            <td> {player.PassingInterceptions || 0}</td>
+            <td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
+            <td> {parseInt(player.RushingYards) || 0}</td>
+            <td> {player.RushingTouchdowns || 0}</td>
+            <td> {player.ReceivingTargets || 0}</td>
+            <td> {player.Receptions || 0} </td>
+            <td> {player.RushingTouchdowns || 0}</td>
+            <td> {player.ReceivingTouchdowns || 0}</td>
+            <td> {player.TwoPointConversionReturns || 0}</td>
+            <td> {player.PassingTouchdowns > 30 ? 'Approve' : 'Disapprove'} </td>
+          </tr>
+        </tbody>
+      );
+    });
+  }
+
   render() {
     const teamOptions = [];
-    let playerImage;
+    let playerImage, playerStats;
     for (let k in teams) {
-      teamOptions.push(<option value={k}>{teams[k]}</option>);
+      teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
     }
-    // if (this.props.players[0].player) {
-    //   playerImage = <img src={this.props.players[0].player.image_url} />;
-    // }
+    if (this.props.search[0]) {
+      playerImage = <img src={this.props.search[0].player.image_url} role="presentation"/>;
+    }
+    console.log(this.props.players);
     return (
       <div className="center-content">
         <h1>DIY Stats View</h1>
@@ -46,6 +82,7 @@ class DIYStatsView extends Component {
           </form>
         </div>
         <h3>Current Player:</h3>
+        {playerImage}
         <h3>Performance</h3>
         <input type="checkbox" name="0" /> Against a Team
         <input type="checkbox" name="1" /> On a Day of the Week
@@ -63,6 +100,10 @@ class DIYStatsView extends Component {
           <button type="Submit" >Submit</button>
         </form>
         <h3>Past Statistics</h3>
+        <table>
+          <StatHeadings />
+          {this.renderStats()}
+        </table>
         <h3>Conclusions</h3>
       </div>
     );
@@ -70,17 +111,12 @@ class DIYStatsView extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.players };
+  return { players: state.players, search: state.query };
 }
 
-export default connect(mapStateToProps, { fetchSpecificPlayers, filterPlayers })(DIYStatsView);
+DIYStatsView.propTypes = {
+  players: React.PropTypes.array.isRequired,
+  search: React.PropTypes.array.isRequired,
+};
 
-// Player
-  // Against Team
-  // Against Other Player (?)
-  // Against Day of Week
-  // Against Stadium
-  // Against Weather
-  // Against Playing Surface
-  // At Home/Away
-  // Started/Benched
+export default connect(mapStateToProps, { fetchSpecificPlayers, filterPlayers })(DIYStatsView);
