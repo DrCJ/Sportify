@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import teams from '../helpers/teamNames';
 import { fetchSpecificPlayers } from '../compare/actions';
+import { filterPlayers } from '../player/actions';
 
 class DIYStatsView extends Component {
   constructor(props) {
     super(props);
     this.onSearch = this.onSearch.bind(this);
+    this.onFieldSubmit = this.onFieldSubmit.bind(this);
   }
   onCheck(event) {
     // console.log('checked!', event.target.name, event.target.checked);
@@ -14,11 +16,15 @@ class DIYStatsView extends Component {
   onFieldSubmit(event) {
     event.preventDefault();
     console.log(event.target[0].value);
+    this.props.filterPlayers({ filters: { playerId: this.props.players[0].playerId, Opponent: event.target[0].value }, tableName: 'playerGames' })
+    .then((data) => {
+      console.log(data);
+    });
   }
   onSearch(event) {
     event.preventDefault();
     console.log(event.target[0].value);
-    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] });
+    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] }).then((data) => { console.log(data); });
   }
   render() {
     const teamOptions = [];
@@ -26,12 +32,9 @@ class DIYStatsView extends Component {
     for (let k in teams) {
       teamOptions.push(<option value={k}>{teams[k]}</option>);
     }
-    if (this.props.players[0].player) {
-      playerImage = <img
-        className="player2-image"
-        src={this.props.players[0].player.image_url.substring(155)}
-      />;
-    }
+    // if (this.props.players[0].player) {
+    //   playerImage = <img src={this.props.players[0].player.image_url} />;
+    // }
     return (
       <div className="center-content">
         <h1>DIY Stats View</h1>
@@ -43,7 +46,6 @@ class DIYStatsView extends Component {
           </form>
         </div>
         <h3>Current Player:</h3>
-        {playerImage}
         <h3>Performance</h3>
         <input type="checkbox" name="0" /> Against a Team
         <input type="checkbox" name="1" /> On a Day of the Week
@@ -60,6 +62,8 @@ class DIYStatsView extends Component {
           </div>
           <button type="Submit" >Submit</button>
         </form>
+        <h3>Past Statistics</h3>
+        <h3>Conclusions</h3>
       </div>
     );
   }
@@ -69,7 +73,7 @@ function mapStateToProps(state) {
   return { players: state.players };
 }
 
-export default connect(mapStateToProps, { fetchSpecificPlayers })(DIYStatsView);
+export default connect(mapStateToProps, { fetchSpecificPlayers, filterPlayers })(DIYStatsView);
 
 // Player
   // Against Team
