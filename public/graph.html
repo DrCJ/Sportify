@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title></title>
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.js'></script>
+    <style>
+      .axis {
+        font: 10px sans-serif;
+      }
+
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
+      .axis--x path {
+        display: none;
+      }
+
+      .line, .line-yards, .line-touch-downs {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 5.5px;
+      }
+
+      .line-yards {
+        stroke: #46b46d;
+      }
+
+      .line-touch-downs {
+        stroke: #ef7118;
+      }
+      .legend-pt, .legend-py, .legend-td {
+        position: absolute;
+        padding: 10px;
+
+      }
+      .legendOrdinal {
+        font-family: helvetica, arial, sans-serif;
+        font-size: 12px;
+      }
+      svg {
+        border: 1px solid #ededed;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .arc text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
+
+      .arc path {
+        stroke: #fff;
+      }
+
+
+    </style>
+  </head>
+  <body>
+  <script type='application/javascript' src='../playerdata.js'></script>
+  <script type='text/javascript'>
+
+
+    // Line chart
+    var width = 700;
+    var height= 200;
+
+    var yahooPoints = {
+      total: [[],[],[],[]],
+      passingYards: [[]],
+      PassingTouchDowns: [[]],
+    };
+    var increment = width / 17;
+
+    // window.playerData[0].forEach(function(obj, i) {
+    //   var index = i + 1;
+    //   yahooPoints.total[0].push(index);
+    //   yahooPoints.total[1].push(obj.FantasyPointsYahoo);
+    //   yahooPoints.total[2].push((index) * increment);
+    //   yahooPoints.total[3].push([index, obj.FantasyPointsYahoo]);
+    //   yahooPoints.passingYards[0].push([index, (obj.PassingYards / 25)]);
+    //   yahooPoints.PassingTouchDowns[0].push([index, (obj.PassingTouchdowns * 4)]);
+    // });
+    //
+    //
+    // var x = d3.scaleOrdinal(yahooPoints.total[2]);
+    // var y = d3.scaleLinear()
+    //         .domain([0, d3.max(yahooPoints.total[1])])
+    //         .range([height, 0]);
+    //
+    // var line = d3.line()
+    //           .x(function(d) { return x(d[0]) })
+    //           .y(function(d) { return y(d[1]) });
+    //
+    // var linePY = d3.line()
+    //           .x(function(d) { return x(d[0]) })
+    //           .y(function(d) { return y(d[1]) });
+    //
+    // var linePT = d3.line()
+    //           .x(function(d) { return x(d[0]) })
+    //           .y(function(d) { return y(d[1]) });
+    //
+    // var margin = {top: 20, right: 20, bottom: 30, left: 50};
+    //
+    // var svg = d3.select('body')
+    //           .append('svg')
+    //           .attr('width', (width + 70))
+    //           .attr('height', (height + 90))
+    //           .style('background', 'white');
+    //
+    // var svgTranslated = svg.append('g')
+    //           .style('transform', 'translate(' + (30) +'px, ' + (50) +'px)');
+    //           svgTranslated.append('path')
+    //           .attr('data-legend', function(d) { return 'Total Points' })
+    //           .datum(yahooPoints.total[3])
+    //           .attr('class', 'line')
+    //           .attr('d', line)
+    //           .on('mouseover', function(d) {
+    //             d3.select(this)
+    //             .style('opacity', '.7');
+    //           })
+    //           .on('mouseout', function(d) {
+    //             d3.select(this)
+    //             .style('opacity', '1');
+    //           });
+    //
+    //           svgTranslated.append('path')
+    //           .datum(yahooPoints.passingYards[0])
+    //           .attr('class', 'line-yards')
+    //           .attr('d', linePY)
+    //           .on('mouseover', function(d) {
+    //             d3.select(this)
+    //             .style('opacity', '.7');
+    //           })
+    //           .on('mouseout', function(d) {
+    //             d3.select(this)
+    //             .style('opacity', '1');
+    //           });
+    //
+    //           svgTranslated.append('path')
+    //           .datum(yahooPoints.PassingTouchDowns[0])
+    //           .attr('class', 'line-touch-downs')
+    //           .attr('d', linePT)
+    //           .on('mouseover', function(d) {
+    //             d3.select(this)
+    //             .style('opacity', '.7');
+    //           })
+    //           .on('mouseout', function(d) {
+    //             d3.select(this)
+    //             .style('opacity', '1');
+    //           });;
+    //
+    //         svgTranslated.append('g')
+    //         .attr('class', 'axis axis--y')
+    //         .call(d3.axisLeft(y))
+    //         .append('text')
+    //         .attr('transform', 'rotate(-90)')
+    //         .attr('y', 6)
+    //         .attr('dy', '.71em')
+    //         .attr('dx', '.71em')
+    //         .style('text-anchor', 'end')
+    //         .text('Fantasy Points');
+    //
+    //         svgTranslated.append("g")
+    //         .attr("class","legend")
+    //         .attr("transform","translate(50,30)")
+    //         .style("font-size","12px");
+    //
+    //         var ordinal = d3.scaleOrdinal()
+    //         .domain(['Total Points','P. Yards',' P. TouchDowns'])
+    //         .range(["steelblue", "#46b46d", "#ef7118"]);
+    //
+    //         var svg = d3.select("svg");
+    //
+    //         svg.append("g")
+    //         .attr("class", "legendOrdinal")
+    //         .attr("transform", "translate(590,20)");
+    //
+    //         var legendOrdinal = d3.legendColor()
+    //         .shape("path", d3.symbol().type(d3.symbolTriangle).size(50)())
+    //         .shapePadding(10)
+    //         .scale(ordinal);
+    //
+    //         svg.select(".legendOrdinal")
+    //           .call(legendOrdinal);
+    //
+    //         svg.append('g')
+    //         .style('transform', 'translate(' + (30) +'px, ' + (height + 50) +'px)')
+    //         .attr('class', 'axis axis--x')
+    //         .attr('x', '0')
+    //         .call(d3.axisBottom(x));
+
+
+
+    // Pie Chart
+    var width = 500;
+    var height = 500;
+
+    var radius = Math.min(width, height) / 2;
+
+    var colors = ['#4D4D4D', '#5DA5DA', '#FAA43A', '#60BD68', '#F17CB0', '#B2912F', '#B276B2', 'DECF3F', '#F15854', '#bda0bc', '#c1f7dc', '#824670'];
+    var slices = d3.scaleOrdinal(colors);
+
+    var arc = d3.arc()
+              .outerRadius(radius - 10)
+              .innerRadius(0)
+
+   var labelArc = d3.arc()
+               .outerRadius(radius - 40)
+               .innerRadius(radius- 40)
+
+    var pie = d3.pie()
+              .sort(null)
+              .value(function(d){ return d.value; });
+
+    var svg = d3.select('body')
+              .append('svg')
+              .attr('width', width)
+              .attr('height', height)
+              .append('g')
+              .attr('transform', 'translate(' + (width / 2) + ',' + height / 2 + ')');
+
+    var mappedPoints = {
+      'PassingYards': window.playerData[0][0].PassingYards / 25,
+      'PassingTouchdowns': window.playerData[0][0].PassingTouchdowns * 4,
+      'PassingInterceptions': window.playerData[0][0].PassingInterceptions * (-2),
+
+      'RushingYards': window.playerData[0][0].RushingYards * 0.1,
+      'RushingTouchdowns': window.playerData[0][0].RushingTouchdowns * 6,
+
+      'ReceivingYards': window.playerData[0][0].ReceivingYards * 0.1,
+      'ReceivingTouchdowns': window.playerData[0][0].ReceivingTouchdowns * 6,
+
+      'Fumbles': window.playerData[0][0].Fumbles * -2,
+
+      'TwoPointConversionPasses': window.playerData[0][0].TwoPointConversionPasses * 2,
+      'TwoPointConversionRuns':  window.playerData[0][0].TwoPointConversionRuns * 2,
+      'TwoPointConversionReceptions': window.playerData[0][0].TwoPointConversionReceptions * 2,
+
+      'FantasyPointsYahoo': window.playerData[0][0].FantasyPointsYahoo,
+    };
+
+    var mapped = [];
+    for(var stat in mappedPoints) {
+      if(mappedPoints[stat] !== 0) {
+        var statObj = {
+          statName: stat,
+          value: mappedPoints[stat],
+        };
+        mapped.push(statObj);
+      }
+    }
+
+    var g = svg.selectAll('.arc')
+      .data(pie(mapped))
+      .enter().append('g')
+      .attr('class', 'arc');
+
+      g.append('path')
+      .attr('d', arc)
+      .style('fill', function(d, i) { return slices(i) });
+
+      g.append("text")
+      .attr("transform", function(d) { return "translate(" + (labelArc.centroid(d)) + ")"; })
+      .attr("dy", ".35em")
+      .text(function(d) { return d.data.statName; });
+
+  </script>
+  </body>
+</html>
