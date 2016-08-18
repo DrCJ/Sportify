@@ -39,4 +39,13 @@ describe("<App />", function() {
     expect(wrapper.find('.shadow-modal-click')).to.have.length(0);
   });
 
+  it("wrapper", () => {
+    const children = wrapper.children();
+    // const grandchildren = children[0].children();
+    const appContainer = children[0];
+    const mainContent = wrapper.find('.main-content');
+
+    console.log('wrapper:', mainContent);
+  });
+
 });
