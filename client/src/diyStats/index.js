@@ -7,6 +7,7 @@ import { filterByDay } from './actions';
 import StatHeadings from '../player/StatHeadings.jsx';
 import teams from '../helpers/teamNames';
 import stadiums from '../helpers/stadiumNames';
+import filters from '../helpers/filterCategories';
 
 class DIYStatsView extends Component {
   constructor(props) {
@@ -25,10 +26,10 @@ class DIYStatsView extends Component {
     const reqObj = {};
     reqObj.filters = {};
     reqObj.filters.playerId = this.props.search[0].playerId;
-    // reqObj.filters.Opponent = event.target[0].value;
-    // reqObj.filters.HomeOrAway = event.target[1].value;
-    // reqObj.filters.Started = event.target[2].value;
-    // reqObj.filters.Stadium = event.target[3].value;
+    reqObj.filters.Opponent = event.target[0].value;
+    reqObj.filters.HomeOrAway = event.target[1].value;
+    reqObj.filters.Started = event.target[2].value;
+    reqObj.filters.Stadium = event.target[3].value;
     reqObj.filters.PlayingSurface = event.target[4].value;
     reqObj.tableName = 'playerGames';
     reqObj.season = 2015;
@@ -48,11 +49,15 @@ class DIYStatsView extends Component {
 
   onSearch(event) {
     event.preventDefault();
-    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] });
+    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] })
+    .then(() => {
+      const playerIdArray = { playerId:[this.props.search[0].playerId] };
+      this.props.getOnePlayerModal(playerIdArray);
+    });
   }
 
   renderStats() {
-    return this.props.players.map((player, index) => {
+    return this.props.modal.map((player, index) => {
       return (
         <tbody key={index}>
           <tr>
@@ -80,16 +85,59 @@ class DIYStatsView extends Component {
     });
   }
 
-  render() {
+  renderOptions(object) {
+    const output = [];
+    for (var key in object) {
+      output.push(<option key={key} value={key}>{object[key]}</option>);
+    }
+    return output;
+  }
+
+  renderFilters() {
     const teamOptions = [];
     const stadiumOptions = [];
-    let playerImage, playerStats;
     for (let k in teams) {
       teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
     }
     for (let j in stadiums) {
       stadiumOptions.push(<option key={j} value={j}>{j}</option>);
     }
+    return filters.map((filter, index) => {
+      for (var key in filter) {
+        if (typeof filter[key] === 'object') {
+          return (
+            <div className="filter-form-select">
+              <label> {key} </label>
+              <select>
+                {this.renderOptions(filter[key])}
+              </select>
+            </div>
+          );
+        } else if (filter[key] === '{teamOptions}') {
+          return (
+            <div className="filter-form-select">
+              <label> {key} </label>
+              <select>
+                {teamOptions}
+              </select>
+            </div>
+          );
+        } else if (filter[key] === '{stadiumOptions}') {
+          return (
+            <div className="filter-form-select">
+              <label> {key} </label>
+              <select>
+                {stadiumOptions}
+              </select>
+            </div>
+          )
+        }
+      }
+    });
+  }
+
+  render() {
+    let playerImage, playerStats;
     if (this.props.search[0]) {
       playerImage = <img src={this.props.search[0].player.image_url} role="presentation"/>;
     }
@@ -106,63 +154,10 @@ class DIYStatsView extends Component {
         <h3>Current Player:</h3>
         {playerImage}
         <h3>Performance</h3>
-        <input type="checkbox" name="0" /> Against a Team
-        <input type="checkbox" name="1" /> On a Day of the Week
-        <input type="checkbox" name="2" /> At a Specific Stadium
-        <input type="checkbox" name="3" /> At Home/Away
-        <input type="checkbox" name="4" /> Under Specific Weather Conditions
-        <input type="checkbox" name="5" /> Started/Benched
-        <input type="checkbox" name="5" /> Playing Surface
 
-        <form onSubmit={this.onFieldSubmit}>
-          <div className="filter-form-select">
-            <label htmlFor="teamSelect"> AGAINST A TEAM </label>
-            <select data="teamVal" id="teamSelect">
-              {teamOptions}
-            </select>
-          </div>
-          <div className="filter-form-select">
-            <label htmlFor="teamSelect"> At Home/Away </label>
-            <select data="teamVal" id="teamSelect">
-              <option value={'HOME'}>Home</option>
-              <option value={'AWAY'}>Away</option>
-            </select>
-          </div>
-          <div className="filter-form-select">
-            <label htmlFor="teamSelect"> When Started/Benched </label>
-            <select data="teamVal" id="teamSelect">
-              <option value={1}>Started</option>
-              <option value={0}>Benched</option>
-            </select>
-          </div>
-          <div className="filter-form-select">
-            <label htmlFor="teamSelect"> At a Specific Stadium </label>
-            <select data="teamVal" id="teamSelect">
-              {stadiumOptions}
-            </select>
-          </div>
-          <div className="filter-form-select">
-            <label htmlFor="teamSelect"> Playing Surface </label>
-            <select data="teamVal" id="teamSelect">
-              <option value={'Grass'}>Grass</option>
-              <option value={'Artificial'}>Artificial</option>
-              <option value={'Dome'}>Dome</option>
-            </select>
-          </div>
-          <button type="Submit" >Submit</button>
-        </form>
-
-        <form onSubmit={this.onDayOfWeek}>
-          <div className="filter-form-select">
-            <label htmlFor="teamSelect"> Day of the Week </label>
-            <select data="teamVal" id="teamSelect">
-              <option value={4}>Thursday</option>
-              <option value={6}>Saturday</option>
-              <option value={0}>Sunday</option>
-              <option value={1}>Monday</option>
-            </select>
-          </div>
-          <button type="Submit" >Submit</button>
+        <form onSubmit={this.onFieldSubmit} className='filter-form'>
+          {this.renderFilters()}
+          <button type='Submit' className='button filter-form-select-button'>Submit</button>
         </form>
 
         <h3>Past Statistics</h3>
@@ -187,3 +182,18 @@ DIYStatsView.propTypes = {
 };
 
 export default connect(mapStateToProps, { fetchSpecificPlayers, filterPlayers, getOnePlayerModal, filterByDay })(DIYStatsView);
+
+// <div className="filter-form-select">
+//   <label htmlFor="teamSelect"> AGAINST A TEAM </label>
+//   <select data="teamVal" id="teamSelect">
+//     {teamOptions}
+//   </select>
+// </div>
+
+// <input type="checkbox" name="0" /> Against a Team
+// <input type="checkbox" name="1" /> On a Day of the Week
+// <input type="checkbox" name="2" /> At a Specific Stadium
+// <input type="checkbox" name="3" /> At Home/Away
+// <input type="checkbox" name="4" /> Under Specific Weather Conditions
+// <input type="checkbox" name="5" /> Started/Benched
+// <input type="checkbox" name="5" /> Playing Surface
