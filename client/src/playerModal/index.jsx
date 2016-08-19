@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import PlayerModalTable from './components/PlayerModalTable.jsx';
-import PlayerModalInfo from './components/PlayerModalInfo.jsx';
+import PlayerModalTable from './PlayerModalTable.jsx';
+import PlayerModalInfo from './PlayerModalInfo.jsx';
 
 const PlayerModal = (props) => (
   <div className="modal">
