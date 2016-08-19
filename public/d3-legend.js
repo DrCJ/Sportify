@@ -1,7 +1,7 @@
 // d3.legend.js
 // (C) 2012 ziggy.jonsson.nyc@gmail.com
 // MIT licence
-
+const d3 = require('d3');
 (function() {
 d3.legend = function(g) {
   g.each(function() {
