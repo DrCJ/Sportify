@@ -5,7 +5,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './app/App';
 import Compare from './compare';
 import StatisticsOverview from './statisticsChart/StatisticsOverview.jsx';
-import Schedule from './schedule';
+import Schedule from './schedule/index.jsx';
 import TeamView from './yahooTeam';
 import PlayerView from './player';
 import LeagueOverview from './league';

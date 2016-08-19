@@ -346,6 +346,46 @@ li {
     height: 100%;
 }
 
+/*Schedule Styles*/
+
+.schedule-week-current {
+    display: inline-block;
+    float:  left;
+}
+
+.schedule-week-list {
+    display: inline-block;
+    margin-left:  30px;
+}
+
+span.team1 {
+    width:  40%;
+}
+
+span.team2 {
+    width:  40%;
+}
+
+.team1 {
+    width: 40%;
+    margin-left: 10%;
+    display:  inline-block;
+    float:  left;
+    border: 1px solid yellow;
+}
+
+.team2 {
+    width: 40%;
+    margin-right:  10%;
+    display: inline-block;
+    float: right;
+    border: 1px solid yellow;
+}
+
+.schedule {
+    background-color: #494949;
+}
+
 /* Charts */
 .chart-container {
   width: 800px;
