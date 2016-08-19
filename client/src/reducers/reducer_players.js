@@ -10,7 +10,7 @@ export default function (state = INITIAL_STATE, action) {
     case 'FILTER_PLAYERS':
       return action.payload.data[0];
     case 'FETCH_SPECIFIC_PLAYERS':
-      return action.payload.data[0];
+      return action.payload.data;
     default:
       return state;
   }
