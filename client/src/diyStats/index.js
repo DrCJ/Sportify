@@ -42,7 +42,8 @@ class DIYStatsView extends Component {
   onDayOfWeek(event) {
     event.preventDefault();
     const playerIdArray = { playerId:[this.props.search[0].playerId] };
-    this.props.getOnePlayerModal(playerIdArray).then((data) => { this.props.filterByDay(data) });
+    const day = event.target[0].value;
+    this.props.getOnePlayerModal(playerIdArray).then((data) => { this.props.filterByDay(data, day); });
   }
 
   onSearch(event) {
@@ -155,10 +156,10 @@ class DIYStatsView extends Component {
           <div className="filter-form-select">
             <label htmlFor="teamSelect"> Day of the Week </label>
             <select data="teamVal" id="teamSelect">
-              <option value={'Thursday'}>Thursday</option>
-              <option value={'Saturday'}>Saturday</option>
-              <option value={'Sunday'}>Sunday</option>
-              <option value={'Monday'}>Monday</option>
+              <option value={4}>Thursday</option>
+              <option value={6}>Saturday</option>
+              <option value={0}>Sunday</option>
+              <option value={1}>Monday</option>
             </select>
           </div>
           <button type="Submit" >Submit</button>
