@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { fetchSpecificPlayers } from './actions';
 import ComparePlayerHeadshots from './ComparePlayerHeadshots';
 import ComparePlayerStats from './ComparePlayerStats';
-// import LineChart from './LineChart';
+import LineChart from '../graph/LineChart';
 
 class Compare extends Component {
   componentWillMount() {
-    this.props.fetchSpecificPlayers({ playerNames: ['Aaron Rodgers', 'Cam Newton'] });
+    this.props.fetchSpecificPlayers( { playerNames: ['Aaron Rodgers', 'Cam Newton'] });
   }
 
   onSubmit(event) {
@@ -16,7 +16,6 @@ class Compare extends Component {
   }
 
   render() {
-    console.log("This are the new players: ",this.props.players);
     return (
       <div className='center-content'>
         <h1>Compare Players</h1>
@@ -29,6 +28,7 @@ class Compare extends Component {
         </div>
         <ComparePlayerHeadshots />
         <ComparePlayerStats />
+        <LineChart />
       </div>
 		);
   }
