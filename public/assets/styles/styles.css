@@ -351,3 +351,63 @@ li {
   width: 100px;
   height: 100px;
 }
+
+
+
+
+
+
+
+/*Line Chart*/
+
+.axis {
+	font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.axis--x path {
+	display: none;
+}
+
+.line, .line-yards, .line-touch-downs {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 5.5px;
+}
+
+.line-yards {
+	stroke: #46b46d;
+}
+
+.line-touch-downs {
+	stroke: #ef7118;
+}
+.legend-pt, .legend-py, .legend-td {
+	position: absolute;
+	padding: 10px;
+
+}
+.legendOrdinal {
+	font-family: helvetica, arial, sans-serif;
+	font-size: 12px;
+}
+svg {
+	border: 1px solid #ededed;
+	margin: 0 auto;
+	display: block;
+}
+
+.arc text {
+	font: 10px sans-serif;
+	text-anchor: middle;
+}
+
+.arc path {
+	stroke: #fff;
+}

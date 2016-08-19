@@ -122,7 +122,6 @@ module.exports = {
         }
       })
       .then(stats => {
-        console.log(stats);
         res.send([playerData, stats]);
       })
     })
