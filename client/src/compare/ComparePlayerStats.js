@@ -7,14 +7,17 @@ class ComparePlayerStats extends Component {
       return (
         <tr>
           <td>{stat}</td>
-          <td>{this.props.players[0][stat]}</td>
-          <td>{this.props.players[1][stat]}</td>
+          <td>{this.props.players[0][0][stat]}</td>
+          <td>{this.props.players[0][1][stat]}</td>
         </tr>
       );
     });
   }
 
   render() {
+    if(!this.props.players[0][0]) {
+      return <div> loading </div>;
+    }
     return (
       <div>
         <table>
