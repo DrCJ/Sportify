@@ -47,5 +47,5 @@ describe("<App />", function() {
 
     console.log('wrapper:', mainContent);
   });
-
 });
+
