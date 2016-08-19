@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
 export const Schedule = () => (
-	<h2> Game Schedule </h2>
-)
+  <div>
+    <h2> Hello </h2>
+  </div>
+);
