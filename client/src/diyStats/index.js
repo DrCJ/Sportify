@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSpecificPlayers } from '../compare/actions';
 import { filterPlayers } from '../player/actions';
+import { getOnePlayerModal } from '../player/actions';
+import { filterByDay } from './actions';
 import StatHeadings from '../player/StatHeadings.jsx';
 import teams from '../helpers/teamNames';
 import stadiums from '../helpers/stadiumNames';
@@ -11,6 +13,7 @@ class DIYStatsView extends Component {
     super(props);
     this.onSearch = this.onSearch.bind(this);
     this.onFieldSubmit = this.onFieldSubmit.bind(this);
+    this.onDayOfWeek = this.onDayOfWeek.bind(this);
   }
 
   onCheck(event) {
@@ -19,7 +22,6 @@ class DIYStatsView extends Component {
 
   onFieldSubmit(event) {
     event.preventDefault();
-    console.log(event.target[1].value);
     const reqObj = {};
     reqObj.filters = {};
     reqObj.filters.playerId = this.props.search[0].playerId;
@@ -35,6 +37,12 @@ class DIYStatsView extends Component {
     .then((response) => {
       console.log(response.payload.data[0]);
     });
+  }
+
+  onDayOfWeek(event) {
+    event.preventDefault();
+    const playerIdArray = { playerId:[this.props.search[0].playerId] };
+    this.props.getOnePlayerModal(playerIdArray).then((data) => { this.props.filterByDay(data) });
   }
 
   onSearch(event) {
@@ -104,6 +112,7 @@ class DIYStatsView extends Component {
         <input type="checkbox" name="4" /> Under Specific Weather Conditions
         <input type="checkbox" name="5" /> Started/Benched
         <input type="checkbox" name="5" /> Playing Surface
+
         <form onSubmit={this.onFieldSubmit}>
           <div className="filter-form-select">
             <label htmlFor="teamSelect"> AGAINST A TEAM </label>
@@ -141,6 +150,20 @@ class DIYStatsView extends Component {
           </div>
           <button type="Submit" >Submit</button>
         </form>
+
+        <form onSubmit={this.onDayOfWeek}>
+          <div className="filter-form-select">
+            <label htmlFor="teamSelect"> Day of the Week </label>
+            <select data="teamVal" id="teamSelect">
+              <option value={'Thursday'}>Thursday</option>
+              <option value={'Saturday'}>Saturday</option>
+              <option value={'Sunday'}>Sunday</option>
+              <option value={'Monday'}>Monday</option>
+            </select>
+          </div>
+          <button type="Submit" >Submit</button>
+        </form>
+
         <h3>Past Statistics</h3>
         <table>
           <StatHeadings />
@@ -153,12 +176,13 @@ class DIYStatsView extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.players, search: state.query };
+  return { players: state.players, search: state.query, modal: state.modal  };
 }
 
 DIYStatsView.propTypes = {
   players: React.PropTypes.array.isRequired,
   search: React.PropTypes.array.isRequired,
+  modal: React.PropTypes.array.isRequired,
 };
 
-export default connect(mapStateToProps, { fetchSpecificPlayers, filterPlayers })(DIYStatsView);
+export default connect(mapStateToProps, { fetchSpecificPlayers, filterPlayers, getOnePlayerModal, filterByDay })(DIYStatsView);

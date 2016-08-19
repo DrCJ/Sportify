@@ -8,6 +8,8 @@ export default function (state = INITIAL_STATE, action) {
       return action.payload.data;
     case 'FILTER_PLAYERS':
       return action.payload.data[0];
+    case 'FILTER_BY_DAY':
+      return action.payload.data[0];
     default:
       return state;
   }
