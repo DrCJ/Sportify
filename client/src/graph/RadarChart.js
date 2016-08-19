@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 const d3 = require('d3');
 const ReactFauxDOM = require('react-faux-dom');
 
-class LineChart extends Component {
+class RadarChart extends Component {
 
   render() {
     const RadarChart = {
@@ -328,4 +328,4 @@ function mapStateToProps(state) {
   return { players: state.players };
 }
 
-export default connect(mapStateToProps)(LineChart);
+export default connect(mapStateToProps)(RadarChart);
