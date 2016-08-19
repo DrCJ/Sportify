@@ -5,8 +5,12 @@ npm-debug.log*
 server/config/*
 sampleRequests/*
 public/dist/bundle.js
+public/radar-data.js
+public/graph.html
+public/radar-graph.html
 mockindex.html
 mockModal.html
+
 
 # Runtime data
 pids
