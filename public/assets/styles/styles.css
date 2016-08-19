@@ -158,12 +158,14 @@ li {
 }
 
 .main-content {
+  transition: all 0.25s ease;
 	position: relative;
 	left: 0px;
 	height: 100%;
 }
 
 .main-content-clicked {
+  transition: all 0.25s ease;
 	left: 155px;
 	height: 100%;
 	position: relative;
@@ -180,6 +182,7 @@ li {
 	width: 100%;
 }
 .shadow {
+  transition: all 0.25s ease;
 	position: fixed;
 }
 .shadow-modal {
@@ -187,6 +190,7 @@ li {
 }
 
 .shadow-click {
+  transition: all 0.25s ease;
 	position: fixed;
 	width: 100%;
 	height: 2000px;
