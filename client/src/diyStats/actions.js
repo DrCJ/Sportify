@@ -1,8 +1,9 @@
-export function filterByDay(prevRequest, inputDay) {
-  const data = prevRequest.payload.data[0].filter((game) => {
+export function filterByDay(games, reqObj) {
+  console.log('Day is:', reqObj.filters.Day);
+  const data = games.filter((game) => {
     const date = new Date(game.GameDate);
     var day = date.getUTCDay();
-    return day === Number(inputDay);
+    return day === Number(reqObj.filters.Day);
   });
   const request = {};
   request.data = [data];

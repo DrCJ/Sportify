@@ -5,8 +5,6 @@ import { filterPlayers } from '../player/actions';
 import { getOnePlayerModal } from '../player/actions';
 import { filterByDay } from './actions';
 import StatHeadings from '../player/StatHeadings.jsx';
-import teams from '../helpers/teamNames';
-import stadiums from '../helpers/stadiumNames';
 import filters from '../helpers/filterCategories';
 
 class DIYStatsView extends Component {
@@ -15,10 +13,6 @@ class DIYStatsView extends Component {
     this.onSearch = this.onSearch.bind(this);
     this.onFieldSubmit = this.onFieldSubmit.bind(this);
     this.onDayOfWeek = this.onDayOfWeek.bind(this);
-  }
-
-  onCheck(event) {
-    // console.log('checked!', event.target.name, event.target.checked);
   }
 
   onFieldSubmit(event) {
@@ -31,20 +25,17 @@ class DIYStatsView extends Component {
     reqObj.filters.Started = event.target[2].value;
     reqObj.filters.Stadium = event.target[3].value;
     reqObj.filters.PlayingSurface = event.target[4].value;
+    reqObj.filters.Day = event.target[5].value;
     reqObj.tableName = 'playerGames';
     reqObj.season = 2015;
-    console.log(reqObj);
-    this.props.filterPlayers(reqObj)
-    .then((response) => {
-      console.log(response.payload.data[0]);
-    });
+    this.props.filterByDay(this.props.modal, reqObj);
   }
 
   onDayOfWeek(event) {
     event.preventDefault();
     const playerIdArray = { playerId:[this.props.search[0].playerId] };
     const day = event.target[0].value;
-    this.props.getOnePlayerModal(playerIdArray).then((data) => { this.props.filterByDay(data, day); });
+    this.props.filterByDay(this.props.search[0]);
   }
 
   onSearch(event) {
@@ -57,7 +48,7 @@ class DIYStatsView extends Component {
   }
 
   renderStats() {
-    return this.props.modal.map((player, index) => {
+    return this.props.players.map((player, index) => {
       return (
         <tbody key={index}>
           <tr>
@@ -94,14 +85,6 @@ class DIYStatsView extends Component {
   }
 
   renderFilters() {
-    const teamOptions = [];
-    const stadiumOptions = [];
-    for (let k in teams) {
-      teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
-    }
-    for (let j in stadiums) {
-      stadiumOptions.push(<option key={j} value={j}>{j}</option>);
-    }
     return filters.map((filter, index) => {
       for (var key in filter) {
         if (typeof filter[key] === 'object') {
@@ -109,28 +92,21 @@ class DIYStatsView extends Component {
             <div className="filter-form-select">
               <label> {key} </label>
               <select>
+                <option value=''>Select Here</option>
                 {this.renderOptions(filter[key])}
               </select>
             </div>
           );
-        } else if (filter[key] === '{teamOptions}') {
+        } else {
           return (
             <div className="filter-form-select">
               <label> {key} </label>
               <select>
-                {teamOptions}
+                <option value=''>Select Here</option>
+                {filter[key]}
               </select>
             </div>
           );
-        } else if (filter[key] === '{stadiumOptions}') {
-          return (
-            <div className="filter-form-select">
-              <label> {key} </label>
-              <select>
-                {stadiumOptions}
-              </select>
-            </div>
-          )
         }
       }
     });
@@ -148,19 +124,19 @@ class DIYStatsView extends Component {
         <div className="search-container">
           <form onSubmit={this.onSearch}>
             <input type="text" name="name" placeholder="SEARCH" />
+            <noscript>
             <button type="Submit" >Submit</button>
+            </noscript>
           </form>
         </div>
         <h3>Current Player:</h3>
         {playerImage}
-        <h3>Performance</h3>
 
         <form onSubmit={this.onFieldSubmit} className='filter-form'>
           {this.renderFilters()}
           <button type='Submit' className='button filter-form-select-button'>Submit</button>
         </form>
 
-        <h3>Past Statistics</h3>
         <table>
           <StatHeadings />
           {this.renderStats()}
