@@ -4,8 +4,9 @@ const Sequelize = require('sequelize');
 module.exports = {
   getGamesSchedule: (req, res) => {
     Game.findAll({
-      where: { 
+      where: {
         Season: 2016,
+        Week: Number(req.body.week),
       },
     })
     .then((gamesSchedule) => {

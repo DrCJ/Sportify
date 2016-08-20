@@ -358,6 +358,16 @@ li {
     margin-left:  30px;
 }
 
+.schedule-week-list li {
+	display: inline;
+	margin-right: 2px;
+  border: 1px solid white;
+	color: white;
+}
+.schedule-week-list li button {
+	margin-right: 2px;
+}
+
 span.team1 {
     width:  40%;
 }
