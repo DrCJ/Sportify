@@ -6,10 +6,8 @@ import { requestAllPlayers } from './actions';
 import PlayerFilterForm from './PlayerFilterForm';
 
 class PlayerView extends Component {
-  componentWillMount() {
-    this.props.requestAllPlayers().then((data) => {
-      this.props.players.concat(data);
-    });
+  componentDidMount() {
+    this.props.requestAllPlayers();
   }
   render() {
     if (this.props.players.length === 0) {
