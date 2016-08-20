@@ -414,4 +414,12 @@ svg {
 
 .arc path {
 	stroke: #fff;
+
+/* DIY View */
+.DIYPlayer {
+	/*height: 160px;*/
+}
+
+.DIYStatement {
+	float:left
 }

@@ -1,20 +1,7 @@
-import React from 'react';
-import teams from './teamNames';
-import stadiums from './stadiumNames';
-
-const teamOptions = [];
-const stadiumOptions = [];
-for (let k in teams) {
-  teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
-}
-for (let j in stadiums) {
-  stadiumOptions.push(<option key={j} value={j}>{j}</option>);
-}
-
 const filterCategories =
 [
   {
-    'Against a Team': teamOptions,
+    'Against a Team': 'teamOptions',
   },
   {
     'At Home/Away': {
@@ -24,12 +11,12 @@ const filterCategories =
   },
   {
     'When Started/Benched': {
-      '0': 'Benched',
-      '1': 'Started',
+      '0': 'Started',
+      '1': 'Benched',
     },
   },
   {
-    'At a Specific Stadium': stadiumOptions,
+    'At a Specific Stadium': 'stadiumOptions',
   },
   {
     'Playing Surface': {

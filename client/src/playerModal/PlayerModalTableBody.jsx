@@ -3,7 +3,7 @@ import PlayerModalTableBodyRow from './PlayerModalTableBodyRow.jsx';
 
 const PlayerModalTableBody = ({ modal }) => (
   <tbody>
-    {modal.map(week => <PlayerModalTableBodyRow week={week} />)}
+    {modal.map((week, i) => <PlayerModalTableBodyRow week={week} key={i}/>)}
   </tbody>
 );
 
