@@ -7,11 +7,7 @@ const ScheduleNavigation = () => (
   <div className="schedule-week-banner">
     <div className="schedule-week-current"> Football Schedule Banner </div>
     <ul className="schedule-week-list">
-      {
-        _.map(WeeksCache, (week, i) => (
-          <ScheduleNavigationWeekEntry weekKey={i} week={week} />
-        ))
-      }
+      {_.map(WeeksCache, (week, i) => (<ScheduleNavigationWeekEntry weekKey={i} week={week} />))}
     </ul>
   </div>
 );
