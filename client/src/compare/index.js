@@ -35,7 +35,7 @@ class Compare extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.query };
+  return { search: state.query };
 }
 
 export default connect(mapStateToProps, { fetchSpecificPlayers })(Compare);

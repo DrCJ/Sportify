@@ -32,7 +32,6 @@ export function filterByDay(games, reqObj) {
     } else if (reqObj[key] !== '') {
       filterHistory.push(reqObj[key]);
       filteredGames = filteredGames.filter((game) => {
-        console.log(game[key], reqObj[key]);
         return game[key] === reqObj[key];
       });
     }
