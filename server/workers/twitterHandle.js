@@ -13,26 +13,31 @@ const twitterLinks = [];
 
 db.Player.findAll({
   attributes: ['full'],
+  where: {
+    twitterID: null,
+  },
 })
 .then(r => {
   const droplets = 8;
   const nPlayers = r.length;
   const slice = Math.floor(nPlayers / droplets);
 
-  for (let j = 0; j < droplets; j++) {
-    const breakpoint = slice * (j + 1);
-    playerNames.push([]);
-    for (let i = j * slice; i < breakpoint; i++) {
+  // for (let j = 0; j < droplets; j++) {
+    // const breakpoint = slice * (j + 1);
+    // playerNames.push([]);
+    for (let i = 0; i < r.length; i++) {
       if (r[i]) {
-        playerNames[j].push(r[i].dataValues.full);
+        // playerNames[j].push(r[i].dataValues.full);
+        playerNames.push(r[i].dataValues.full);
       }
     }
-  }
+  // }
+  console.log(playerNames);
 
   google.resultsPerPage = 5;
   let nextCounter = 0;
   const getTwitterLinks = setInterval(() => {
-    google(`twitter nfl ${playerNames[0][nextCounter]}`, (err, res) => {
+    google(`twitter nfl ${playerNames[nextCounter]}`, (err, res) => {
       if (err) {
         console.log(err);
         console.log('This is the End, Google is Smart');
@@ -63,20 +68,20 @@ db.Player.findAll({
           },
           {
             where: {
-              full: playerNames[0][nextCounter],
+              full: playerNames[nextCounter],
             },
           });
 
-        const strMsg = `pushed this guy: ${playerNames[0][nextCounter]} with this link: ${link.href}`;
+        const strMsg = `pushed this guy: ${playerNames[nextCounter]} with this link: ${link.href}`;
         console.log(strMsg);
       }
 
-      if (nextCounter < playerNames[0].length) {
+      if (nextCounter < playerNames.length) {
         nextCounter += 1;
       } else {
         clearInterval(getTwitterLinks);
         console.log(twitterLinks);
       }
     });
-  }, 4000);
+  }, 3000);
 });
