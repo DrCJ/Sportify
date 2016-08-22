@@ -40,7 +40,7 @@ class DIYStatsView extends Component {
     event.preventDefault();
     this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value, event.target[0].value] })
     .then(() => {
-      const playerIdArray = { playerId:[this.props.search[0].playerId] };
+      const playerIdArray = { playerId:[this.props.search[0][0].playerId] };
       this.props.getOnePlayerModal(playerIdArray);
     });
   }
@@ -133,8 +133,8 @@ class DIYStatsView extends Component {
   }
   render() {
     let playerImage, playerStats;
-    if (this.props.search[0].player) {
-      playerImage = <img src={this.props.search[0].player.image_url.substring(155)} width="240px" role="presentation"/>;
+    if (this.props.search[0][0].player) {
+      playerImage = <img src={this.props.search[0][0].player.image_url.substring(155)} width="240px" role="presentation"/>;
     }
     return (
       <div className="center-content">

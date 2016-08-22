@@ -8,7 +8,7 @@ class LineChart extends Component {
 
   render() {
     // Line chart
-    let playerStats = this.props.players;
+    let playerStats = this.props.players[1];
     if (Array.isArray(playerStats)) {
       playerStats = playerStats.slice(0, 17);
       console.log(playerStats);

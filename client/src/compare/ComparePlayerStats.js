@@ -7,15 +7,15 @@ class ComparePlayerStats extends Component {
       return (
         <tr>
           <td>{stat}</td>
-          <td>{this.props.search[0][stat]}</td>
-          <td>{this.props.search[1][stat]}</td>
+          <td>{this.props.search[0][0][stat]}</td>
+          <td>{this.props.search[0][1][stat]}</td>
         </tr>
       );
     });
   }
 
   render() {
-    if(!this.props.search[0]) {
+    if(!this.props.search[0][0]) {
       return <div> loading </div>;
     }
     return (
