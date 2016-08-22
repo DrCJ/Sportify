@@ -2,18 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSpecificPlayers } from '../compare/actions';
 import { getOnePlayerModal } from '../player/actions';
-import { filterByDay, calculateDifference } from './actions';
+import { filter, calculateDifference } from './actions';
 import StatHeadings from '../player/StatHeadings.jsx';
 import filters from '../helpers/filterCategories';
 import teams from '../helpers/teamNames';
 import stadiums from '../helpers/stadiumNames';
-
 
 class DIYStatsView extends Component {
   constructor(props) {
     super(props);
     this.onSearch = this.onSearch.bind(this);
     this.onFieldSubmit = this.onFieldSubmit.bind(this);
+
+    this.teamOptions = [];
+    this.stadiumOptions = [];
+    for (let k in teams) {
+      this.teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
+    }
+    for (let j in stadiums) {
+      this.stadiumOptions.push(<option key={j} value={j}>{j}</option>);
+    }
   }
 
   onFieldSubmit(event) {
@@ -25,7 +33,7 @@ class DIYStatsView extends Component {
     reqObj.Stadium = event.target[3].value;
     reqObj.PlayingSurface = event.target[4].value;
     reqObj.Day = event.target[5].value;
-    this.props.filterByDay(this.props.modal, reqObj);
+    this.props.filter(this.props.modal, reqObj);
   }
 
   onSearch(event) {
@@ -77,14 +85,6 @@ class DIYStatsView extends Component {
   }
 
   renderFilters() {
-    const teamOptions = [];
-    const stadiumOptions = [];
-    for (let k in teams) {
-      teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
-    }
-    for (let j in stadiums) {
-      stadiumOptions.push(<option key={j} value={j}>{j}</option>);
-    }
     return filters.map((filter, index) => {
       for (var key in filter) {
         if (typeof filter[key] === 'object') {
@@ -103,7 +103,7 @@ class DIYStatsView extends Component {
               <label> {key} </label>
               <select>
                 <option value=''>Select Here</option>
-                {teamOptions}
+                {this.teamOptions}
               </select>
             </div>
           );
@@ -113,7 +113,7 @@ class DIYStatsView extends Component {
               <label> {key} </label>
               <select>
                 <option value=''>Select Here</option>
-                {stadiumOptions}
+                {this.stadiumOptions}
               </select>
             </div>
           );
@@ -128,12 +128,12 @@ class DIYStatsView extends Component {
         filterString += filter + ', ';
       });
       this.props.players[0].payload > 0 ? adjective = 'better' : adjective = 'worse';
-      return (<h3>{this.props.search[0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective} against these factors: {filterString}</h3>);
+      return (<h3>{this.props.search[0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective} against these factors: {filterString.substring(0, filterString.length - 2)}</h3>);
     }
   }
   render() {
     let playerImage, playerStats;
-    if (this.props.search[0]) {
+    if (this.props.search[0].player) {
       playerImage = <img src={this.props.search[0].player.image_url.substring(155)} width="240px" role="presentation"/>;
     }
     return (
@@ -177,4 +177,4 @@ DIYStatsView.propTypes = {
   modal: React.PropTypes.array.isRequired,
 };
 
-export default connect(mapStateToProps, { fetchSpecificPlayers, filterByDay, getOnePlayerModal, calculateDifference })(DIYStatsView);
+export default connect(mapStateToProps, { fetchSpecificPlayers, filter, getOnePlayerModal, calculateDifference })(DIYStatsView);

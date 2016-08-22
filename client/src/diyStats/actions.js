@@ -18,7 +18,7 @@ export function calculateDifference (games, filteredGames, filterHistory) {
   }
 };
 
-export function filterByDay(games, reqObj) {
+export function filter(games, reqObj) {
   let filteredGames = games;
   const filterHistory = [];
   for (var key in reqObj) {
@@ -41,7 +41,7 @@ export function filterByDay(games, reqObj) {
   filteredGames.unshift(difference);
   request.data = [filteredGames];
   return {
-    type: 'FILTER_BY_DAY',
+    type: 'FILTER',
     payload: request,
   };
 };
