@@ -1,5 +1,3 @@
-import { FETCH_SPECIFIC_PLAYERS } from '../compare/actionTypes';
-
 const INITIAL_STATE =
   [
     [

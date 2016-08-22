@@ -1,5 +1,3 @@
-import { REQUEST_ALL_PLAYERS, FILTER_PLAYERS } from '../player/actionTypes';
-
 const INITIAL_STATE = [];
 
 export default function (state = INITIAL_STATE, action) {

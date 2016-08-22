@@ -1,5 +1,3 @@
-import { CANCEL_NAVIGATION, CANCEL_MODAL } from './actionTypes';
-
 export function closeNavigation() {
   const mainContentClosed = document.getElementsByClassName('main-content-clicked');
   const shadowClosed = document.getElementsByClassName('shadow-click');
