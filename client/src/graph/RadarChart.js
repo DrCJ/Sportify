@@ -325,7 +325,7 @@ class RadarChart extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.players };
+  return { players: state.query };
 }
 
 export default connect(mapStateToProps)(RadarChart);

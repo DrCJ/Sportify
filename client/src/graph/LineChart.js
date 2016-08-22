@@ -8,7 +8,7 @@ class LineChart extends Component {
 
   render() {
     // Line chart
-    let playerStats = this.props.players[1];
+    let playerStats = this.props.players;
     if (Array.isArray(playerStats)) {
       playerStats = playerStats.slice(0, 17);
       console.log(playerStats);
@@ -163,7 +163,7 @@ class LineChart extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.players };
+  return { players: state.query };
 }
 
 export default connect(mapStateToProps)(LineChart);
