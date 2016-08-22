@@ -346,6 +346,74 @@ li {
     height: 100%;
 }
 
+/*Schedule Styles*/
+
+.schedule-week-current {
+    display: inline-block;
+    float:  left;
+}
+
+.schedule-week-list {
+    display: inline-block;
+    margin-left:  30px;
+}
+
+.schedule-game {
+		height: 100px;
+		margin-left: 10%;
+		margin-right: 10%;
+}
+
+.schedule-image{
+	align-items: center;
+	height: 65px;
+	width: 60px;
+	margin-left: 10px;
+	text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.schedule-week-list li {
+	display: inline;
+	margin-right: 2px;
+  border: 1px solid white;
+	color: white;
+}
+.schedule-week-list li button {
+	margin-right: 2px;
+}
+
+span.team1 {
+  width:  40%;
+	height: 100%
+}
+
+span.team2 {
+  width:  40%;
+	height: 100%;
+}
+
+.team1 {
+    width: 40%;
+    margin-left: 10%;
+    display:  inline-block;
+    border: 1px solid black;
+		background-color: #e9e9e9;
+}
+
+.team2 {
+    width: 40%;
+    margin-right:  10%;
+    display: inline-block;
+		border: 1px solid black;
+		background-color: #e9e9e9;
+}
+
+.schedule {
+    background-color: #494949;
+}
+
 /* Charts */
 .chart-container {
   width: 800px;

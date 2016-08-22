@@ -1,13 +1,17 @@
 const router = require('express').Router();
 const playersController = require('../db/controllers/playersController');
-
-
-router.post('/getPlayersByParams', (req, res) => {
-  playersController.getPlayersByParams(req, res);
-});
+const gamesController = require('../db/controllers/gamesController');
 
 router.get('/getAllPlayers', (req, res) => {
   playersController.getAllPlayers(req, res);
+});
+
+router.post('/getGamesSchedule', (req, res) => {
+  gamesController.getGamesSchedule(req, res);
+});
+
+router.post('/getPlayersByParams', (req, res) => {
+  playersController.getPlayersByParams(req, res);
 });
 
 router.post('/getPlayersByIds', (req, res) => {

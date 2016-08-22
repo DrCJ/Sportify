@@ -9,6 +9,7 @@ import ModalReducer from './reducer_modal';
 import SearchReducer from './reducer_search';
 import QueryReducer from './reducer_query';
 import CalcReducer from './reducer_calculation';
+import GamesScheduleReducer from './reducer_gamesSchedule';
 
 const rootReducer = combineReducers({
   calculation: CalcReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   modal: ModalReducer,
   search: SearchReducer,
   query: QueryReducer,
+  games: GamesScheduleReducer,
 });
 
 export default rootReducer;

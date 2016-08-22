@@ -27,7 +27,4 @@ PlayerModal.propTypes = {
   modal: React.PropTypes.array.isRequired,
 };
 
-// This will be nested in the model-schedule-info <div className="modal-player-notes-container">
-          // </div><div className="modal-player-notes"> Player Notes </div>
-//
 export default connect(mapStateToProps, null)(PlayerModal);
