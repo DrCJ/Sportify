@@ -6,7 +6,6 @@ import { filter, calculateDifference } from './actions';
 import StatHeadings from '../player/StatHeadings.jsx';
 import filters from '../helpers/filterCategories';
 import teams from '../helpers/teamNames';
-import stadiums from '../helpers/stadiumNames';
 
 class DIYStatsView extends Component {
   constructor(props) {
@@ -19,9 +18,6 @@ class DIYStatsView extends Component {
     for (let k in teams) {
       this.teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
     }
-    for (let j in stadiums) {
-      this.stadiumOptions.push(<option key={j} value={j}>{j}</option>);
-    }
   }
 
   onFieldSubmit(event) {
@@ -30,9 +26,8 @@ class DIYStatsView extends Component {
     reqObj.Opponent = event.target[0].value;
     reqObj.HomeOrAway = event.target[1].value;
     reqObj.Started = event.target[2].value;
-    reqObj.Stadium = event.target[3].value;
-    reqObj.PlayingSurface = event.target[4].value;
-    reqObj.Day = event.target[5].value;
+    reqObj.PlayingSurface = event.target[3].value;
+    reqObj.Day = event.target[4].value;
     this.props.filter(this.props.modal, reqObj);
   }
 
@@ -40,7 +35,7 @@ class DIYStatsView extends Component {
     event.preventDefault();
     this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value, event.target[0].value] })
     .then(() => {
-      const playerIdArray = { playerId:[this.props.search[0][0].playerId] };
+      const playerIdArray = { playerId: [this.props.search[0][0].playerId] };
       this.props.getOnePlayerModal(playerIdArray);
     });
   }
@@ -57,11 +52,11 @@ class DIYStatsView extends Component {
               <td> {player.Opponent || 'BYE'} </td>
               <td> {player.FantasyPoints || 0}</td>
               <td> Actual </td>
-              <td> {parseInt(player.PassingYards) || 0}</td>
+              <td> {Number(player.PassingYards) || 0}</td>
               <td> {player.PassingTouchdowns || 0}</td>
               <td> {player.PassingInterceptions || 0}</td>
               <td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
-              <td> {parseInt(player.RushingYards) || 0}</td>
+              <td> {Number(player.RushingYards) || 0}</td>
               <td> {player.RushingTouchdowns || 0}</td>
               <td> {player.ReceivingTargets || 0}</td>
               <td> {player.Receptions || 0} </td>
@@ -104,16 +99,6 @@ class DIYStatsView extends Component {
               <select>
                 <option value=''>Select Here</option>
                 {this.teamOptions}
-              </select>
-            </div>
-          );
-        } else if (filter[key] === 'stadiumOptions'){
-          return (
-            <div className="filter-form-select" key={index}>
-              <label> {key} </label>
-              <select>
-                <option value=''>Select Here</option>
-                {this.stadiumOptions}
               </select>
             </div>
           );

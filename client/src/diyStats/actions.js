@@ -1,22 +1,22 @@
-export function calculateDifference (games, filteredGames, filterHistory) {
+export function calculateDifference(games, filteredGames, filterHistory) {
   const otherGames = games.filter(game => filteredGames.indexOf(game) < 0);
   let filteredTotal = 0;
   let otherTotal = 0;
-  for (var i = 0; i < filteredGames.length; i++) {
+  for (let i = 0; i < filteredGames.length; i++) {
     filteredTotal += filteredGames[i].FantasyPoints;
   }
-  for (var j = 0; j < otherGames.length; j++) {
+  for (let j = 0; j < otherGames.length; j++) {
     otherTotal += otherGames[j].FantasyPoints;
   }
   const filteredAvg = filteredTotal / filteredGames.length;
   const otherAvg = otherTotal / otherGames.length;
-  const percentPerformance = (filteredAvg / otherAvg * 100) - 100;
+  const percentPerformance = ((filteredAvg / otherAvg) * 100) - 100;
   return {
     type: 'CALCULATE_DIFFERENCE',
     payload: percentPerformance,
     filterHistory,
-  }
-};
+  };
+}
 
 export function filter(games, reqObj) {
   let filteredGames = games;
@@ -26,7 +26,7 @@ export function filter(games, reqObj) {
       filterHistory.push(reqObj[key]);
       filteredGames = filteredGames.filter((game) => {
         const date = new Date(game.GameDate);
-        var day = date.getUTCDay();
+        const day = date.getUTCDay();
         return day === Number(reqObj[key]);
       });
     } else if (reqObj[key] !== '') {
