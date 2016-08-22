@@ -247,7 +247,7 @@ class RadarChart extends Component {
     const d = [[]];
 
     for (const stat in topStats) {
-      const statValue = (this.props.players[0][0][stat] * 100) / topStats[stat];
+      const statValue = (this.props.players[0][stat] * 100) / topStats[stat];
       d[0].push({ axis: stat, value: (statValue / 100) });
     }
 
@@ -325,7 +325,7 @@ class RadarChart extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.query };
+  return { players: state.players };
 }
 
 export default connect(mapStateToProps)(RadarChart);
