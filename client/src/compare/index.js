@@ -15,7 +15,17 @@ class Compare extends Component {
   }
   onSubmit(event) {
     event.preventDefault();
-    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value, event.target[1].value] });
+    let playerOne = event.target[0].value;
+    let playerTwo = event.target[1].value;
+    if (event.target[0].value === '') {
+      playerOne = this.props.players[0][0].Name;
+    }
+    if (event.target[1].value === '') {
+      playerTwo = this.props.players[0][1].Name;
+    }
+    this.props.fetchSpecificPlayers({ playerNames: [playerOne, playerTwo] });
+    event.target[0].value = '';
+    event.target[1].value = '';
   }
   render() {
     return (

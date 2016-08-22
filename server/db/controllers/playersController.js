@@ -111,9 +111,20 @@ module.exports = {
     })
     .then((playerData) => {
       const playersId = []
+      const players = []
       playerData.forEach(function(player) {
-        playersId.push(player.dataValues.playerId);
+        const currentPlayerName = player.dataValues.Name.toUpperCase();
+        console.log(currentPlayerName, req.body.playerNames[0].toUpperCase());
+        if (currentPlayerName.includes(req.body.playerNames[0].toUpperCase())) {
+          playersId.unshift(player.dataValues.playerId);
+          players.unshift(player);
+        } else {
+          playersId.push(player.dataValues.playerId);
+          players.push(player);
+        }
       });
+
+      console.log(playersId);
 
       PlayerProjectedGame.findAll({
         where: {
@@ -121,7 +132,7 @@ module.exports = {
         }
       })
       .then(stats => {
-        res.send([playerData, stats]);
+        res.send([players, stats]);
       })
     })
     .catch((err) => {
