@@ -7,9 +7,11 @@ import PlayersReducer from './reducer_players';
 import Header from './reducer_header';
 import ModalReducer from './reducer_modal';
 import SearchReducer from './reducer_search';
-
+import QueryReducer from './reducer_query';
+import CalcReducer from './reducer_calculation';
 
 const rootReducer = combineReducers({
+  calculation: CalcReducer,
   leagues: Leagues,
   yahooProfile: YahooProfileReducer,
   header: Header,
@@ -17,6 +19,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   modal: ModalReducer,
   search: SearchReducer,
+  query: QueryReducer,
 });
 
 export default rootReducer;
