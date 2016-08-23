@@ -107,6 +107,12 @@ class LineChart extends Component {
                 });;
 
               svgTranslated.append('g')
+              .style('transform', 'translate(0px, 195px)')
+              .attr('class', 'axis axis--x')
+              .attr('x', '0')
+              .call(d3.axisBottom(x));
+
+              svgTranslated.append('g')
               .attr('class', 'axis axis--y')
               .call(d3.axisLeft(y))
               .append('text')
@@ -118,9 +124,9 @@ class LineChart extends Component {
               .text('Fantasy Points');
 
               svgTranslated.append('g')
-              .attr('class','legend')
-              .attr('transform','translate(50,30)')
-              .style('font-size','12px');
+              .attr('class', 'legend')
+              .attr('transform', 'translate(50,30)')
+              .style('font-size', '12px');
 
               const ordinal = d3.scaleOrdinal()
               .domain(['Total Points','P. Yards',' P. TouchDowns'])
@@ -132,11 +138,6 @@ class LineChart extends Component {
               .attr('class', 'legendOrdinal')
               .attr('transform', 'translate(590,20)');
 
-              d3.select(node).append('g')
-              .style('transform', 'translate(' + (30) +'px, ' + (height + 45) +'px)')
-              .attr('class', 'axis axis--x')
-              .attr('x', '0')
-              .call(d3.axisBottom(x));
 
               // const legendOrdinal = d3.legendColor()
               // .shape('path', d3.symbol().type(d3.symbolTriangle).size(50)())
