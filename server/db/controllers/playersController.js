@@ -110,17 +110,20 @@ module.exports = {
       ],
     })
     .then((playerData) => {
-      const playersId = []
-      const players = []
+      const playersId = [];
+      const players = [];
+      const unshift = (player) => {
+        playersId.unshift(player.dataValues.playerId);
+        players.unshift(player);
+      };
+      const push = (player) => {
+        playersId.push(player.dataValues.playerId);
+        players.push(player);
+      };
       playerData.forEach(function(player) {
-        const currentPlayerName = player.dataValues.Name.toUpperCase();
-        if (currentPlayerName.includes(req.body.playerNames[0].toUpperCase())) {
-          playersId.unshift(player.dataValues.playerId);
-          players.unshift(player);
-        } else {
-          playersId.push(player.dataValues.playerId);
-          players.push(player);
-        }
+        const currentPlayer = player.dataValues.Name.toUpperCase();
+        const reqBodyPlayerOne = req.body.playerNames[0].toUpperCase();
+        currentPlayer.includes(reqBodyPlayerOne) ? unshift(player) : push(player);
       });
 
       PlayerProjectedGame.findAll({
