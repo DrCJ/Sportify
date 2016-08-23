@@ -6,11 +6,12 @@ const client = new Twitter(credentials.twitter);
 module.exports = {
   getTweetsFromPlayer: (req, res) => {
     const twitterHandler = req.query.twitterHandler;
+    console.log(req);
 
     client.get('statuses/user_timeline',
     { screen_name: twitterHandler }, (error, tweets, response) => {
       if (!error) {
-        console.log(tweets);
+        //console.log(tweets);
         res.send(tweets);
       } else {
         console.log(error);
