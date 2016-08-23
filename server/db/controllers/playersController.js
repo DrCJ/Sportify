@@ -114,7 +114,6 @@ module.exports = {
       const players = []
       playerData.forEach(function(player) {
         const currentPlayerName = player.dataValues.Name.toUpperCase();
-        console.log(currentPlayerName, req.body.playerNames[0].toUpperCase());
         if (currentPlayerName.includes(req.body.playerNames[0].toUpperCase())) {
           playersId.unshift(player.dataValues.playerId);
           players.unshift(player);
@@ -123,8 +122,6 @@ module.exports = {
           players.push(player);
         }
       });
-
-      console.log(playersId);
 
       PlayerProjectedGame.findAll({
         where: {
