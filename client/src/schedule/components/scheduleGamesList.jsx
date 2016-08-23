@@ -11,7 +11,7 @@ class ScheduleGamesList extends Component {
   render() {
     return (
       <div className="schedule-game-container">
-      {console.log(this.props.games, 'thisis ithe grames')}
+      I am an dumb dumb.
         {this.props.games.map((game) => (
           <ScheduleGamesListEntry date={game.Date} awayTeam={game.AwayTeam} homeTeam={game.HomeTeam} />
         ))}
