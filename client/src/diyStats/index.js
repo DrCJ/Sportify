@@ -45,7 +45,7 @@ class DIYStatsView extends Component {
     return this.props.players.map((player, index) => {
       if (index !== 0) {
         return (
-          <tbody>
+          <tbody key={index}>
             <PlayerEntryView key={player.id} player={player} />
           </tbody>
         );
