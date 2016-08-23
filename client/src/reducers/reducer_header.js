@@ -1,5 +1,3 @@
-import { TOGGLE_NAVIGATION } from '../header/actionTypes';
-
 const INITIAL_STATE = ['nav-canvas'];
 
 export default function (state = INITIAL_STATE, action) {

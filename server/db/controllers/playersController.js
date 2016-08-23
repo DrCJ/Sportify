@@ -110,9 +110,20 @@ module.exports = {
       ],
     })
     .then((playerData) => {
-      const playersId = []
-      playerData.forEach(function(player) {
+      const playersId = [];
+      const players = [];
+      const unshift = (player) => {
+        playersId.unshift(player.dataValues.playerId);
+        players.unshift(player);
+      };
+      const push = (player) => {
         playersId.push(player.dataValues.playerId);
+        players.push(player);
+      };
+      playerData.forEach(function(player) {
+        const currentPlayer = player.dataValues.Name.toUpperCase();
+        const reqBodyPlayerOne = req.body.playerNames[0].toUpperCase();
+        currentPlayer.includes(reqBodyPlayerOne) ? unshift(player) : push(player);
       });
 
       PlayerProjectedGame.findAll({
@@ -121,7 +132,7 @@ module.exports = {
         }
       })
       .then(stats => {
-        res.send([playerData, stats]);
+        res.send([players, stats]);
       })
     })
     .catch((err) => {

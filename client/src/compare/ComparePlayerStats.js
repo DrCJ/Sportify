@@ -5,7 +5,7 @@ class ComparePlayerStats extends Component {
   renderStats() {
     return statIndex.map((stat, index) => {
       return (
-        <tr>
+        <tr key={index}>
           <td>{stat}</td>
           <td>{this.props.players[0][0][stat]}</td>
           <td>{this.props.players[0][1][stat]}</td>
