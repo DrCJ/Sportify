@@ -9,7 +9,7 @@ class ComparePlayers extends Component {
       return <div> loading </div>;
     }
     if (this.props.players[0][1]) {
-      playerTwo = <div><p>{this.props.players[0][1].Name}</p>
+      playerTwo = <div className="compare-player2">{this.props.players[0][1].Name}
                   <img
                     className="player2-image"
                     src={this.props.players[0][1].player.image_url.substring(155)}
@@ -24,9 +24,7 @@ class ComparePlayers extends Component {
             src={this.props.players[0][0].player.image_url.substring(155)}
           />
         </div>
-        <div className="compare-player2">
-          {playerTwo}
-        </div>
+        {playerTwo}
       </div>
 		);
   }
