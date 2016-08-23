@@ -363,17 +363,34 @@ li {
     margin-left:  30px;
 }
 
+.schedule-game-container {
+	width: 80%;
+	margin: 0 auto;
+}
 .schedule-game {
 		height: 100px;
 		margin-left: 10%;
 		margin-right: 10%;
+		width: 100%;
+		display: table-row;
+		background-color: white
+}
+
+.schedule-time {
+	float: left;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	margin-bottom: -25%;
+	top: 10%;
 }
 
 .schedule-image{
 	align-items: center;
-	height: 65px;
-	width: 60px;
-	margin-left: 10px;
+	height: 90px;
+	width: 70px;
+	margin-left: 40%;
+	padding-bottom: 20px;
 	text-align: center;
   vertical-align: middle;
   display: table-cell;
@@ -390,29 +407,324 @@ li {
 }
 
 span.team1 {
-  width:  40%;
-	height: 100%
+  width:  35%;
+	color: white;
+	height: 100%;
+	text-align: center;
+	display: table-cell;
 }
 
 span.team2 {
-  width:  40%;
+  width:  35%;
+	color: white;
 	height: 100%;
+	text-align: center;
+	display: table-cell;
 }
 
 .team1 {
     width: 40%;
     margin-left: 10%;
-    display:  inline-block;
+    display:  table-cell;
     border: 1px solid black;
 		background-color: #e9e9e9;
+		-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
 }
 
 .team2 {
     width: 40%;
     margin-right:  10%;
-    display: inline-block;
+    display: table-cell;
 		border: 1px solid black;
 		background-color: #e9e9e9;
+		-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+/*Testing out indviduals team styles*/
+.team1-NO, .team2-NO {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	background: #232526; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #232526 , #414345); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #232526 , #414345); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+.team1-MIA, .team2-MIA {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #02AAB0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #02AAB0 , #00CDAC); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #02AAB0 , #00CDAC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-DET, .team2-DET {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #4CA1AF; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #4CA1AF , #C4E0E5); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #4CA1AF , #C4E0E5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-MIN, .team2-MIN {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #5614B0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #5614B0 , #DBD65C); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #5614B0 , #DBD65C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-IND, .team2-IND {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #1e3c72; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #1e3c72 , #2a5298); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #1e3c72 , #2a5298); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-TB, .team2-TB {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #eacda3; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #eacda3 , #d6ae7b); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #eacda3 , #d6ae7b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+.team1-ATL, .team2-ATL {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #8E0E00; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #8E0E00 , #1F1C18); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #8E0E00 , #1F1C18); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-CHI, .team2-CHI {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #005C97; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #005C97 , #363795); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #005C97 , #363795); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-DAL, .team2-DAL {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #304352; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #304352 , #d7d2cc); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #304352 , #d7d2cc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.team1-GB, .team2-GB {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #b4ddb4; /* Old browsers */
+  background: -moz-linear-gradient(left, #b4ddb4 0%, #83c783 17%, #52b152 33%, #008a00 67%, #005700 83%, #002400 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+
+.team1-PHI, .team2-PHI {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #6A9113; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #6A9113 , #141517); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #6A9113 , #141517); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-LA, .team2-LA {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #004FF9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #004FF9 , #FFF94C); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #004FF9 , #FFF94C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.team1-NYJ, .team2-NYJ {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #5A3F37; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #5A3F37 , #2C7744); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #5A3F37 , #2C7744); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-BUF, .team2-BUF {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #0099F7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #0099F7 , #F11712); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #0099F7 , #F11712); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-OAK, .team1-PIT, .team2-OAK, .team2-PIT {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #000000 , #434343); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #000000 , #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-TEN, .team2-TEN {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #00d2ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #00d2ff , #928DAB); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #00d2ff , #928DAB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-DEN, .team2-DEN {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #0B486B; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #0B486B , #F56217); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #0B486B , #F56217); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-SF, .team2-SF {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #F00000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #F00000 , #DC281E); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #F00000 , #DC281E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-SEA, .team2-SEA {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #141E30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #141E30 , #243B55); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #141E30 , #243B55); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-CAR, .team2-CAR {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #000428; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #000428 , #004e92); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #000428 , #004e92); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.team1-CLE, .team2-CLE {
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+  background: #FF8008; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #FF8008 , #FFC837); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #FF8008 , #FFC837); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.team1-SD, .team2-SD {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	background-color: #e9e9e9;
+	background: #003973;
+  background: -webkit-linear-gradient(to left, #003973 , #E5E5BE);
+  background: linear-gradient(to left, #003973 , #E5E5BE);
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+.team1-NE, .team2-NE {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	background-color: #e9e9e9;
+  background: #4b6cb7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #4b6cb7 , #182848); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-ARI, .team2-ARI {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+  background: #870000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #870000 , #190A05); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #870000 , #190A05); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-BAL, .team2-BAL {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #000000 , #53346D); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #000000 , #53346D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+}
+
+
+
+.team1-CIN, .team2-CIN {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+  background: #c21500; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #c21500 , #ffc500); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #c21500 , #ffc500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .schedule {
