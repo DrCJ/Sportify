@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const playersController = require('../db/controllers/playersController');
 const gamesController = require('../db/controllers/gamesController');
+const twiterController = require('../middleware/twitter');
+
+router.get('/getTweets', (req, res) => {
+  twiterController.getTweetsFromPlayer(req, res);
+});
 
 router.get('/getAllPlayers', (req, res) => {
   playersController.getAllPlayers(req, res);

@@ -51,6 +51,8 @@
     "redux-thunk": "^2.1.0",
     "request": "^2.74.0",
     "sequelize": "^3.23.6",
+    "twitter": "^1.4.0",
+    "twitter-js-client": "0.0.5",
     "twitter-node-client": "0.0.6",
     "yahoo-fantasy": "^0.5.2"
   },
