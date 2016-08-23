@@ -45,7 +45,9 @@ class DIYStatsView extends Component {
     return this.props.players.map((player, index) => {
       if (index !== 0) {
         return (
-          <PlayerEntryView key={player.id} player={player} />
+          <tbody>
+            <PlayerEntryView key={player.id} player={player} />
+          </tbody>
         );
       }
     });
@@ -97,7 +99,7 @@ class DIYStatsView extends Component {
       return (
         <h3>
           {this.props.search[0][0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective}
-          against these factors: {filterString.substring(0, filterString.length - 2)}
+           against these factors: {filterString.substring(0, filterString.length - 2)}
         </h3>
       );
     }
