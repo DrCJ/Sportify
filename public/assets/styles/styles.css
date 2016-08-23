@@ -377,12 +377,18 @@ li {
 }
 
 .schedule-time {
-	float: left;
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
 	margin-bottom: -25%;
 	top: 10%;
+	padding: 10px;
+	border: 1px solid black;
+	background-color: #e9e9e9;
+}
+
+.schedule-week-current {
+	width: 100%;
 }
 
 .schedule-image{
@@ -552,7 +558,16 @@ span.team2 {
   background: linear-gradient(to right, #b4ddb4 0%,#83c783 17%,#52b152 33%,#008a00 67%,#005700 83%,#002400 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
-
+.team1-NYG, .team2-NYG {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #8e9eab; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #8e9eab , #eef2f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 .team1-PHI, .team2-PHI {
 	width: 40%;
 	margin-right:  10%;
@@ -596,7 +611,41 @@ span.team2 {
   background: linear-gradient(to left, #0099F7 , #F11712); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.team1-OAK, .team1-PIT, .team2-OAK, .team2-PIT {
+.team1-HOU, .team2-HOU {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #4b6cb7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #4b6cb7 , #182848); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #4b6cb7 , #182848); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.team1-KC, .team2-KC {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #a73737; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #a73737 , #7a2828); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #a73737 , #7a2828); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-WAS, .team2-WAS {
+	width: 40%;
+	margin-right:  10%;
+	display: table-cell;
+	border: 1px solid black;
+	-webkit-box-shadow: 0 0 15px rgba(30,30,30,.75);
+  background: #C02425; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #C02425 , #F0CB35); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #C02425 , #F0CB35); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.team1-OAK, .team2-OAK,
+.team1-PIT, .team2-PIT,
+.team1-JAX, .team2-JAX {
 	width: 40%;
 	margin-right:  10%;
 	display: table-cell;
