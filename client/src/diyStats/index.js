@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchSpecificPlayers } from '../compare/actions';
 import { getOnePlayerModal } from '../player/actions';
 import { filter, calculateDifference } from './actions';
+import PlayerEntryView from '../player/PlayerEntryView';
 import StatHeadings from '../player/StatHeadings.jsx';
 import filters from '../helpers/filterCategories';
 import teams from '../helpers/teamNames';
@@ -44,28 +45,7 @@ class DIYStatsView extends Component {
     return this.props.players.map((player, index) => {
       if (index !== 0) {
         return (
-          <tbody key={index}>
-            <tr>
-              <td> <a> {player.Name || player.full }</a></td>
-              <td> {player.Position || 'NA'} </td>
-              <td> {player.Played || 0}</td>
-              <td> {player.Opponent || 'BYE'} </td>
-              <td> {player.FantasyPoints || 0}</td>
-              <td> Actual </td>
-              <td> {Number(player.PassingYards) || 0}</td>
-              <td> {player.PassingTouchdowns || 0}</td>
-              <td> {player.PassingInterceptions || 0}</td>
-              <td> {player.PassingAttempts || player.RushingAttempts || 0 }</td>
-              <td> {Number(player.RushingYards) || 0}</td>
-              <td> {player.RushingTouchdowns || 0}</td>
-              <td> {player.ReceivingTargets || 0}</td>
-              <td> {player.Receptions || 0} </td>
-              <td> {player.RushingTouchdowns || 0}</td>
-              <td> {player.ReceivingTouchdowns || 0}</td>
-              <td> {player.TwoPointConversionReturns || 0}</td>
-              <td> {player.PassingTouchdowns > 30 ? 'Approve' : 'Disapprove'} </td>
-            </tr>
-          </tbody>
+          <PlayerEntryView key={player.id} player={player} />
         );
       }
     });
@@ -108,12 +88,18 @@ class DIYStatsView extends Component {
   }
   renderStatement() {
     if (this.props.players[0].type === 'CALCULATE_DIFFERENCE') {
-      let adjective, filterString = '';
-      this.props.players[0].filterHistory.map((filter) => {
-        filterString += filter + ', ';
+      let adjective;
+      let filterString = '';
+      this.props.players[0].filterHistory.forEach((parameter) => {
+        filterString += `${parameter}, `;
       });
       this.props.players[0].payload > 0 ? adjective = 'better' : adjective = 'worse';
-      return (<h3>{this.props.search[0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective} against these factors: {filterString.substring(0, filterString.length - 2)}</h3>);
+      return (
+        <h3>
+          {this.props.search[0][0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective}
+          against these factors: {filterString.substring(0, filterString.length - 2)}
+        </h3>
+      );
     }
   }
   render() {
