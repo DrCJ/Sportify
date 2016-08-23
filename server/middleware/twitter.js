@@ -4,24 +4,14 @@ const Twitter = require('twitter');
 const client = new Twitter(credentials.twitter);
 
 module.exports = {
-  getTweetsFromPlayer: (req, res) => {
-    const twitterHandler = req.query.twitterHandler;
-    console.log(req);
-
+  getTweetsFromPlayer: (twitterHandler, fn) => {
     client.get('statuses/user_timeline',
     { screen_name: twitterHandler }, (error, tweets, response) => {
       if (!error) {
-        //console.log(tweets);
-        res.send(tweets);
+        fn(tweets)
       } else {
         console.log(error);
       }
     });
   },
 };
-
-// order: [
-// ['FantasyPointsYahoo', 'DESC'],
-// ],
-// where: { 'Season': 2016 },
-// limit: 25,
