@@ -98,8 +98,7 @@ class DIYStatsView extends Component {
       this.props.players[0].payload > 0 ? adjective = 'better' : adjective = 'worse';
       return (
         <h3>
-          {this.props.search[0][0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective}
-           against these factors: {filterString.substring(0, filterString.length - 2)}
+          {this.props.search[0][0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective} against these factors: {filterString.substring(0, filterString.length - 2)}
         </h3>
       );
     } else {

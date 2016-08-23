@@ -59,7 +59,7 @@ module.exports = {
 
   // see above regarding security / lookup table
   getPlayersByIds: (req, res) => {
-
+    console.log(req.body);
     const stat = req.body;
     const limit = 25;
     let subQ = '';
@@ -86,6 +86,7 @@ module.exports = {
     });
   },
   getPlayersByName: (req, res) => {
+    console.log(req.body);
     PlayerProjectedYear.findAll({
       order: [
         ['FantasyPointsYahoo', 'DESC'],
@@ -104,7 +105,7 @@ module.exports = {
           },
         ],
       },
-      limit: 2,
+      limit: req.body.playerNames.length,
       include: [
         { model: Player, required: true },
       ],
