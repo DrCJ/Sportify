@@ -1,4 +1,4 @@
-const INITIAL_STATE = [];
+const INITIAL_STATE = [{ type: null }];
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

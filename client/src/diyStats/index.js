@@ -89,7 +89,7 @@ class DIYStatsView extends Component {
     });
   }
   renderStatement() {
-    if (this.props.players[0].type === 'CALCULATE_DIFFERENCE') {
+    if (this.props.players[0].type) {
       let adjective;
       let filterString = '';
       this.props.players[0].filterHistory.forEach((parameter) => {
@@ -101,6 +101,10 @@ class DIYStatsView extends Component {
           {this.props.search[0][0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective}
            against these factors: {filterString.substring(0, filterString.length - 2)}
         </h3>
+      );
+    } else {
+      return (
+        <h3>Conclusive Statement</h3>
       );
     }
   }
