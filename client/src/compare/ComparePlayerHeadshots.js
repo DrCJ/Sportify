@@ -4,8 +4,16 @@ import { connect } from 'react-redux';
 class ComparePlayers extends Component {
 
   render() {
+    let playerTwo;
     if(!this.props.players[0][0]) {
       return <div> loading </div>;
+    }
+    if (this.props.players[0][1]) {
+      playerTwo = <div className="compare-player2">{this.props.players[0][1].Name}
+                  <img
+                    className="player2-image"
+                    src={this.props.players[0][1].player.image_url.substring(155)}
+                  /></div>;
     }
     return (
       <div className="compare-container">
@@ -16,13 +24,7 @@ class ComparePlayers extends Component {
             src={this.props.players[0][0].player.image_url.substring(155)}
           />
         </div>
-        <div className="compare-player2">
-          {this.props.players[0][1].Name}
-          <img
-            className="player2-image"
-            src={this.props.players[0][1].player.image_url.substring(155)}
-          />
-        </div>
+        {playerTwo}
       </div>
 		);
   }

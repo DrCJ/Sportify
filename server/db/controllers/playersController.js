@@ -60,7 +60,6 @@ module.exports = {
 
   // see above regarding security / lookup table
   getPlayersByIds: (req, res) => {
-
     const stat = req.body;
     const limit = 25;
     let subQ = '';
@@ -107,7 +106,7 @@ module.exports = {
           },
         ],
       },
-      limit: 2,
+      limit: req.body.playerNames.length,
       include: [
         { model: Player, required: true },
       ],
