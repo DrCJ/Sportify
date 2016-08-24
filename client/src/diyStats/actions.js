@@ -1,16 +1,21 @@
-export function calculateDifference(games, filteredGames, filterHistory) {
+function calculateDifference(games, filteredGames, filterHistory) {
   const otherGames = games.filter(game => filteredGames.indexOf(game) < 0);
   let filteredTotal = 0;
   let otherTotal = 0;
   for (let i = 0; i < filteredGames.length; i++) {
-    filteredTotal += filteredGames[i].FantasyPoints;
+    if (filteredGames[i].FantasyPoints) {
+      filteredTotal += filteredGames[i].FantasyPoints;
+    }
   }
   for (let j = 0; j < otherGames.length; j++) {
-    otherTotal += otherGames[j].FantasyPoints;
+    if (otherGames[j].FantasyPoints) {
+      otherTotal += otherGames[j].FantasyPoints;
+    }
   }
   const filteredAvg = filteredTotal / filteredGames.length;
   const otherAvg = otherTotal / otherGames.length;
-  const percentPerformance = ((filteredAvg / otherAvg) * 100) - 100;
+  const percentPerformance = (filteredAvg / otherAvg * 100) - 100;
+  console.log(percentPerformance);
   return {
     type: 'CALCULATE_DIFFERENCE',
     payload: percentPerformance,
@@ -37,9 +42,9 @@ export function filter(games, reqObj) {
     }
   }
   const request = {};
-  const difference = calculateDifference(games, filteredGames, filterHistory);
-  filteredGames.unshift(difference);
-  request.data = [filteredGames];
+  calculateDifference(games, filteredGames, filterHistory);
+  // filteredGames.unshift(difference);
+  request.data = [[filteredGames]];
   return {
     type: 'FILTER',
     payload: request,

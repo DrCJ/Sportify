@@ -37,20 +37,24 @@ class DIYStatsView extends Component {
     this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] })
     .then(() => {
       const playerIdArray = { playerId: [this.props.search[0][0].playerId] };
-      this.props.getOnePlayerModal(playerIdArray);
+      this.props.getOnePlayerModal(playerIdArray).then(() => {
+        this.props.filter(this.props.modal);
+      });
     });
   }
 
   renderStats() {
-    return this.props.players.map((player, index) => {
-      if (index !== 0) {
-        return (
-          <tbody key={index}>
-            <PlayerEntryView key={player.id} player={player} />
-          </tbody>
-        );
-      }
-    });
+    if (Array.isArray(this.props.players[0])) {
+      return this.props.players[0].map((player, index) => {
+        if (index !== 0) {
+          return (
+            <tbody key={index}>
+              <PlayerEntryView key={player.id} player={player} />
+            </tbody>
+          );
+        }
+      });
+    }
   }
 
   renderOptions(object) {
@@ -89,7 +93,7 @@ class DIYStatsView extends Component {
     });
   }
   renderStatement() {
-    if (this.props.players[0].type) {
+    if (this.props.players[0].type && isNaN(this.props.players[0].payload) === false) {
       let adjective;
       let filterString = '';
       this.props.players[0].filterHistory.forEach((parameter) => {
