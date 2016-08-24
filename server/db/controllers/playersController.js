@@ -2,6 +2,7 @@ const { PlayerProjectedGame, PlayerProjectedYear, Player, db } = require('../mod
 const Sequelize = require('sequelize');
 const { sortByPosition } = require('../helpers/sortByPosition');
 const { getHighResolution } = require('../helpers/getHighResolution');
+const Twitter = require('../../middleware/twitter');
 
 module.exports = {
 
@@ -77,12 +78,14 @@ module.exports = {
     ON "players"."id" = "playerProjectedGames"."playerId"
     WHERE "playerProjectedGames"."playerId" IN (${stat.playerId.join()})`;
 
-        // AND "playerProjectedGames"."Week" = 1`;
-
     db.query(q).then(stats => {
-      let sortedStats = sortByPosition(stats);
+      const sortedStats = sortByPosition(stats);
       // sortedStats = getHighResolution(sortedStats);
-      res.send(sortedStats);
+      Twitter.getTweetsFromPlayer(stats[0][0].twitterID, tweets => {
+        res.send([sortedStats, tweets]);
+      });
+
+      console.log(sortedStats[0][0].twitterID);
     });
   },
   getPlayersByName: (req, res) => {

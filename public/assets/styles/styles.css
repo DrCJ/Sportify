@@ -304,6 +304,11 @@ li {
 .modal-player-image {
 	height: 100%;
 	width: 28%;
+	float: left;
+}
+.modal-tweets {
+	height: 100px;
+	overflow: scroll;
 }
 .modal-player-bio {
 	float: right;
@@ -840,6 +845,12 @@ svg {
 	margin: 0 auto;
 	display: block;
 }
+.axis.axis--x {
+	display: none;
+}
+.axis.axis--x:first-of-type {
+	display: block;
+}
 
 .arc text {
 	font: 10px sans-serif;
@@ -856,4 +867,10 @@ svg {
 
 .DIYStatement {
 	float:left
+}
+
+
+.modal-tweets {
+	height: 50px;
+	overflow: scroll;
 }
