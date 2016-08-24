@@ -11,9 +11,9 @@ import teams from '../helpers/teamNames';
 class DIYStatsView extends Component {
   constructor(props) {
     super(props);
+    this.filters = {};
     this.onSearch = this.onSearch.bind(this);
     this.onFieldSubmit = this.onFieldSubmit.bind(this);
-
     this.teamOptions = [];
     this.stadiumOptions = [];
     for (let k in teams) {
@@ -23,13 +23,13 @@ class DIYStatsView extends Component {
 
   onFieldSubmit(event) {
     event.preventDefault();
-    const reqObj = {};
-    reqObj.Opponent = event.target[0].value;
-    reqObj.HomeOrAway = event.target[1].value;
-    reqObj.Started = event.target[2].value;
-    reqObj.PlayingSurface = event.target[3].value;
-    reqObj.Day = event.target[4].value;
-    this.props.filter(this.props.modal, reqObj);
+    this.filters.Opponent = event.target[0].value;
+    this.filters.HomeOrAway = event.target[1].value;
+    this.filters.Started = event.target[2].value;
+    this.filters.PlayingSurface = event.target[3].value;
+    this.filters.Day = event.target[4].value;
+    this.props.filter(this.props.modal, this.filters);
+    setTimeout(() => this.props.calculateDifference(this.props.players[0], this.props.players[1]), 100);
   }
 
   onSearch(event) {
@@ -39,6 +39,7 @@ class DIYStatsView extends Component {
       const playerIdArray = { playerId: [this.props.search[0][0].playerId] };
       this.props.getOnePlayerModal(playerIdArray).then(() => {
         this.props.filter(this.props.modal);
+        setTimeout(() => this.props.calculateDifference(this.props.players[0], this.props.players[1]), 100);
       });
     });
   }
@@ -46,13 +47,11 @@ class DIYStatsView extends Component {
   renderStats() {
     if (Array.isArray(this.props.players[0])) {
       return this.props.players[0].map((player, index) => {
-        if (index !== 0) {
-          return (
-            <tbody key={index}>
-              <PlayerEntryView key={player.id} player={player} />
-            </tbody>
-          );
-        }
+        return (
+          <tbody key={index}>
+            <PlayerEntryView key={player.id} player={player} />
+          </tbody>
+        );
       });
     }
   }
@@ -93,16 +92,18 @@ class DIYStatsView extends Component {
     });
   }
   renderStatement() {
-    if (this.props.players[0].type && isNaN(this.props.players[0].payload) === false) {
+    if (this.props.calculation) {
       let adjective;
       let filterString = '';
-      this.props.players[0].filterHistory.forEach((parameter) => {
-        filterString += `${parameter}, `;
-      });
-      this.props.players[0].payload > 0 ? adjective = 'better' : adjective = 'worse';
+      for (let key in this.filters) {
+        if (this.filters[key]) {
+          filterString += `${this.filters[key]}, `;
+        }
+      }
+      this.props.calculation > 0 ? adjective = 'better' : adjective = 'worse';
       return (
         <h3>
-          {this.props.search[0][0].Name} is {this.props.players[0].payload.toFixed(2)}% {adjective} against these factors: {filterString.substring(0, filterString.length - 2)}
+          {this.props.search[0][0].Name} is {this.props.calculation.toFixed(2)}% {adjective} against these factors: {filterString.substring(0, filterString.length - 2)}
         </h3>
       );
     } else {
@@ -148,7 +149,12 @@ class DIYStatsView extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.players, search: state.query, modal: state.modal, calculation: state.calculation  };
+  return {
+    players: state.players,
+    search: state.query,
+    modal: state.modal,
+    calculation: state.calculation,
+  };
 }
 
 DIYStatsView.propTypes = {
