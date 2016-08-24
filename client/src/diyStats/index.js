@@ -8,6 +8,18 @@ import StatHeadings from '../player/StatHeadings.jsx';
 import filters from '../helpers/filterCategories';
 import teams from '../helpers/teamNames';
 
+var startedDictionary = {
+  0: 'Started',
+  1: 'Benched',
+}
+
+var dayDictionary = {
+  0: 'Sunday',
+  1: 'Monday',
+  4: 'Thursday',
+  6: 'Saturday',
+}
+
 class DIYStatsView extends Component {
   constructor(props) {
     super(props);
@@ -97,7 +109,13 @@ class DIYStatsView extends Component {
       let filterString = '';
       for (let key in this.filters) {
         if (this.filters[key]) {
-          filterString += `${this.filters[key]}, `;
+          if (key === 'Started') {
+            filterString += `${startedDictionary[this.filters[key]]}, `
+          } else if (key === 'Day') {
+            filterString += `${dayDictionary[this.filters[key]]}, `
+          } else {
+            filterString += `${this.filters[key]}, `;
+          }
         }
       }
       this.props.calculation > 0 ? adjective = 'better' : adjective = 'worse';
