@@ -96,7 +96,6 @@ class DoubleBarChart extends Component {
           if (data[0]) {
             const twitterHandle = twitterNames[data[0]._index];
             const twitterImg = twitterImgs[data[0]._index];
-            console.log(twitterImg);
             this.props.getPlayerTweets([twitterHandle, twitterImg]);
           }
         };
