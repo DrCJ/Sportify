@@ -14,3 +14,22 @@ export function getPlayerTweets(twitterHandle) {
     payload: request,
   };
 }
+
+export function getTop20Players(position, year, limit) {
+  const request = axios({
+    method: 'post',
+    url: '/api/getProjectedVsActual',
+    data: {
+      position,
+      year,
+      limit,
+    },
+    header: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return {
+    type: 'GET_TOP_20_PLAYERS',
+    payload: request,
+  };
+}

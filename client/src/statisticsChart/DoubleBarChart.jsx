@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { getPlayerTweets } from './actions';
+import { getPlayerTweets, getTop20Players } from './actions';
 
 const getChartData = (position, year, limit) => {
   const request = axios({
