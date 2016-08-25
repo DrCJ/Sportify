@@ -51,6 +51,7 @@ See [github.md](github.md) for contribution and github workflow guidelines.
 ### High Level Architecture
 ### Database Schema
 Database in Postgres, using Sequelize ORM
+![](http://i.imgur.com/sHmO9RW.png)
 
 ## API
 ##### Public End Points
