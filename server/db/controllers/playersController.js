@@ -148,7 +148,8 @@ module.exports = {
     const limit = req.body.limit || 20;
     const result = {};
     const q = `SELECT "playerId", "FantasyPointsYahoo", "Name", "players"."twitterID",
-    "players"."image_url" FROM "playerProjectedYears" INNER JOIN "players"
+    "players"."image_url", "playerProjectedYears"."Position"
+    FROM "playerProjectedYears" INNER JOIN "players"
     ON "playerProjectedYears"."playerId" = "players"."id"
     WHERE "Position"='${position}'
     AND "Season"='${season}' ORDER BY "FantasyPointsYahoo"

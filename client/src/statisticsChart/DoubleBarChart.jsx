@@ -5,21 +5,21 @@ import axios from 'axios';
 
 import { getPlayerTweets, getTop20Players } from './actions';
 
-const getChartData = (position, year, limit) => {
-  const request = axios({
-    method: 'post',
-    url: '/api/getProjectedVsActual',
-    data: {
-      position,
-      year,
-      limit,
-    },
-    header: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return request;
-};
+// const getChartData = (position, year, limit) => {
+//   const request = axios({
+//     method: 'post',
+//     url: '/api/getProjectedVsActual',
+//     data: {
+//       position,
+//       year,
+//       limit,
+//     },
+//     header: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   return request;
+// };
 
 class DoubleBarChart extends Component {
   constructor(props) {
@@ -68,20 +68,18 @@ class DoubleBarChart extends Component {
 
     let ctx = document.getElementById(`double-bar-chart-${this.props.position}`);
 
-    getChartData(this.props.position)
-      .then(response => {
-        console.log(response.data);
+        console.log(this.props.positions.data);
         const twitterNames = [];
         const twitterImgs = [];
         const projData = [];
-        const names = response.data.projected.map(player => {
+        const names = this.props.positions.data.projected.map(player => {
           projData.push(player.FantasyPointsYahoo);
           twitterNames.push(player.twitterID);
           twitterImgs.push(player.image_url);
           return player.Name;
         });
         overlayData.labels = names;
-        const actualData = response.data.actual.map(player => player.FantasyPointsYahoo);
+        const actualData = this.props.positions.data.actual.map(player => player.FantasyPointsYahoo);
 
         overlayData.datasets[0].data = projData;
         overlayData.datasets[1].data = actualData;
@@ -99,7 +97,6 @@ class DoubleBarChart extends Component {
             this.props.getPlayerTweets([twitterHandle, twitterImg]);
           }
         };
-      });
   }
 
   render() {
