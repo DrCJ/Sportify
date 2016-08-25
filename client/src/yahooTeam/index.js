@@ -18,12 +18,14 @@ class TeamView extends Component {
   }
 
   renderRoster() {
-    return this.props.yahooProfile.stats.map((player, index) => {
-      return (
-        <tbody key={index}>
-          <PlayerEntryView key={player.id} player={player} />
-        </tbody>
-      );
+    return this.props.yahooProfile.stats[0].map((player, index) => {
+      if(player.Week === 1) {
+        return (
+          <tbody key={index}>
+            <PlayerEntryView key={player.id} player={player} />
+          </tbody>
+        );
+      }
     });
   }
 
