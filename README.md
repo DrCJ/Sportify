@@ -12,7 +12,6 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Roadmap](#roadmap)
 1. [Contributing](#contributing)
 1. [Architecture](#architecture)
 1. [API](#api)
@@ -41,8 +40,6 @@ From within the root directory:
 ```sh
 $ npm install
 ```
-### Roadmap
-View the project roadmap [here](https://github.com/Dexterous-Rambutan/battle-code/issues)
 
 ## Contributing + Github Workflow
 See [github.md](github.md) for contribution and github workflow guidelines.
