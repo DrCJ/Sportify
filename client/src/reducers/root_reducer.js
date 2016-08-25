@@ -10,6 +10,8 @@ import SearchReducer from './reducer_search';
 import QueryReducer from './reducer_query';
 import CalcReducer from './reducer_calculation';
 import GamesScheduleReducer from './reducer_gamesSchedule';
+import StatisticsTwitterReducer from './reducer_statisticsTwitter';
+import StatisticsPlayerReducer from './reducer_statisticsPlayers.js';
 
 const rootReducer = combineReducers({
   calculation: CalcReducer,
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   search: SearchReducer,
   query: QueryReducer,
   games: GamesScheduleReducer,
+  playerTweets: StatisticsTwitterReducer,
+  top20Players: StatisticsPlayerReducer,
 });
 
 export default rootReducer;

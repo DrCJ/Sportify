@@ -1,22 +1,25 @@
 import Chart from 'chart.js';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-const getChartData = (position, year, limit) => {
-  const request = axios({
-    method: 'post',
-    url: '/api/getProjectedVsActual',
-    data: {
-      position,
-      year,
-      limit,
-    },
-    header: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return request;
-};
+import { getPlayerTweets, getTop20Players } from './actions';
+
+// const getChartData = (position, year, limit) => {
+//   const request = axios({
+//     method: 'post',
+//     url: '/api/getProjectedVsActual',
+//     data: {
+//       position,
+//       year,
+//       limit,
+//     },
+//     header: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+//   return request;
+// };
 
 class DoubleBarChart extends Component {
   constructor(props) {
@@ -65,34 +68,51 @@ class DoubleBarChart extends Component {
 
     let ctx = document.getElementById(`double-bar-chart-${this.props.position}`);
 
-    getChartData(this.props.position)
-      .then(response => {
-        console.log('response:', response.data);
-
-        const names = response.data.projected.map(player => player.Name);
+        console.log(this.props.positions.data);
+        const twitterNames = [];
+        const twitterImgs = [];
+        const projData = [];
+        const names = this.props.positions.data.projected.map(player => {
+          projData.push(player.FantasyPointsYahoo);
+          twitterNames.push(player.twitterID);
+          twitterImgs.push(player.image_url);
+          return player.Name;
+        });
         overlayData.labels = names;
-
-        const projData = response.data.projected.map(player => player.FantasyPointsYahoo);
-        const actualData = response.data.actual.map(player => player.FantasyPointsYahoo);
+        const actualData = this.props.positions.data.actual.map(player => player.FantasyPointsYahoo);
 
         overlayData.datasets[0].data = projData;
         overlayData.datasets[1].data = actualData;
 
-        let myChart = new Chart(ctx, {
+        const myChart = new Chart(ctx, {
           type: 'bar',
           data: overlayData,
         });
-      });
+
+        myChart.chart.canvas.onclick = e => {
+          const data = myChart.getElementsAtEvent(e);
+          if (data[0]) {
+            const twitterHandle = twitterNames[data[0]._index];
+            const twitterImg = twitterImgs[data[0]._index];
+            this.props.getPlayerTweets([twitterHandle, twitterImg]);
+          }
+        };
   }
 
   render() {
     return (
       <div className="chart-container">
         <h5>2016 Projected Top 20 {this.props.position}s</h5>
-        <canvas id={`double-bar-chart-${this.props.position}`} ></canvas>
+        <canvas id={`double-bar-chart-${this.props.position}`} />
       </div>
     );
   }
 }
 
-export default DoubleBarChart;
+function mapStateToProps(state) {
+  return {
+    playerTweets: state.playerTweets,
+  };
+}
+
+export default connect(mapStateToProps, { getPlayerTweets })(DoubleBarChart);
