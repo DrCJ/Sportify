@@ -182,3 +182,4 @@ DIYStatsView.propTypes = {
 };
 
 export default connect(mapStateToProps, { fetchSpecificPlayers, filter, getOnePlayerModal, calculateDifference })(DIYStatsView);
+// end
