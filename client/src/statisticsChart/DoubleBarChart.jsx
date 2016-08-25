@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import { getPlayerTweets } from './actions';
+
 const getChartData = (position, year, limit) => {
   const request = axios({
     method: 'post',
@@ -70,10 +72,12 @@ class DoubleBarChart extends Component {
       .then(response => {
         console.log(response.data);
         const twitterNames = [];
+        const twitterImgs = [];
         const projData = [];
         const names = response.data.projected.map(player => {
           projData.push(player.FantasyPointsYahoo);
           twitterNames.push(player.twitterID);
+          twitterImgs.push(player.image_url);
           return player.Name;
         });
         overlayData.labels = names;
@@ -91,7 +95,9 @@ class DoubleBarChart extends Component {
           const data = myChart.getElementsAtEvent(e);
           if (data[0]) {
             const twitterHandle = twitterNames[data[0]._index];
-            console.log(twitterHandle);
+            const twitterImg = twitterImgs[data[0]._index];
+            console.log(twitterImg);
+            this.props.getPlayerTweets([twitterHandle, twitterImg]);
           }
         };
       });
@@ -101,7 +107,7 @@ class DoubleBarChart extends Component {
     return (
       <div className="chart-container">
         <h5>2016 Projected Top 20 {this.props.position}s</h5>
-        <canvas id={`double-bar-chart-${this.props.position}`} ></canvas>
+        <canvas id={`double-bar-chart-${this.props.position}`} />
       </div>
     );
   }
@@ -110,7 +116,7 @@ class DoubleBarChart extends Component {
 function mapStateToProps(state) {
   return {
     playerTweets: state.playerTweets,
-  }
+  };
 }
 
-export default connect(mapStateToProps)(DoubleBarChart);
+export default connect(mapStateToProps, { getPlayerTweets })(DoubleBarChart);

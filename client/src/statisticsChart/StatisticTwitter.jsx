@@ -15,11 +15,18 @@ class StatisticsTwitter extends Component {
         </div>
         <div className="statistics-twitter-tweets">
           <div className="statistics-twitter-title"> Twitter Title </div>
-          <StatisticsTwitterList />
+          <StatisticsTwitterList playerTweets={this.props.playerTweets} />
         </div>
       </div>
     );
   }
 }
 
-export default StatisticsTwitter;
+function mapStateToProps(state) {
+  return {
+    playerTweets: state.playerTweets,
+  };
+}
+
+
+export default connect(mapStateToProps, null)(StatisticsTwitter);

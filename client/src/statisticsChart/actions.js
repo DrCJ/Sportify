@@ -1,17 +1,16 @@
 import axios from 'axios';
-import { STATS_GET_PLAYER_TWEETS } from './actionTypes';
 
-export function statsGetPlayerTweets(playerName) {
+export function getPlayerTweets(twitterHandle) {
   const request = axios({
     method: 'post',
-    url: '/api/statsGetPlayerTweets',
-    data: playerName,
+    url: '/api/getPlayersTweets',
+    data: { twitterID: twitterHandle[0], playerImg: twitterHandle[1] },
     header: {
       'Content-Type': 'application/json',
     },
   });
   return {
-    type: STATS_GET_PLAYER_TWEETS,
+    type: 'GET_PLAYER_TWEETS',
     payload: request,
   };
 }

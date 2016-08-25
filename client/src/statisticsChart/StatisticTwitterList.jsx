@@ -1,14 +1,24 @@
 import React from 'react';
+import StatisticTwitterListEntry from './StatisticTwitterListEntry.jsx';
 
-// import StatisticTwitterListEntry from './StatisticTwitterListEntry';
 
-const StatisticsTwitterList = (props) => (
-  <ul className="statistics-twitter-list">
-    <li className="statistics-twitter-list-entry"> Player Tweet One </li>
-    <li className="statistics-twitter-list-entry"> Player Tweet Two </li>
-    <li className="statistics-twitter-list-entry"> Player Tweet Three </li>
-    <li className="statistics-twitter-list-entry"> Player Tweet Four </li>
-  </ul>
-);
+const StatisticsTwitterList = ({ playerTweets }) => {
+
+  if (playerTweets.data) {
+    return (
+
+      <ul className="statistics-twitter-list">
+        {console.log(playerTweets, 'playerTeets')}
+        { playerTweets.data.map((tweet) =>
+          <StatisticTwitterListEntry createdAt={tweet.created_At} text={tweet.text} />
+        )}
+      </ul>
+    );
+  }
+
+  return (
+    <div>Gimma some tweets!</div>
+  );
+}
 
 export default StatisticsTwitterList;

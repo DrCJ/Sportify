@@ -147,8 +147,8 @@ module.exports = {
     const season = req.body.season || 2016;
     const limit = req.body.limit || 20;
     const result = {};
-    const q = `SELECT "playerId", "FantasyPointsYahoo", "Name", "players"."twitterID"
-    FROM "playerProjectedYears" INNER JOIN "players"
+    const q = `SELECT "playerId", "FantasyPointsYahoo", "Name", "players"."twitterID",
+    "players"."image_url" FROM "playerProjectedYears" INNER JOIN "players"
     ON "playerProjectedYears"."playerId" = "players"."id"
     WHERE "Position"='${position}'
     AND "Season"='${season}' ORDER BY "FantasyPointsYahoo"
@@ -166,6 +166,13 @@ module.exports = {
         result.actual = stats2[0];
         res.send(result);
       });
+    });
+  },
+  getPlayersTweets: (req, res) => {
+    const playerImg = req.body.playerImg;
+    Twitter.getTweetsFromPlayer(req.body.twitterID, tweets => {
+      tweets[0].user.profile_image_url = playerImg;
+      res.send(tweets);
     });
   },
 };

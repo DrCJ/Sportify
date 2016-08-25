@@ -7,6 +7,11 @@ router.get('/getTweets', (req, res) => {
   twiterController.getTweetsFromPlayer(req, res);
 });
 
+router.post('/getPlayersTweets', (req, res) => {
+  console.log(req.body, 'getPlayersTweets');
+  playersController.getPlayersTweets(req, res);
+});
+
 router.get('/getAllPlayers', (req, res) => {
   playersController.getAllPlayers(req, res);
 });
