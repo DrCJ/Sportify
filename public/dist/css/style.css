@@ -52,4 +52,17 @@ table {
   border-spacing: 0;
 }
 
+body * {
+  box-sizing: border-box;
+}
+
+.center-content {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+header {
+  border-bottom: 1px solid #dedede;
+}
+
 /*# sourceMappingURL=style.css.map */

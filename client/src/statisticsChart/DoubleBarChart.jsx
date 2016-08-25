@@ -1,25 +1,7 @@
 import Chart from 'chart.js';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-
-import { getPlayerTweets, getTop20Players } from './actions';
-
-// const getChartData = (position, year, limit) => {
-//   const request = axios({
-//     method: 'post',
-//     url: '/api/getProjectedVsActual',
-//     data: {
-//       position,
-//       year,
-//       limit,
-//     },
-//     header: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-//   return request;
-// };
+import { getPlayerTweets } from './actions';
 
 class DoubleBarChart extends Component {
   constructor(props) {
@@ -102,7 +84,6 @@ class DoubleBarChart extends Component {
   render() {
     return (
       <div className="chart-container">
-        <h5>2016 Projected Top 20 {this.props.position}s</h5>
         <canvas id={`double-bar-chart-${this.props.position}`} />
       </div>
     );

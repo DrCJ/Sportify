@@ -58,7 +58,7 @@
     "test:e2e": "mocha spec/e2e",
     "upload": "zip -r -X Archive.zip *",
     "yahooWorker": "node server/workers/yahooPlayerDataWorker/getYahooPlayerData.js",
-    "build:css":  "sass --watch public/assets/scss/styles.scss:public/dist/css/style.css --style expanded"
+    "build:css":  "sass --watch public/assets/scss/styles.scss:public/dist/css/styles.css --style expanded"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",

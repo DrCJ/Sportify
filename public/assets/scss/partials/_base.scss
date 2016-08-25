@@ -1,0 +1,141 @@
+body {
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.center-content {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+header {
+  // border-bottom: 1px solid #dedede;
+  padding-top: 10px;
+  background: #000e33;
+  color: white;
+  &:after {
+    clear: both;
+    display: table;
+    content: "";
+  }
+}
+
+.logo-name {
+  font: 400 28px 'Helvetica', Arial, sans-serif;
+}
+.login-btn {
+  float: right;
+  position: relative;
+  bottom: 23px;
+}
+
+.nav-canvas {
+  display: none;
+}
+
+.menu-btn {
+  float: left;
+  background: transparent;
+  border: none;
+  margin-right: 15px;
+  span {
+    display: block;
+    width: 37px;
+    height: 3px;
+    margin-bottom: 5px;
+    background: white;
+  }
+}
+
+.charts-toggle-container {
+  width: 822px;
+  float: left;
+}
+.statistics-preview-container {
+  float: left;
+  width: 417px;
+}
+.statistics-twitter-player {
+  clear: both;
+}
+
+// Statistics Chart Style
+.toggle-tab {
+  display: inline-block;
+  width: 205.5px;
+  padding: 15px 0;
+  border: 1px solid black;
+  border-right: 0px solid transparent;
+  border-bottom: 0px solid transparent;
+  border-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-align: center;
+  &:last-of-type {
+    border-right: 1px solid black;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+
+.charts-wrapper {
+  border: 1px solid black;
+}
+.chart-container-QB {
+  .chart-container {
+    display: block;
+  }
+}
+
+.chart-container {
+  display: none;
+}
+
+.mathead-bg {
+  background: url(http://cdn.inquisitr.com/wp-content/uploads/2015/08/football-1440x444.jpg) no-repeat;
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
+  position: relative;
+  box-shadow: inset 5px 20px 95px 13px rgba(0,0,0,.5);
+  &:after {
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    content: " ";
+    background: rgba(0,0,0,.1);
+  }
+}
+
+
+
+
+
+
+// Compare preview profile
+.statistics-preview-player-image {
+  text-align: center;
+}
+.compare-preview-img {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #dedede;
+  border-radius: 100px;
+  overflow: hidden;
+  img {
+    width: 77%;
+    position: relative;
+    top: 5px;
+  }
+}
+.compare-against {
+  font-size: 20px;
+  position: relative;
+  bottom: 60px;
+  margin: 0 10px;
+}

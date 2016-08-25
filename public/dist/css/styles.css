@@ -1,0 +1,191 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.center-content {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+header {
+  padding-top: 10px;
+  background: #000e33;
+  color: white;
+}
+header:after {
+  clear: both;
+  display: table;
+  content: "";
+}
+
+.logo-name {
+  font: 400 28px 'Helvetica', Arial, sans-serif;
+}
+
+.login-btn {
+  float: right;
+  position: relative;
+  bottom: 23px;
+}
+
+.nav-canvas {
+  display: none;
+}
+
+.menu-btn {
+  float: left;
+  background: transparent;
+  border: none;
+  margin-right: 15px;
+}
+.menu-btn span {
+  display: block;
+  width: 37px;
+  height: 3px;
+  margin-bottom: 5px;
+  background: white;
+}
+
+.charts-toggle-container {
+  width: 822px;
+  float: left;
+}
+
+.statistics-preview-container {
+  float: left;
+  width: 417px;
+}
+
+.statistics-twitter-player {
+  clear: both;
+}
+
+.toggle-tab {
+  display: inline-block;
+  width: 205.5px;
+  padding: 15px 0;
+  border: 1px solid black;
+  border-right: 0px solid transparent;
+  border-bottom: 0px solid transparent;
+  border-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-align: center;
+}
+.toggle-tab:last-of-type {
+  border-right: 1px solid black;
+}
+.toggle-tab a {
+  text-decoration: none;
+}
+
+.charts-wrapper {
+  border: 1px solid black;
+}
+
+.chart-container-QB .chart-container {
+  display: block;
+}
+
+.chart-container {
+  display: none;
+}
+
+.mathead-bg {
+  background: url(http://cdn.inquisitr.com/wp-content/uploads/2015/08/football-1440x444.jpg) no-repeat;
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
+  position: relative;
+  box-shadow: inset 5px 20px 95px 13px rgba(0, 0, 0, 0.5);
+}
+.mathead-bg:after {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  content: " ";
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.statistics-preview-player-image {
+  text-align: center;
+}
+
+.compare-preview-img {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #dedede;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.compare-preview-img img {
+  width: 77%;
+  position: relative;
+  top: 5px;
+}
+
+.compare-against {
+  font-size: 20px;
+  position: relative;
+  bottom: 60px;
+  margin: 0 10px;
+}
+
+/*# sourceMappingURL=styles.css.map */

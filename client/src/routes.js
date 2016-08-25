@@ -10,6 +10,7 @@ import TeamView from './yahooTeam';
 import PlayerView from './player';
 import LeagueOverview from './league';
 import DIYStatsView from './diyStats';
+import DoubleBarChart from './statisticsChart/DoubleBarChart.jsx';
 
 export default (
   <Route path="/" component={App}>
