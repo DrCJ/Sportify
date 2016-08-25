@@ -40,7 +40,7 @@ class DIYStatsView extends Component {
     this.filters.Started = event.target[2].value;
     this.filters.PlayingSurface = event.target[3].value;
     this.filters.Day = event.target[4].value;
-    this.props.filter(this.props.modal, this.filters);
+    this.props.filter(this.props.modal[0][0], this.filters);
     setTimeout(() => this.props.calculateDifference(this.props.players[0], this.props.players[1]), 100);
   }
 
@@ -50,7 +50,7 @@ class DIYStatsView extends Component {
     .then(() => {
       const playerIdArray = { playerId: [this.props.search[0][0].playerId] };
       this.props.getOnePlayerModal(playerIdArray).then(() => {
-        this.props.filter(this.props.modal);
+        this.props.filter(this.props.modal[0][0]);
         setTimeout(() => this.props.calculateDifference(this.props.players[0], this.props.players[1]), 100);
       });
     });
