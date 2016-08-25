@@ -54,7 +54,7 @@ module.exports = (app, express, passport) => {
   app.get('/auth/yahoo/callback',
   passport.authenticate('yahoo', { failureRedirect: '/login' }),
     (req, res) => {
-      res.redirect('/');
+      res.redirect('/LeagueOverview');
     }
   );
 

@@ -8,7 +8,7 @@ import { fetchRoster } from './actions';
 import { getOnePlayerModal } from '../playerModal/actions';
 
 class TeamView extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRoster(this.props.params.league_key);
   }
 
@@ -19,7 +19,7 @@ class TeamView extends Component {
 
   renderRoster() {
     return this.props.yahooProfile.stats[0].map((player, index) => {
-      if(player.Week === 1) {
+      if(player.Week === 1 && player.Season === 2016) {
         return (
           <tbody key={index}>
             <PlayerEntryView key={player.id} player={player} />
