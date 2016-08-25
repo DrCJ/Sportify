@@ -22,16 +22,16 @@ db.Player.findAll({
   const nPlayers = r.length;
   const slice = Math.floor(nPlayers / droplets);
 
-  // for (let j = 0; j < droplets; j++) {
-    // const breakpoint = slice * (j + 1);
-    // playerNames.push([]);
+  for (let j = 0; j < droplets; j++) {
+    const breakpoint = slice * (j + 1);
+    playerNames.push([]);
     for (let i = 0; i < r.length; i++) {
       if (r[i]) {
-        // playerNames[j].push(r[i].dataValues.full);
+        playerNames[j].push(r[i].dataValues.full);
         playerNames.push(r[i].dataValues.full);
       }
     }
-  // }
+  }
   console.log(playerNames);
 
   google.resultsPerPage = 5;

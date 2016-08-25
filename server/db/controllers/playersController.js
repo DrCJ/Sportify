@@ -147,10 +147,11 @@ module.exports = {
     const season = req.body.season || 2016;
     const limit = req.body.limit || 20;
     const result = {};
-    const q = `SELECT "playerId", "FantasyPointsYahoo", "Name"
-    FROM "playerProjectedYears"
-    WHERE "Position"='${position}' AND
-    "Season"='${season}' ORDER BY "FantasyPointsYahoo"
+    const q = `SELECT "playerId", "FantasyPointsYahoo", "Name", "players"."twitterID"
+    FROM "playerProjectedYears" INNER JOIN "players"
+    ON "playerProjectedYears"."playerId" = "players"."id"
+    WHERE "Position"='${position}'
+    AND "Season"='${season}' ORDER BY "FantasyPointsYahoo"
     DESC LIMIT ${limit};`;
 
     db.query(q).then(stats => {

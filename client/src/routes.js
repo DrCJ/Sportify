@@ -13,7 +13,7 @@ import DIYStatsView from './diyStats';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={PlayerView} />
+    <IndexRoute component={StatisticsOverview} />
     <Route path="compare" component={Compare} />
     <Route path="schedule" component={Schedule} />
     <Route path="player" component={PlayerView} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import DoubleBarChart from './DoubleBarChart.jsx';
+import StatisticsTwitter from './StatisticTwitter.jsx';
 
 const StatisticsOverview = () => (
   <div className="center-content">
@@ -8,6 +9,7 @@ const StatisticsOverview = () => (
     <DoubleBarChart position="RB" />
     <DoubleBarChart position="WR" />
     <DoubleBarChart position="TE" />
+    <StatisticsTwitter />
   </div>
 );
 
