@@ -71,4 +71,4 @@ Database in Postgres, using Sequelize ORM
 |Get Projected Vs. Actual|/api/getProjectedVsActual|playersArray
 
 ## Deployment
-This has been deployed onto Digital Ocean using Docker containers. The backend architecture allows horizontal scaling of the solution worker to handle higher loads
+This has been deployed onto AWS using Docker containers.
