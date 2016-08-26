@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import LineChart from '../graph/LineChart';
+
 
 class ComparePlayers extends Component {
 
@@ -9,20 +11,22 @@ class ComparePlayers extends Component {
       return <div> loading </div>;
     }
     if (this.props.players[0][1]) {
-      playerTwo = <div className="compare-player2">{this.props.players[0][1].Name}
-                  <img
-                    className="player2-image"
-                    src={this.props.players[0][1].player.image_url}
-                  /></div>;
+      playerTwo = <div className="playerinfo">
+        {this.props.players[0][1].Name} <div className="compare-player2">
+        <img className="player2-image" src={this.props.players[0][1].player.image_url}
+        /></div></div>;
     }
     return (
       <div className="compare-container">
-        <div className="compare-player1">
+        <h3>Projected Fantasy Points per Weeks</h3>
+        <div className="playerinfo">
           {this.props.players[0][0].Name}
-          <img
-            className="player2-image"
-            src={this.props.players[0][0].player.image_url}
-          />
+          <div className="compare-player1">
+            <img className="player2-image" src={this.props.players[0][0].player.image_url} alt="" />
+          </div>
+        </div>
+        <div className="line-chart-container">
+          <LineChart />
         </div>
         {playerTwo}
       </div>

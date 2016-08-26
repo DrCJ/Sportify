@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchSpecificPlayers } from './actions';
 import ComparePlayerHeadshots from './ComparePlayerHeadshots';
 import ComparePlayerStats from './ComparePlayerStats';
-import LineChart from '../graph/LineChart';
 
 class Compare extends Component {
   constructor(props) {
@@ -36,7 +35,7 @@ class Compare extends Component {
     return (
       <div className='center-content'>
         <h1 className="compare-headline">Compare Players</h1>
-        <div className="search-container">
+        <div className="search-container compare-view">
           <form onSubmit={this.onSubmit}>
             <input type="text" name="name" placeholder="SEARCH" className="player1-search"/>
             <input type="text" name="name" placeholder="SEARCH" className="player2-search"/>
@@ -47,7 +46,6 @@ class Compare extends Component {
         </div>
         <ComparePlayerHeadshots />
         <ComparePlayerStats />
-        <LineChart />
       </div>
 		);
   }
