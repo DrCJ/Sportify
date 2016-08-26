@@ -599,6 +599,16 @@ span {
     position: relative;
     top: -16px;
   }
+  &.team-view {
+    position: relative;
+    top: -103px;
+    thead {
+      tr:first-of-type {
+        background: #000;
+        color: #fff;
+      }
+    }
+  }
   @extend %foo;
   table {
     width: 100%;
@@ -1131,4 +1141,54 @@ svg {
     margin: 10px 0;
     text-align: center;
   }
+}
+
+.team-view-headline {
+	position: relative;
+	font-size: 68px;
+	text-align: center;
+	color: #fff;
+  top: -180px;
+}
+
+.back-btn {
+  text-decoration: none;
+  font-size: 20px;
+  font-family: $fonts1;
+  color: #000;
+}
+
+.top-border-league {
+  border: 1px solid $border-color;
+  margin-bottom: 10px;
+  @extend %foo;
+  .league {
+    border-top: 4px solid #1a1a50;
+    padding: 22px 60px;
+    h1 {
+      font-size: 34px;
+      font-family: $fonts1;
+      margin-bottom: 20px;
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+    p {
+      font-size: 18px;
+      font-family: $fonts1;
+      margin-bottom: 10px;
+      a {
+        color: #000;
+      }
+    }
+  }
+}
+
+.league-headline {
+  font-size: 68px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  top: -138px;
 }

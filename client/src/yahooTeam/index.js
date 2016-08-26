@@ -31,14 +31,17 @@ class TeamView extends Component {
 
   render() {
     return (
-      <div className="center-content">
-        <Link to="/LeagueOverview">Back to My Leagues</Link>
-        <h1>Team View</h1>
-        <div className="player-table">
-          <table>
-            <StatHeadings />
-            {this.renderRoster()}
-          </table>
+      <div>
+        <div className="mathead-bg"></div>
+        <div className="center-content">
+          <h1 className="team-view-headline">Team View</h1>
+          <div className="player-table team-view">
+            <table>
+              <StatHeadings />
+              {this.renderRoster()}
+            </table>
+          </div>
+          <Link to="/LeagueOverview" className="back-btn">Back to My Leagues</Link>
         </div>
       </div>
     );

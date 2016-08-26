@@ -1,8 +1,8 @@
 const INITIAL_STATE =
   [
     [
-      { Name: 'Aaron', player: { image_url: 'http://127.0.0.1/assets/profile_default_wide.png' } },
-      { Name: 'Cam', player: { image_url: 'http://127.0.0.1/assets/profile_default_wide.png' } },
+      { Name: 'Aaron', player: { image_url: 'http://sportify.online/assets/profile_default_wide.png' } },
+      { Name: 'Cam', player: { image_url: 'http://sportify.online/assets/profile_default_wide.png' } },
     ],
   ];
 
