@@ -171,8 +171,10 @@ module.exports = {
   getPlayersTweets: (req, res) => {
     const playerImg = req.body.playerImg;
     Twitter.getTweetsFromPlayer(req.body.twitterID, tweets => {
-      tweets[0].user.profile_image_url = playerImg;
-      res.send(tweets);
+      if (tweets[0]) {
+        tweets[0].user.profile_image_url = playerImg;
+        res.send(tweets);
+      }
     });
   },
 };

@@ -20,6 +20,7 @@ class StatisticsOverview extends Component {
     }
   }
   componentDidMount() {
+    
     const positions = {
       QB: this.getChartData('QB').then(data => { this.setState({ QB: data })}),
       RB: this.getChartData('RB').then(data => { this.setState({ RB: data })}),
@@ -45,11 +46,15 @@ class StatisticsOverview extends Component {
 
   handleClick(evt) {
     const value = evt.target.attributes[0].value;    // const  = evt.target.data;
-
     _.forEach(document.getElementsByClassName('chart-container'),(elementClass) => {
       elementClass.style.display = 'none';
     });
+    _.forEach(document.getElementsByClassName('toggle-tab'),(elementClass) => {
+      elementClass.className = 'toggle-tab tab-inactive';
+    });
+
     const currentChart = document.getElementsByClassName(`chart-container-${value}`);
+    evt.target.parentNode.className = 'toggle-tab tab-active';
     currentChart[0].childNodes[0].style.display = 'block';
   }
   render() {
@@ -59,24 +64,24 @@ class StatisticsOverview extends Component {
           <div className="charts-toggle-container">
             <h1>Statistics Overview</h1>
             <div className="toggle-control">
-              <div className="toggle-tab">
+              <div className="toggle-tab tab-active">
                 <span data-position="QB" onClick={this.handleClick}>
-                  `'16 Projected Top 20 QBs`
+                  QUARTERBACKS
                 </span>
               </div>
-              <div className="toggle-tab">
+              <div className="toggle-tab tab-inactive">
                 <span data-position="WR" onClick={this.handleClick}>
-                  `'16 Projected Top 20 WRs`
+                  WIDE RECEIVERS
                 </span>
               </div>
-              <div className="toggle-tab">
+              <div className="toggle-tab tab-inactive">
                 <span data-position="RB" onClick={this.handleClick}>
-                  `'16 Projected Top 20 RBs`
+                  RUNNINGBACKS
                 </span>
               </div>
-              <div className="toggle-tab">
+              <div className="toggle-tab tab-inactive">
                 <span data-position="TE" onClick={this.handleClick}>
-                  `'16 Projected Top 20 TEs`
+                  TIGHT ENDS
                 </span>
               </div>
             </div>
@@ -93,10 +98,15 @@ class StatisticsOverview extends Component {
               <div className="chart-container-TE">
                 <DoubleBarChart position={"TE"} positions={this.state.TE} />
               </div>
+              <StatisticsTwitter />
             </div>
           </div>
-          <StatisticsComparePreview positions={this.state.QB} />
-          <StatisticsTwitter />
+          <sidebar className="compare-sidebar">
+            <StatisticsComparePreview positions={this.state.QB} />
+            <StatisticsComparePreview positions={this.state.RB} />
+            <StatisticsComparePreview positions={this.state.WR} />
+            <StatisticsComparePreview positions={this.state.TE} />
+          </sidebar>
         </div>
       );
     }
