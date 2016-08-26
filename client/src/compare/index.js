@@ -30,7 +30,7 @@ class Compare extends Component {
   render() {
     return (
       <div className='center-content'>
-        <h1>Compare Players</h1>
+        <h1 className="compare-headline">Compare Players</h1>
         <div className="search-container">
           <form onSubmit={this.onSubmit}>
             <input type="text" name="name" placeholder="SEARCH" className="player1-search"/>

@@ -19,7 +19,6 @@ class App extends Component {
         <div onClick={this.props.closeModal} className="shadow-modal" />
         <div className="main-content">
           <Header />
-          <div className="mathead-bg"></div>
           <PlayerModal />
           {this.props.children}
         </div>

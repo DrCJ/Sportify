@@ -12,7 +12,7 @@ class PlayerSearchInput extends Component {
   render() {
     const playerNames = ['Antonio Brown', 'Deandre Hopkins', 'Andrew Luck'];
     return (
-      <div>
+      <div className="player-submit-btn">
         <input list="playerSearch"
           type="submit"
           className="button filter-form-select-button"

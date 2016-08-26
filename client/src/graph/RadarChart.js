@@ -218,7 +218,7 @@ class RadarChart extends Component {
       },
     };
 
-    const w = 500;
+    const w = 300;
     const h = 500;
 
     const colorscale = d3.scaleOrdinal(d3.schemeCategory10);
@@ -245,9 +245,8 @@ class RadarChart extends Component {
     };
 
     const d = [[]];
-
     for (const stat in topStats) {
-      const statValue = (this.props.players[0][stat] * 100) / topStats[stat];
+      const statValue = (this.props.modal[0][0][0][stat] * 100) / topStats[stat];
       d[0].push({ axis: stat, value: (statValue / 100) });
     }
 
@@ -271,7 +270,7 @@ class RadarChart extends Component {
     .attr('height', h);
 
     node.style.setProperty('width', w + 300);
-    node.style.setProperty('height', h);
+    node.style.setProperty('height', h + 100);
     node.style.setProperty('background', 'white');
     //Call function to draw the Radar chart
     //Will expect that data is in %'s
@@ -325,7 +324,7 @@ class RadarChart extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.players };
+  return { modal: state.modal };
 }
 
 export default connect(mapStateToProps)(RadarChart);
