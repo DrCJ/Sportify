@@ -1,0 +1,12 @@
+@mixin background-gradient($color1, $color2) {
+  background: $color1;
+  background: -webkit-linear-gradient(to left, $color1 , $color2);
+  background: linear-gradient(to left, $color1 , $color2);
+}
+
+@mixin prefix-prop($prop, $value) {
+  -webkit-#{$prop}: $value;
+  -moz-#{$prop}: $value;
+  -o-#{$prop}: $value;
+  $prop: $value;
+}
