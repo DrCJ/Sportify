@@ -20,7 +20,7 @@ class StatisticsOverview extends Component {
     }
   }
   componentDidMount() {
-    
+
     const positions = {
       QB: this.getChartData('QB').then(data => { this.setState({ QB: data })}),
       RB: this.getChartData('RB').then(data => { this.setState({ RB: data })}),

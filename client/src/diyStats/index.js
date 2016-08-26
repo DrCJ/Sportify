@@ -133,7 +133,7 @@ class DIYStatsView extends Component {
   render() {
     let playerImage, playerStats;
     if (this.props.search[0][0].player) {
-      playerImage = <img src={this.props.search[0][0].player.image_url.substring(155)} width="240px" role="presentation"/>;
+      playerImage = <img src={this.props.search[0][0].player.image_url} width="240px" role="presentation"/>;
     }
     return (
       <div className="center-content">

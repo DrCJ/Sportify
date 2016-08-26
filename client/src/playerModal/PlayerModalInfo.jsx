@@ -6,7 +6,7 @@ const PlayerModalInfo = ({ modal }) => (
   <div className="modal-player-info">
     <img
       className="modal-player-image" height="150" width="90" role="presentation"
-      src={modal[0][0][0].image_url ? modal[0][0][0].image_url.substring(155) : 'hello' || 'http://photos.state.gov/libraries/poland/8755/july2012/football.jpg'} />
+      src={modal[0][0][0].image_url ? modal[0][0][0].image_url : 'hello' || 'http://photos.state.gov/libraries/poland/8755/july2012/football.jpg'} />
     <PlayerTweets tweets={modal[1]} />
     <span className="modal-player-bio">
       <ul>
