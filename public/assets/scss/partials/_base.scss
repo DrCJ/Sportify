@@ -1192,3 +1192,18 @@ svg {
   position: relative;
   top: -138px;
 }
+
+footer {
+  background: $footer-bg-color;
+  height: 70px;
+  color: #fff;
+  margin-top: 50px;
+  padding-top: 20px;
+  // position: absolute;
+  bottom: 0;
+  width: 100%;
+  p {
+    font-size: 20px;
+    font-family: $fonts1;
+  }
+}
