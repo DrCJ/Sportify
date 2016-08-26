@@ -18,7 +18,6 @@ export function getOnePlayerModal(playerId) {
       'Content-Type': 'application/json',
     },
   });
-  console.log('player modal: ', request);
   return {
     type: 'GET_ONE_PLAYER_MODAL',
     payload: request,
