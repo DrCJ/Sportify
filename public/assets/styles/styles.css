@@ -863,3 +863,10 @@ svg {
 	height: 50px;
 	overflow: scroll;
 }
+
+.team-view-headline {
+	position: relative;
+	font-size: 68px;
+	text-align: center;
+	color: #fff;
+}
