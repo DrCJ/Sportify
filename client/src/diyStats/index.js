@@ -141,9 +141,7 @@ class DIYStatsView extends Component {
         <div className="search-container">
           <form onSubmit={this.onSearch}>
             <input type="text" name="name" placeholder="SEARCH" />
-            <noscript>
             <button type="Submit" >Submit</button>
-            </noscript>
           </form>
         </div>
         <div className='DIYStatement'>
