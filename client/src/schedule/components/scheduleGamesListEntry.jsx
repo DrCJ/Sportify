@@ -14,6 +14,10 @@ class ScheduleGamesListEntry extends Component {
     const momentDate = moment(date);
     const monthNum = momentDate.month();
     const convertedDate = momentDate._d;
+    const convertedDay = convertedDate.toLocaleString();
+    console.dir(convertedDate);
+    // const convertedHours = convertedDate.getLocaleHours();
+
 
     const monthDayNum = momentDate.date();
     const yearNum = momentDate.year();
@@ -24,16 +28,21 @@ class ScheduleGamesListEntry extends Component {
     return (
 
       <div className="schedule-game">
-        <span className={team1}>{awayTeam}
+        <span className={team1}>
           <img className="schedule-image" alt={awayTeam} src={teamImages[awayTeam]} />
         </span>
-        <span className="schedule-time"> {convertedDate.toString()} </span>
-        <span className={team2} >{homeTeam}
+        <span className={team2}>
           <img className="schedule-image" alt={homeTeam} src={teamImages[homeTeam]} />
         </span>
+        <div className="schedule-time">
+          <span className="team1-name">{awayTeam}</span>
+          <span className="at-sign">@</span>
+          {convertedDate.toString()}
+          <span className="team2-name"> {homeTeam}</span>
+        </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default ScheduleGamesListEntry;
