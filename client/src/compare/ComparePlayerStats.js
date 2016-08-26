@@ -23,7 +23,7 @@ class ComparePlayerStats extends Component {
       return <div> loading </div>;
     }
     return (
-      <div>
+      <div className="player-table compare">
         <table>
           <thead>
             <tr>
