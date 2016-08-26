@@ -12,12 +12,14 @@ class LeagueOverview extends Component {
   renderLeagues() {
     return this.props.leagues.map((league, index) => {
       return (
-        <div className="league">
-          <h1 key={index}><Link to={`/TeamView/${league.league_key}`}>{league.name}</Link></h1>
-          <p><a href={league.url}>Yahoo link</a></p>
-          <p><b>Season:</b> {league.season}</p>
-          <p><b>Current Week:</b> {league.current_week}</p>
-          <p><b>Number of Teams:</b> {league.num_teams}</p>
+        <div className="top-border-league">
+          <div className="league">
+            <h1 key={index}><Link to={`/TeamView/${league.league_key}`}>{league.name}</Link></h1>
+            <p><a href={league.url}>Yahoo link</a></p>
+            <p><b>Season:</b> {league.season}</p>
+            <p><b>Current Week:</b> {league.current_week}</p>
+            <p><b>Number of Teams:</b> {league.num_teams}</p>
+          </div>
         </div>
       );
     });
@@ -25,9 +27,12 @@ class LeagueOverview extends Component {
 
   render() {
     return (
-      <div className="center-content">
-        <h1>League Overview</h1>
-        {this.renderLeagues()}
+      <div>
+        <div className="mathead-bg" />
+        <div className="center-content">
+          <h1 className="league-headline">League Overview</h1>
+          {this.renderLeagues()}
+        </div>
       </div>
     );
   }
