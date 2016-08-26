@@ -9,7 +9,7 @@ class DoubleBarChart extends Component {
   }
 
   componentDidMount() {
-    this.props.getPlayerTweets(["CameronNewton", "http://l.yimg.com/iu/api/res/1.2/hC3SL6U55jv3yN9l3iegmQ--/YXBwaWQ9c2hhcmVkO2NoPTIzMzY7Y3I9MTtjdz0xNzkwO2R4PTg1NztkeT0wO2ZpPXVsY3JvcDtoPTYwO3E9MTAwO3c9NDY-/https://s.yimg.com/xe/i/us/sp/v/nfl_cutout/players_l/20141101/24788.png"])
+    this.props.getPlayerTweets(["CameronNewton", "http://l.yimg.com/bt/api/res/1.2/2tmIVsI_80Hm15XpgucY_g--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nfl_cutout/players_l/20141101/24788.png"])
     const overlayData = {
       labels: [
         'Adrian Peterson', 'Devonta Freeman', 'Jamaal Charles', 'Todd Gurley',

@@ -12,7 +12,7 @@ class ComparePlayers extends Component {
       playerTwo = <div className="compare-player2">{this.props.players[0][1].Name}
                   <img
                     className="player2-image"
-                    src={this.props.players[0][1].player.image_url.substring(155)}
+                    src={this.props.players[0][1].player.image_url}
                   /></div>;
     }
     return (
@@ -21,7 +21,7 @@ class ComparePlayers extends Component {
           {this.props.players[0][0].Name}
           <img
             className="player2-image"
-            src={this.props.players[0][0].player.image_url.substring(155)}
+            src={this.props.players[0][0].player.image_url}
           />
         </div>
         {playerTwo}
