@@ -7,6 +7,10 @@ class ScheduleNavigationWeekEntry extends Component {
     super(props);
     this.handleWeekButtonClick = this.handleWeekButtonClick.bind(this);
   }
+  componentDidMount() {
+    this.props.getGamesSchedule({ week: 1});
+  }
+
   handleWeekButtonClick(e) {
     const dataObj = { week: e.target.value };
     this.props.getGamesSchedule(dataObj);
