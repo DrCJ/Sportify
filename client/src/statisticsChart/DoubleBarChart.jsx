@@ -1,25 +1,7 @@
 import Chart from 'chart.js';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-
-import { getPlayerTweets, getTop20Players } from './actions';
-
-// const getChartData = (position, year, limit) => {
-//   const request = axios({
-//     method: 'post',
-//     url: '/api/getProjectedVsActual',
-//     data: {
-//       position,
-//       year,
-//       limit,
-//     },
-//     header: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
-//   return request;
-// };
+import { getPlayerTweets } from './actions';
 
 class DoubleBarChart extends Component {
   constructor(props) {
@@ -27,6 +9,7 @@ class DoubleBarChart extends Component {
   }
 
   componentDidMount() {
+    this.props.getPlayerTweets(["CameronNewton", "http://l.yimg.com/iu/api/res/1.2/hC3SL6U55jv3yN9l3iegmQ--/YXBwaWQ9c2hhcmVkO2NoPTIzMzY7Y3I9MTtjdz0xNzkwO2R4PTg1NztkeT0wO2ZpPXVsY3JvcDtoPTYwO3E9MTAwO3c9NDY-/https://s.yimg.com/xe/i/us/sp/v/nfl_cutout/players_l/20141101/24788.png"])
     const overlayData = {
       labels: [
         'Adrian Peterson', 'Devonta Freeman', 'Jamaal Charles', 'Todd Gurley',
@@ -38,7 +21,7 @@ class DoubleBarChart extends Component {
           label: '2016 Projected Points',
           type: 'bar',
           yAxesGroup: '1',
-          backgroundColor: 'rgba(124,211,83,0.5)',
+          backgroundColor: 'rgba(90,107,43,0.7)',
           borderColor: 'rgba(151,137,200,0.8)',
           // highlightFill: 'rgba(151,137,200,0.75)',
           highlightStroke: 'rgba(151,137,200,1)',
@@ -48,9 +31,8 @@ class DoubleBarChart extends Component {
           label: '2015 Actual Points',
           type: 'bar',
           yAxesGroup: '2',
-          backgroundColor: 'rgba(217,113,64,0.5)',
+          backgroundColor: 'rgba(122,63,55,0.7)',
           borderColor: 'rgba(151,187,205,0.8)',
-          // highlightFill: 'rgba(151,187,205,0.75)',
           highlightStroke: 'rgba(151,187,205,1)',
           data: [11, 12.2, 9.6, 11.1, 10.1, 11, 9, 12, 10, 13],
         }
@@ -102,7 +84,6 @@ class DoubleBarChart extends Component {
   render() {
     return (
       <div className="chart-container">
-        <h5>2016 Projected Top 20 {this.props.position}s</h5>
         <canvas id={`double-bar-chart-${this.props.position}`} />
       </div>
     );

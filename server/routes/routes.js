@@ -8,7 +8,6 @@ router.get('/getTweets', (req, res) => {
 });
 
 router.post('/getPlayersTweets', (req, res) => {
-  console.log(req.body, 'getPlayersTweets');
   playersController.getPlayersTweets(req, res);
 });
 

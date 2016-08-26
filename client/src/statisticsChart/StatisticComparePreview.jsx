@@ -10,16 +10,25 @@ const StatisticsComparePreview = ({ positions }) => {
   <div className="statistics-preview-container">
     <h3> Compare Preview </h3>
     <div className="statistics-preview-player-image">
-      <img alt="player one name" src={positions.data.projected[0].image_url} />
-      // Change these to images
-      <img alt="player one name" src={positions.data.projected[1].image_url} />
+      <div className="compare-preview-info">
+        <div className="compare-preview-img">
+          <img alt="player one name" src={positions.data.projected[0].image_url} />
+        </div>
+        <p> {positions.data.projected[0].FantasyPointsYahoo} </p>
+      </div>
+      <span className="compare-against">VS</span>
+      <div className="compare-preview-info">
+        <div className="compare-preview-img">
+          <img alt="player one name" src={positions.data.projected[1].image_url} />
+        </div>
+        <p> {positions.data.projected[1].FantasyPointsYahoo}</p>
+      </div>
     </div>
     <div className="statistics-preview-player-points">
-      <p> {positions.data.projected[0].FantasyPointsYahoo} </p>
-      <p> {positions.data.projected[1].FantasyPointsYahoo}</p>
     </div>
-    <Link to="compare" className="statistics-preview-link"> View More! </Link>
-            // Change this to an Link Router
+    <Link to="compare" className="statistics-preview-link">
+      <button className="btn-compare">View More!</button>
+    </Link>
   </div>
 );
 };

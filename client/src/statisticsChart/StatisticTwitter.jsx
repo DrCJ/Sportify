@@ -8,17 +8,21 @@ class StatisticsTwitter extends Component {
     super(props);
   }
   render() {
+    if (this.props.playerTweets.data) {
+      return (
+        <div className="statistics-twitter-container">
+          <div className="statistics-twitter-player">
+            <h1 className="statistics-twitter-headline">{`Don't miss out what's going with ${this.props.playerTweets.data[0].user.name}`}</h1>
+          </div>
+          <div className="statistics-twitter-tweets">
+            <StatisticsTwitterList playerTweets={this.props.playerTweets} />
+          </div>
+        </div>
+      );
+    }
     return (
-      <div className="statistics-twitter-container">
-        <div className="statistics-twitter-player">
-          <div> This will be player image </div>
-        </div>
-        <div className="statistics-twitter-tweets">
-          <div className="statistics-twitter-title"> Twitter Title </div>
-          <StatisticsTwitterList playerTweets={this.props.playerTweets} />
-        </div>
-      </div>
-    );
+      <div></div>
+    )
   }
 }
 
