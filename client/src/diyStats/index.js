@@ -157,7 +157,7 @@ class DIYStatsView extends Component {
           <button type='Submit' className='button filter-form-select-button'>Submit</button>
         </form>
 
-        <table>
+        <table className="player-table">
           <StatHeadings />
           {this.renderStats()}
         </table>
