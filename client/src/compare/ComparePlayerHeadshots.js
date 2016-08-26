@@ -15,7 +15,7 @@ class ComparePlayers extends Component {
         playerTwo = <div className="compare-player2">Roy Eun
           <img
             className="player2-image"
-            src='http://i.imgur.com/psLnPq3.jpg'
+            src='http://i.imgur.com/4cigE6S.png'
             /></div>
       } else {
         playerTwo = <div className="compare-player2">{this.props.players[0][1].Name}
