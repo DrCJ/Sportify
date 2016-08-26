@@ -46,6 +46,7 @@ See [github.md](github.md) for contribution and github workflow guidelines.
 
 ## Architecture
 ### High Level Architecture
+![]([Imgur](http://i.imgur.com/jtR97Rk.png)
 ### Database Schema
 Database in Postgres, using Sequelize ORM
 ![](http://i.imgur.com/sHmO9RW.png)
