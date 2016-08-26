@@ -4,10 +4,8 @@ export function toggleNavigation() {
   const navCanvasClick = document.getElementsByClassName('nav-canvas');
   const mainContentClick = document.getElementsByClassName('main-content');
   const shadowClick = document.getElementsByClassName('shadow');
-  const menuBtn = document.getElementsByClassName('menu-btn');
 
-  const navOpen = (evt) => {
-    menuBtn[0].className = 'menu-btn open';
+  const navOpen = () => {
     navCanvasClick[0].className = 'nav-canvas-clicked';
     mainContentClick[0].className = 'main-content-clicked';
     shadowClick[0].className = 'shadow-click';
