@@ -126,7 +126,7 @@ class DIYStatsView extends Component {
       );
     } else {
       return (
-        <h3>Conclusive Statement</h3>
+        <div />
       );
     }
   }
@@ -136,31 +136,45 @@ class DIYStatsView extends Component {
       playerImage = <img src={this.props.search[0][0].player.image_url} width="240px" role="presentation"/>;
     }
     return (
-      <div className="center-content">
-        <h1>DIY Stats View</h1>
-        <div className="search-container">
-          <form onSubmit={this.onSearch}>
-            <input type="text" name="name" placeholder="SEARCH" />
-            <noscript>
-            <button type="Submit" >Submit</button>
-            </noscript>
-          </form>
+      <div>
+        <div className="mathead-bg"></div>
+        <div className="center-content">
+          <div className="offset-up">
+            <h1 className="dyi-headline">Customizable Stats Query</h1>
+            <div className="filter-form">
+              <div className="DIYPlayer">
+                {playerImage}
+              </div>
+              <div className="dyi-right-container">
+                <div className="search-container">
+                  <form onSubmit={this.onSearch}>
+                    <input type="text" className="search-dyi" name="name" placeholder="SEARCH PLAYER" />
+                    <noscript>
+                      <button type="Submit" >Submit</button>
+                    </noscript>
+                  </form>
+                </div>
+                <form onSubmit={this.onFieldSubmit} className='filter-form DYI-Form'>
+                  <div className="dyi-filter-container">
+                    {this.renderFilters()}
+                    <div className="player-submit-btn">
+                      <input type="Submit" className="button filter-form-select-button" value="Submit" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="player-table">
+              <table>
+                <StatHeadings />
+                {this.renderStats()}
+              </table>
+            </div>
+            <div className="DIYStatement">
+              {this.renderStatement()}
+            </div>
+          </div>
         </div>
-        <div className='DIYStatement'>
-          {this.renderStatement()}
-        </div>
-        <div className='DIYPlayer'>
-          {playerImage}
-        </div>
-        <form onSubmit={this.onFieldSubmit} className='filter-form'>
-          {this.renderFilters()}
-          <button type='Submit' className='button filter-form-select-button'>Submit</button>
-        </form>
-
-        <table>
-          <StatHeadings />
-          {this.renderStats()}
-        </table>
       </div>
     );
   }
