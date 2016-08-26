@@ -2,8 +2,10 @@ export function closeNavigation() {
   const mainContentClosed = document.getElementsByClassName('main-content-clicked');
   const shadowClosed = document.getElementsByClassName('shadow-click');
   const navCanvasClosed = document.getElementsByClassName('nav-canvas-clicked');
+  const menuBtn = document.getElementsByClassName('menu-btn');
 
   const navClose = () => {
+    menuBtn[0].className = 'menu-btn';
     navCanvasClosed[0].className = 'nav-canvas';
     mainContentClosed[0].className = 'main-content';
     shadowClosed[0].className = 'shadow';
