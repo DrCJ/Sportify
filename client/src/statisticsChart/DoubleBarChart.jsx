@@ -50,35 +50,38 @@ class DoubleBarChart extends Component {
 
     let ctx = document.getElementById(`double-bar-chart-${this.props.position}`);
 
-        console.log(this.props.positions.data);
-        const twitterNames = [];
-        const twitterImgs = [];
-        const projData = [];
-        const names = this.props.positions.data.projected.map(player => {
-          projData.push(player.FantasyPointsYahoo);
-          twitterNames.push(player.twitterID);
-          twitterImgs.push(player.image_url);
-          return player.Name;
-        });
-        overlayData.labels = names;
-        const actualData = this.props.positions.data.actual.map(player => player.FantasyPointsYahoo);
+        if (this.props.positions) {
+          console.log(this.props.positions.data);
+            
+          const twitterNames = [];
+          const twitterImgs = [];
+          const projData = [];
+          const names = this.props.positions.data.projected.map(player => {
+            projData.push(player.FantasyPointsYahoo);
+            twitterNames.push(player.twitterID);
+            twitterImgs.push(player.image_url);
+            return player.Name;
+          });
+          overlayData.labels = names;
+          const actualData = this.props.positions.data.actual.map(player => player.FantasyPointsYahoo);
 
-        overlayData.datasets[0].data = projData;
-        overlayData.datasets[1].data = actualData;
+          overlayData.datasets[0].data = projData;
+          overlayData.datasets[1].data = actualData;
 
-        const myChart = new Chart(ctx, {
-          type: 'bar',
-          data: overlayData,
-        });
+          const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: overlayData,
+          });
 
-        myChart.chart.canvas.onclick = e => {
-          const data = myChart.getElementsAtEvent(e);
-          if (data[0]) {
-            const twitterHandle = twitterNames[data[0]._index];
-            const twitterImg = twitterImgs[data[0]._index];
-            this.props.getPlayerTweets([twitterHandle, twitterImg]);
-          }
-        };
+          myChart.chart.canvas.onclick = e => {
+            const data = myChart.getElementsAtEvent(e);
+            if (data[0]) {
+              const twitterHandle = twitterNames[data[0]._index];
+              const twitterImg = twitterImgs[data[0]._index];
+              this.props.getPlayerTweets([twitterHandle, twitterImg]);
+            }
+          };
+        }
   }
 
   render() {
