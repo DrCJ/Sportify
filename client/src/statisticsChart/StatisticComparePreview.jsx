@@ -26,7 +26,7 @@ const StatisticsComparePreview = ({ positions }) => {
     </div>
     <div className="statistics-preview-player-points">
     </div>
-    <Link to={`compare/${positions.data.projected[0].Name}/${positions.data.projected[1].Name}`} className="statistics-preview-link">
+    <Link to={`compare/?${positions.data.projected[0].Name}?${positions.data.projected[1].Name}`} className="statistics-preview-link">
       <button className="btn-compare">View More!</button>
     </Link>
   </div>
