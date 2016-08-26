@@ -16,7 +16,6 @@
 1. [Architecture](#architecture)
 1. [API](#api)
 1. [Deployment](#deployment)
-1. [Testing](#testing)
 
 ## Usage
 Login to your fantasy football yahoo account and check your team's projections, compare player statistics, and create your own unique statistics.
@@ -71,9 +70,3 @@ Database in Postgres, using Sequelize ORM
 
 ## Deployment
 This has been deployed onto AWS using Docker containers.
-
-## Testing
-From within the root directory:
-```sh
-$ npm test
-```

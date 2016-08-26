@@ -11,11 +11,7 @@ class Compare extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   componentWillMount() {
-    if (this.props.params.comparison1 && this.props.params.comparison2) {
-      this.props.fetchSpecificPlayers( { playerNames: [this.props.params.comparison1, this.props.params.comparison2] });
-    } else {
-      this.props.fetchSpecificPlayers( { playerNames: ['Aaron Rodgers', 'Cam Newton'] });
-    }
+    this.props.fetchSpecificPlayers( { playerNames: ['Aaron Rodgers', 'Cam Newton'] });
   }
   onSubmit(event) {
     event.preventDefault();
