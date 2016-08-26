@@ -71,9 +71,9 @@ describe('sockets', () => {
       } else {
         const parsed = JSON.parse(body);
         expect(response.statusCode).to.equal(200);
-        expect(parsed[0][0].full).to.equal('Aaron Rodgers');
+        expect(parsed[0][0][0].full).to.equal('Aaron Rodgers');
         for (var k in playerGameStats) {
-          expect(parsed[0][0]).to.have.property(k);
+          expect(parsed[0][0][0]).to.have.property(k);
         }
         done();
       }
