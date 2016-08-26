@@ -8,30 +8,36 @@ class LineChart extends Component {
 
   render() {
     // Line chart
-    let playerStats = this.props.players[1];
+    const playerStats = this.props.players[1];
     if (Array.isArray(playerStats)) {
-      playerStats = playerStats.slice(0, 17);
+      // playerStats = playerStats.slice(0, 17);
       console.log(playerStats);
       const width = 700;
       const height = 200;
 
       const yahooPoints = {
-        total: [[],[],[],[]],
-        passingYards: [[]],
-        PassingTouchDowns: [[]],
+        total: [[], [], [], []],
+        player1: [[]],
+        player2: [[]],
       };
       const increment = width / 17;
-
+      let currentWeek = 1;
       playerStats.forEach((obj, i) => {
         const index = i + 1;
         yahooPoints.total[0].push(index);
         yahooPoints.total[1].push(obj.FantasyPointsYahoo);
         yahooPoints.total[2].push((index) * increment);
         yahooPoints.total[3].push([index, obj.FantasyPointsYahoo]);
-        yahooPoints.passingYards[0].push([index, (obj.PassingYards / 25)]);
-        yahooPoints.PassingTouchDowns[0].push([index, (obj.PassingTouchdowns * 4)]);
-      });
 
+
+        if (i % 2 === 0 ) {
+          yahooPoints.player1[0].push([currentWeek,obj.FantasyPointsYahoo])
+        } else {
+          yahooPoints.player2[0].push([currentWeek,obj.FantasyPointsYahoo])
+          currentWeek++;
+        }
+      });
+      console.log(yahooPoints);
       const x = d3.scaleOrdinal(yahooPoints.total[2]);
       const y = d3.scaleLinear()
               .domain([0, d3.max(yahooPoints.total[1])])
@@ -45,9 +51,9 @@ class LineChart extends Component {
                 .x(function(d) { return x(d[0]) })
                 .y(function(d) { return y(d[1]) });
 
-      const linePT = d3.line()
-                .x(function(d) { return x(d[0]) })
-                .y(function(d) { return y(d[1]) });
+      // const linePT = d3.line()
+      //           .x(function(d) { return x(d[0]) })
+      //           .y(function(d) { return y(d[1]) });
 
       const margin = {top: 20, right: 20, bottom: 30, left: 50};
 
@@ -68,7 +74,7 @@ class LineChart extends Component {
                 .style('transform', 'translate(' + (30) +'px, ' + (50) +'px)');
                 svgTranslated.append('path')
                 .attr('data-legend', function(d) { return 'Total Points' })
-                .datum(yahooPoints.total[3])
+                .datum(yahooPoints.player1[0])
                 .attr('class', 'line')
                 .attr('d', line)
                 .on('mouseover', function(d) {
@@ -81,7 +87,7 @@ class LineChart extends Component {
                 });
 
                 svgTranslated.append('path')
-                .datum(yahooPoints.passingYards[0])
+                .datum(yahooPoints.player2[0])
                 .attr('class', 'line-yards')
                 .attr('d', linePY)
                 .on('mouseover', function(d) {
@@ -93,18 +99,18 @@ class LineChart extends Component {
                   .style('opacity', '1');
                 });
 
-                svgTranslated.append('path')
-                .datum(yahooPoints.PassingTouchDowns[0])
-                .attr('class', 'line-touch-downs')
-                .attr('d', linePT)
-                .on('mouseover', function(d) {
-                  d3.select(this)
-                  .style('opacity', '.7');
-                })
-                .on('mouseout', function(d) {
-                  d3.select(this)
-                  .style('opacity', '1');
-                });;
+                // svgTranslated.append('path')
+                // .datum(yahooPoints.PassingTouchDowns[0])
+                // .attr('class', 'line-touch-downs')
+                // .attr('d', linePT)
+                // .on('mouseover', function(d) {
+                //   d3.select(this)
+                //   .style('opacity', '.7');
+                // })
+                // .on('mouseout', function(d) {
+                //   d3.select(this)
+                //   .style('opacity', '1');
+                // });
 
               svgTranslated.append('g')
               .style('transform', 'translate(0px, 195px)')

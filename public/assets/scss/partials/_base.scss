@@ -241,6 +241,7 @@ header {
 .compare-headline {
   font: 600 34px $fonts1;
   text-align: center;
+  margin: 30px 10px;
 }
 
 // Schedule
@@ -593,6 +594,11 @@ span {
 /*PlayerView*/
 
 .player-table {
+  &.compare {
+    clear: both;
+    position: relative;
+    top: -16px;
+  }
   @extend %foo;
   table {
     width: 100%;
@@ -988,8 +994,49 @@ span {
   width: 94%;
   margin-bottom: 20px;
   margin-left: 11px;
+  &.compare-view {
+    input{
+      width: 100%;
+      height: 40px;
+      font-size: 18px;
+      margin-bottom: 20px;
+      padding-left: 15px;
+      &:last-of-type {
+        margin-bottom: 60px;
+      }
+    }
+  }
 }
 
+.playerinfo {
+  float: left;
+  &:nth-of-type(2n) {
+    float: right;
+  }
+}
+.compare-player1, .compare-player2 {
+  width: 220px;
+  height: 270px;
+  // border-radius: 100px;
+  background: #fff;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  position: relative;
+  top: -16px;
+  img {
+    width: 130%;
+    position: relative;
+    top: 83px;
+    left: -22px;
+  }
+}
+
+.compare-player2 {
+  background: steelblue;
+}
+.compare-player1 {
+  background: #46b46d;
+}
 .dyi-right-container {
   float: right;
   width: 70%;
@@ -1012,4 +1059,76 @@ span {
 .offset-up {
   position: relative;
   bottom: 110px;
+}
+
+.line-chart-container {
+  float: left;
+}
+
+
+
+.axis {
+	font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.axis--x path {
+	display: none;
+}
+
+.line, .line-yards, .line-touch-downs {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 5.5px;
+}
+
+.line-yards {
+	stroke: #46b46d;
+}
+
+.line-touch-downs {
+	stroke: #ef7118;
+}
+.legend-pt, .legend-py, .legend-td {
+	position: absolute;
+	padding: 10px;
+
+}
+.legendOrdinal {
+	font-family: helvetica, arial, sans-serif;
+	font-size: 12px;
+}
+svg {
+	border: 1px solid #ededed;
+	margin: 0 auto;
+	display: block;
+}
+.axis.axis--x {
+	display: none;
+}
+.axis.axis--x:first-of-type {
+	display: block;
+}
+
+.arc text {
+	font: 10px sans-serif;
+	text-anchor: middle;
+}
+
+.arc path {
+	stroke: #fff;
+}
+
+.compare-container {
+  h3 {
+    font-size: 24px;
+    margin: 10px 0;
+    text-align: center;
+  }
 }
