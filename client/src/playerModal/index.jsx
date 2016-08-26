@@ -12,7 +12,6 @@ const PlayerModal = (props) => {
   }
   return (
     <div className="modal">
-      {console.log('this is the modal: ', props.modal)}
       <div className="modal-header">
         {props.modal.length > 1 ? props.modal[0][0].full : 'none'}
       </div>

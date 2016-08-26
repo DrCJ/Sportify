@@ -163,7 +163,16 @@ module.exports = {
       WHERE "playerId" IN (${playerIDs.join()})`;
 
       db.query(q2).then(stats2 => {
-        result.actual = stats2[0];
+        var dict = {};
+        var actual = [];
+        stats2[0].forEach(player => {
+          dict[player.playerId] = player;
+        });
+        result.projected.forEach(player => {
+          actual.push(dict[player.playerId]);
+        });
+        result.actual = actual;
+
         res.send(result);
       });
     });
