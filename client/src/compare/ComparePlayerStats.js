@@ -3,18 +3,25 @@ import { connect } from 'react-redux';
 
 class ComparePlayerStats extends Component {
   renderStats() {
+    let playerTwo;
     return statIndex.map((stat, index) => {
+      if (this.props.players[0][1]) {
+        playerTwo = <td>{this.props.players[0][1][stat]}</td>;
+      }
       return (
-        <tr>
+        <tr key={index}>
           <td>{stat}</td>
-          <td>{this.props.players[0][stat]}</td>
-          <td>{this.props.players[1][stat]}</td>
+          <td>{this.props.players[0][0][stat]}</td>
+          {playerTwo}
         </tr>
       );
     });
   }
 
   render() {
+    if(!this.props.players[0][0]) {
+      return <div> loading </div>;
+    }
     return (
       <div>
         <table>
@@ -35,7 +42,7 @@ class ComparePlayerStats extends Component {
 }
 
 function mapStateToProps(state) {
-  return { players: state.players };
+  return { players: state.query };
 }
 
 export default connect(mapStateToProps)(ComparePlayerStats);

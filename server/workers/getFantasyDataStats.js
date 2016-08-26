@@ -34,8 +34,13 @@ const getPlayerProjectedWeeklyStats = () => {
 
       if (yahooId[playerId]) {
         item.playerId = yahooId[playerId];
-        PlayerProjectedGame.create(item);
-        console.log("Created: ",item.playerId);
+        item.gameId = item.GameKey;
+        // PlayerProjectedGame.create(item);
+        PlayerProjectedGame.findOrCreate({
+          where: { playerId: item.playerId, gameId: item.GameKey },
+          defaults: item,
+        });
+        console.log("Created: ",item.playerId, item.gameId);
       }
     },
   };
@@ -199,8 +204,8 @@ const getGameInfo = () => {
 };
 
 
-const { weeks, baseUrl, appendWeeks, onEachItem } = getPlayerYearStats();
-const startWeek = 1;
+const { weeks, baseUrl, appendWeeks, onEachItem } = getPlayerProjectedWeeklyStats();
+const startWeek = 2;
 
 const getNext = (i) => {
   var url;

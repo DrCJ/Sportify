@@ -17,7 +17,6 @@ class ClickableHeading extends Component {
   clickHandler() {
     if (!this.state.clicked) {
       this.state.clicked = true;
-      console.log('clicked on ', this.props.fieldName, this.props.name);
       this.props.dispatch(filterPlayers({ orderBy: this.props.fieldName }));
     }
   }

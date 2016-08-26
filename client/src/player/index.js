@@ -6,10 +6,8 @@ import { requestAllPlayers } from './actions';
 import PlayerFilterForm from './PlayerFilterForm';
 
 class PlayerView extends Component {
-  componentWillMount() {
-    this.props.requestAllPlayers().then((data) => {
-      this.props.players.concat(data);
-    });
+  componentDidMount() {
+    this.props.requestAllPlayers();
   }
   render() {
     if (this.props.players.length === 0) {
@@ -17,13 +15,12 @@ class PlayerView extends Component {
     }
     return (
       <div className="player-background-image">
-        <h2>   </h2>
+        <div className="mathead-bg" />
         <div className="center-content">
-          <div className="search-container">
-            <input type="text" name="name" value="" placeholder="SEARCH" />
+          <div className="player-stats-container">
+            <PlayerFilterForm />
+            <PlayerViewTable />
           </div>
-          <PlayerFilterForm />
-          <PlayerViewTable />
         </div>
       </div>
     );

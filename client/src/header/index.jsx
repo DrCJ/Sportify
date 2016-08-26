@@ -4,22 +4,25 @@ import { connect } from 'react-redux';
 import { toggleNavigation } from './actions';
 
 const Header = (props) => (
-  <div className="header">
-    <button onClick={props.toggleNavigation} type="button" className="menu-btn">
-      <span />
-      <span />
-      <span />
-      <span />
-    </button>
-    <div className="logo">
-      <img src="" alt="SOME RANDOM LOGO" />
+  <header className="header">
+    <div className="center-content">
+      <button onClick={props.toggleNavigation} type="button" className="menu-btn">
+        <span />
+        <span />
+        <span />
+        <span />
+      </button>
+      <div className="logo">
+        <p className="logo-name">Sportify</p>
+      </div>
+      <div className="login-btn">
+        <a href="/auth/yahoo">
+          <img className="login-img" width="60" src="http://vignette3.wikia.nocookie.net/logopedia/images/8/84/Yahoo%21_18_Favicon.png/revision/latest?cb=20130825034903" alt="Yahoo logo" />
+        </a>
+        <a className="logout-btn" href="/logout">Logout</a>
+      </div>
     </div>
-    <div className="login-btn">
-      <a href="/auth/yahoo">Yahoo Profile Login</a>
-      <span> | </span>
-      <a href="/logout">Logout</a>
-    </div>
-  </div>
+  </header>
 );
 
 function mapStateToProps(state) {

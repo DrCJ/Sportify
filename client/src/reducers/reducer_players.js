@@ -1,7 +1,4 @@
-import { REQUEST_ALL_PLAYERS, FILTER_PLAYERS } from '../player/actionTypes';
-import { FETCH_SPECIFIC_PLAYERS } from '../compare/actionTypes';
-
-const INITIAL_STATE = [];
+const INITIAL_STATE = [{ type: null }];
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -9,7 +6,7 @@ export default function (state = INITIAL_STATE, action) {
       return action.payload.data;
     case 'FILTER_PLAYERS':
       return action.payload.data[0];
-    case 'FETCH_SPECIFIC_PLAYERS':
+    case 'FILTER':
       return action.payload.data[0];
     default:
       return state;

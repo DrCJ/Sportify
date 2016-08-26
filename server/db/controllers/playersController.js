@@ -2,6 +2,7 @@ const { PlayerProjectedGame, PlayerProjectedYear, Player, db } = require('../mod
 const Sequelize = require('sequelize');
 const { sortByPosition } = require('../helpers/sortByPosition');
 const { getHighResolution } = require('../helpers/getHighResolution');
+const Twitter = require('../../middleware/twitter');
 
 module.exports = {
 
@@ -26,6 +27,7 @@ module.exports = {
   //  we should provide a lookup table for acceptable params fields
   //  here since we are accepting user input = security issue
   getPlayersByParams: (req, res) => {
+    console.log('req.body:', req.body);
     const filters = req.body.filters;
     const limit = 25;
     const orderBy = req.body.orderBy || 'FantasyPointsYahoo';
@@ -34,18 +36,19 @@ module.exports = {
     const season = req.body.season || '2016';
     let subQ = `WHERE "${tableName}"."Season"=${season} AND `;
     for (const key in filters) {
-        // if (subQ === '') { subQ = 'WHERE '; }
+
+      if (filters[key]) {  // this will purge empty string values
         orderStat = filters[key];
         if (!isNaN(Number(orderStat))) {
           orderStat = Number(orderStat);
         }
         subQ += `"${tableName}"."${key}" = '${orderStat}' AND `;
+      }
     }
     subQ = subQ.substr(0, subQ.length - 4);  //delete the last 'AND'
     subQ += `ORDER BY "${orderBy}" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "${tableName}"
     ON "players"."id" = "${tableName}"."playerId" ${subQ}`;
-    console.log('-----------query', q);
     db.query(q).then(stats => {
       delete stats[1];  //this query returns a lot of "junk" values at index 1;
       res.send(stats);
@@ -57,63 +60,82 @@ module.exports = {
 
   // see above regarding security / lookup table
   getPlayersByIds: (req, res) => {
-
     const stat = req.body;
-    // const limit = 25;
-    // let subQ = '';
-    // let orderStat = '';
-    // for (const filter in stat) {
-    //   orderStat = stat[filter];
-    //   if (!isNaN(Number(orderStat))) {
-    //     orderStat = Number(orderStat);
-    //   }
-    //   subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
-    // }
-    // subQ = subQ.substr(0, subQ.length - 4);
-    // subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
+    const limit = 25;
+    let subQ = '';
+    let orderStat = '';
+    for (const filter in stat) {
+      orderStat = stat[filter];
+      if (!isNaN(Number(orderStat))) {
+        orderStat = Number(orderStat);
+      }
+      subQ += `"playerProjectedGames"."${filter}" = '${orderStat}' AND `;
+    }
+    subQ = subQ.substr(0, subQ.length - 4);
+    subQ += `ORDER BY "playerId" DESC LIMIT ${limit}`;
     const q = `SELECT * FROM players INNER JOIN "playerProjectedGames"
     ON "players"."id" = "playerProjectedGames"."playerId"
     WHERE "playerProjectedGames"."playerId" IN (${stat.playerId.join()})`;
 
-        // AND "playerProjectedGames"."Week" = 1`;
-
     db.query(q).then(stats => {
-      let sortedStats = sortByPosition(stats);
+      const sortedStats = sortByPosition(stats);
       // sortedStats = getHighResolution(sortedStats);
-      res.send(sortedStats);
+      Twitter.getTweetsFromPlayer(stats[0][0].twitterID, tweets => {
+        res.send([sortedStats, tweets]);
+      });
+
+      console.log(sortedStats[0][0].twitterID);
     });
   },
   getPlayersByName: (req, res) => {
-    PlayerProjectedYear.findOne({
+    PlayerProjectedYear.findAll({
       order: [
-      ['FantasyPointsYahoo', 'DESC'],
+        ['FantasyPointsYahoo', 'DESC'],
       ],
       where: {
-        Name: {
-          $iLike: `%${req.body.playerNames[0]}%`,
-        },
+        $or: [
+          {
+            Name: {
+              $iLike: `%${req.body.playerNames[0]}%`,
+            },
+          },
+          {
+            Name: {
+              $iLike: `%${req.body.playerNames[1]}%`,
+            },
+          },
+        ],
       },
+      limit: req.body.playerNames.length,
       include: [
         { model: Player, required: true },
       ],
     })
     .then((playerData) => {
-      // WARNING: Callback hell. Will have to refactor this soon.
-      PlayerProjectedYear.findOne({
-        order: [
-        ['FantasyPointsYahoo', 'DESC'],
-        ],
-        where: {
-          Name: {
-            $iLike: `%${req.body.playerNames[1]}%`,
-          },
-        },
-        include: [
-          { model: Player, required: true },
-        ],
-      }).then((player2Data) => {
-        res.send([[playerData, player2Data]]);
+      const playersId = [];
+      const players = [];
+      const unshift = (player) => {
+        playersId.unshift(player.dataValues.playerId);
+        players.unshift(player);
+      };
+      const push = (player) => {
+        playersId.push(player.dataValues.playerId);
+        players.push(player);
+      };
+      playerData.forEach(function(player) {
+        const currentPlayer = player.dataValues.Name.toUpperCase();
+        const reqBodyPlayerOne = req.body.playerNames[0].toUpperCase();
+        currentPlayer.includes(reqBodyPlayerOne) ? unshift(player) : push(player);
       });
+
+      PlayerProjectedGame.findAll({
+        where: {
+          playerId: playersId,
+        }
+      })
+      .then(stats => {
+        res.send([players, stats]);
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -122,21 +144,21 @@ module.exports = {
   getProjectedVsActual: (req, res) => {
     const position = req.body.position || 'RB';
     const season = req.body.season || 2016;
-    const limit = req.body.limit || 10;
+    const limit = req.body.limit || 20;
     const result = {};
-
-    const q = `SELECT "playerId", "FantasyPointsYahoo" 
-    FROM "playerProjectedYears"
-    WHERE "Position"='${position}' AND 
-    "Season"='${season}' ORDER BY "FantasyPointsYahoo" 
+    const q = `SELECT "playerId", "FantasyPointsYahoo", "Name", "players"."twitterID",
+    "players"."image_url", "playerProjectedYears"."Position"
+    FROM "playerProjectedYears" INNER JOIN "players"
+    ON "playerProjectedYears"."playerId" = "players"."id"
+    WHERE "Position"='${position}'
+    AND "Season"='${season}' ORDER BY "FantasyPointsYahoo"
     DESC LIMIT ${limit};`;
 
     db.query(q).then(stats => {
       result.projected = stats[0];
 
       const playerIDs = stats[0].map(player => player.playerId);
-
-      const q2 = `SELECT "playerId", "FantasyPointsYahoo" 
+      const q2 = `SELECT "playerId", "FantasyPointsYahoo", "Name"
       FROM "playerYearStats"
       WHERE "playerId" IN (${playerIDs.join()})`;
 
@@ -145,6 +167,14 @@ module.exports = {
         res.send(result);
       });
     });
-
+  },
+  getPlayersTweets: (req, res) => {
+    const playerImg = req.body.playerImg;
+    Twitter.getTweetsFromPlayer(req.body.twitterID, tweets => {
+      if (tweets[0]) {
+        tweets[0].user.profile_image_url = playerImg;
+        res.send(tweets);
+      }
+    });
   },
 };

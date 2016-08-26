@@ -2,14 +2,14 @@ import React from 'react';
 import promise from 'redux-promise';
 import { beforeEach } from 'mocha';
 import { expect } from 'chai';
-import { shallow, mount, render } from 'enzyme';
+import { mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 
 
 import reducers from '../../client/src/reducers/root_reducer';
 
-import App from '../../client/src/App';
+import App from '../../client/src/app/App';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -39,4 +39,13 @@ describe("<App />", function() {
     expect(wrapper.find('.shadow-modal-click')).to.have.length(0);
   });
 
+  it("wrapper", () => {
+    const children = wrapper.children();
+    // const grandchildren = children[0].children();
+    const appContainer = children[0];
+    const mainContent = wrapper.find('.main-content');
+
+    console.log('wrapper:', mainContent);
+  });
 });
+

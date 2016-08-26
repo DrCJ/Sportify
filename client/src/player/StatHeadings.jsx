@@ -9,11 +9,11 @@ const StatHeadings = (props) => {
     <thead>
       <tr>
         <td colSpan="4" />
-        <td colSpan="2">Fan Pts</td>
-        <td colSpan="4">Passing</td>
-        <td colSpan="2">Rushing</td>
-        <td colSpan="3">Receiving</td>
-        <td colSpan="3">Misc</td>
+        <td className="table-category" colSpan="2">Fan Pts</td>
+        <td className="table-category" colSpan="4">Passing</td>
+        <td className="table-category" colSpan="2">Rushing</td>
+        <td className="table-category" colSpan="3">Receiving</td>
+        <td className="table-category" colSpan="3">Misc</td>
       </tr>
       <tr>
         {mapHeadings}

@@ -1,5 +1,3 @@
-import { FETCH_LEAGUES } from '../league/actionTypes';
-
 const INITIAL_STATE = [];
 
 export default function (state = INITIAL_STATE, action) {

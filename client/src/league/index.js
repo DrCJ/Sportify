@@ -12,7 +12,13 @@ class LeagueOverview extends Component {
   renderLeagues() {
     return this.props.leagues.map((league, index) => {
       return (
-        <h1 key={index}><Link to={`/TeamView/${league.league_key}`}>{league.name}</Link></h1>
+        <div className="league">
+          <h1 key={index}><Link to={`/TeamView/${league.league_key}`}>{league.name}</Link></h1>
+          <p><a href={league.url}>Yahoo link</a></p>
+          <p><b>Season:</b> {league.season}</p>
+          <p><b>Current Week:</b> {league.current_week}</p>
+          <p><b>Number of Teams:</b> {league.num_teams}</p>
+        </div>
       );
     });
   }

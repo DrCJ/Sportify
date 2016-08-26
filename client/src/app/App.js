@@ -6,8 +6,11 @@ import Header from '../header/index.jsx';
 import NavigationCanvas from '../navCanvas/index.jsx';
 import PlayerModal from '../playerModal/index.jsx';
 import { closeNavigation, closeModal } from './actions';
+import { getGamesSchedule } from '../schedule/actions';
 
 class App extends Component {
+  // Calling the getGamesSchedule once App mounts so that state will be updated by the time
+  // User navigates to the page.
   render() {
     return (
       <div className="app-container">
@@ -25,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { closeNavigation, closeModal })(App);
+export default connect(null, { closeNavigation, closeModal, getGamesSchedule })(App);
