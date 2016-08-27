@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { StickyContainer, Sticky } from 'react-sticky'
 
 import Footer from '../footer/index.jsx';
 import Header from '../header/index.jsx';
@@ -13,17 +14,22 @@ class App extends Component {
   // User navigates to the page.
   render() {
     return (
-      <div className="app-container">
+      <StickyContainer>
         <NavigationCanvas />
-        <div onClick={this.props.closeNavigation} className="shadow" />
-        <div onClick={this.props.closeModal} className="shadow-modal" />
-        <div className="main-content">
-          <Header />
-          <PlayerModal />
-          {this.props.children}
+        <div className="app-container">
+          <div onClick={this.props.closeNavigation} className="shadow" />
+          <div onClick={this.props.closeModal} className="shadow-modal" />
+          <div className="main-content">
+            <Header />
+            <PlayerModal />
+            {this.props.children}
+          </div>
         </div>
-        <Footer />
-      </div>
+        <Sticky>
+          <Footer />
+        </Sticky>
+
+      </StickyContainer>
     );
   }
 }
