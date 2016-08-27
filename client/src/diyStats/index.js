@@ -31,6 +31,7 @@ class DIYStatsView extends Component {
     for (let k in teams) {
       this.teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
     }
+    this.onSearch(null, this.props.search[0][0].player.full);
   }
 
   onFieldSubmit(event) {
@@ -44,9 +45,11 @@ class DIYStatsView extends Component {
     setTimeout(() => this.props.calculateDifference(this.props.players[0], this.props.players[1]), 100);
   }
 
-  onSearch(event) {
-    event.preventDefault();
-    this.props.fetchSpecificPlayers({ playerNames: [event.target[0].value] })
+  onSearch(event, name) {
+    if (event) {
+      event.preventDefault();
+    }
+    this.props.fetchSpecificPlayers({ playerNames: [name || event.target[0].value] || 'Cam Newton'})
     .then(() => {
       const playerIdArray = { playerId: [this.props.search[0][0].playerId] };
       this.props.getOnePlayerModal(playerIdArray).then(() => {
