@@ -64,6 +64,9 @@ table {
   content: "";
 }
 
+body {
+  height: 100%;
+}
 body * {
   box-sizing: border-box;
 }
@@ -1293,6 +1296,7 @@ svg {
 }
 
 footer {
+  margin-top: 160px;
   background: #000e33;
   height: 70px;
   color: #fff;
@@ -1304,6 +1308,62 @@ footer {
 footer p {
   font-size: 20px;
   font-family: "Roboto", sans-serif;
+}
+
+.nav-canvas {
+  position: absolute;
+  left: -170px;
+  -webkit-transition: width .1s, height .1s, background-color .1s, -webkit-transform .1s;
+  transition: width .1s, height .1s, background-color .1s, transform .1s;
+  transition-duration: .1s;
+  transition-timing-function: ease-out;
+  transition: 0.2s;
+}
+
+.nav-canvas-clicked {
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  background-color: rgba(19, 19, 19, 0.9);
+  z-index: 2;
+  padding-right: 2px;
+  border: 1px black solid;
+  -webkit-transition: width .1s, height .1s, background-color .1s, -webkit-transform .1s;
+  transition: width .1s, height .1s, background-color .1s, transform .1s;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  padding-right: 20px;
+}
+
+.nav-link {
+  padding-top: 30px;
+}
+.nav-link a {
+  color: #fff;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  margin-bottom: 15px;
+  display: block;
+}
+.nav-link a:active, .nav-link a:focus {
+  border: none;
+  outline: 0;
+}
+
+.app-container {
+  position: relative;
+  left: 0;
+}
+
+.shift {
+  left: 156px;
+  -webkit-transition: left .1s;
+  transition: left .1s;
+  transition-duration: .5s;
+  transition-timing-function: ease-in;
+  transition: 0.2s;
 }
 
 /*# sourceMappingURL=styles.css.map */
