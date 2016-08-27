@@ -52,7 +52,7 @@ class DoubleBarChart extends Component {
 
         if (this.props.positions) {
           console.log(this.props.positions.data);
-            
+
           const twitterNames = [];
           const twitterImgs = [];
           const projData = [];
