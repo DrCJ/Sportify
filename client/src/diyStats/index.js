@@ -49,7 +49,7 @@ class DIYStatsView extends Component {
     if (event) {
       event.preventDefault();
     }
-    this.props.fetchSpecificPlayers({ playerNames: [name || 'Cam Newton' || event.target[0].value] })
+    this.props.fetchSpecificPlayers({ playerNames: [name || event.target[0].value] || 'Cam Newton'})
     .then(() => {
       const playerIdArray = { playerId: [this.props.search[0][0].playerId] };
       this.props.getOnePlayerModal(playerIdArray).then(() => {
