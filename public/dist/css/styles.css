@@ -213,6 +213,8 @@ header {
 .compare-sidebar {
   float: right;
   width: 375px;
+  position: relative;
+  top: -24px;
 }
 
 .compare-preview-info {
