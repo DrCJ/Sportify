@@ -38,7 +38,7 @@ const abbreviations = {
   'ReceivingTouchdowns': 'TD',
   // 'ReceivingLong': 7.9,
   'Fumbles': 'Fum',
-  'Carlos': 'Carlos',
+  'Approval': 'Approval',
   // 'FumblesLost': 1.1,
   // 'PuntReturns': 0,
   // 'PuntReturnYards': 0,

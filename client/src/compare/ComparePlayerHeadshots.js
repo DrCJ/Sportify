@@ -11,19 +11,11 @@ class ComparePlayers extends Component {
       return <div> loading </div>;
     }
     if (this.props.players[0][1]) {
-      if (this.props.players[0][1].Name === 'Eddie Royal') {
-        playerTwo = <div className="compare-player2">Roy Eun
-          <img
-            className="player2-image"
-            src='http://i.imgur.com/4cigE6S.png'
-            /></div>
-      } else {
-        playerTwo = <div className="compare-player2">{this.props.players[0][1].Name}
-          <img
-            className="player2-image"
-            src={this.props.players[0][1].player.image_url}
-            /></div>;
-      }
+      playerTwo = <div className="compare-player2">{this.props.players[0][1].Name}
+        <img
+          className="player2-image"
+          src={this.props.players[0][1].player.image_url}
+          /></div>;
     }
     return (
       <div className="compare-container">
