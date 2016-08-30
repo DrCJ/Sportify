@@ -31,7 +31,7 @@ const INITIAL_STATE = {
     // '2PT',  -> 2PT is split into multiple db fields
     'TwoPointConversionPasses',
     'Fumbles',
-    'Carlos',
+    'Approval',
   ],
 };
 
