@@ -111,7 +111,7 @@ class StatisticsOverview extends Component {
       );
     }
     return (
-      <div> QB Will Mount </div>
+      <div className="loading"></div>
     );
   }
 }

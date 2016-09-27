@@ -870,3 +870,9 @@ svg {
 	text-align: center;
 	color: #fff;
 }
+
+.loading {
+	width: 100px;
+	height: 720px;
+	background-color: blue;
+}
