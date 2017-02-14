@@ -31,7 +31,6 @@ class DIYStatsView extends Component {
     for (let k in teams) {
       this.teamOptions.push(<option key={k} value={k}>{teams[k]}</option>);
     }
-    this.onSearch(null, this.props.search[0][0].player.full);
   }
 
   onFieldSubmit(event) {

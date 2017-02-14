@@ -1178,6 +1178,7 @@ span.at-sign {
 
 .line-chart-container {
   float: left;
+  margin-top: -16px;
 }
 
 .axis {
@@ -1245,6 +1246,7 @@ svg {
 .compare-container h3 {
   font-size: 24px;
   margin: 10px 0;
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -1298,6 +1300,7 @@ svg {
 }
 
 footer {
+  position: fixed;
   margin-top: 160px;
   background: #000e33;
   height: 70px;
@@ -1347,6 +1350,7 @@ footer p {
   font-family: "Roboto", sans-serif;
   text-decoration: none;
   margin-bottom: 15px;
+  margin-left: 10px;
   display: block;
 }
 .nav-link a:active, .nav-link a:focus {
